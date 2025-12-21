@@ -25,7 +25,7 @@ const GiftCard = ({ giftCard, showDescription = true}: GiftCardPropType, ) => {
         style={[]}
       >
         <View style={[styles.card]}>
-          <View style={[styles.imageContainer, commonStyles.shadow]}>
+          <View style={[styles.imageContainer, commonStyles.shadow, commonStyles.shadowBorderRadius]}>
             <Image 
               source={{uri: thumbnail}}
               style={[styles.image]}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 88,
     height: 88,
-    flexBasis: 88
+    flexBasis: 88,
   },
   image: {
     width: '100%',

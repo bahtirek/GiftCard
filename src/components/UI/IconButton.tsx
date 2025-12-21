@@ -1,8 +1,9 @@
 import { Pressable, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import ExpoIcons from '@expo/vector-icons/Feather';
+import { ComponentProps } from 'react';
 
 type IconButtonType = {
-  icon: string,
+  icon: ComponentProps<typeof ExpoIcons>['name'],
   onPress: ()=>void
   size?: number,
   color?: string,
