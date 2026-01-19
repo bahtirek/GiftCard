@@ -3,7 +3,6 @@ import React from 'react';
 import { GiftCardType } from '@/types';
 import commonStyles from '@/styles/styles';
 import { Colors, Font } from '@/styles/constants';
-import { useGiftCardsStore } from '@/stores/giftCard.store';
 
 type GiftCardPropType = {
   giftCard: GiftCardType,
@@ -14,16 +13,16 @@ type GiftCardPropType = {
 
 const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: GiftCardPropType, ) => {
   const {label, thumbnail, description, address} = giftCard;
-  const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
-  const handlePress = () => {
-    setGiftCard(giftCard);
-    goToCardDetailsScreen(giftCard.id);
-  }
+  //const navigation = useNavigation();
+  
+/*   const goToCardDetailsScreen = () => {
+
+  } */
   return (
     <View style={[styles.container]}>
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={handlePress}
+        onPress={goToCardDetailsScreen.bind(this, giftCard.id)}
         style={[]}
       >
         <View style={[styles.card]}>

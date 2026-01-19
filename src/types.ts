@@ -43,6 +43,10 @@ export type GiftCardType = {
   showDescription?: boolean 
 };
 
+export type GiftCardsStoreState = {
+  giftCard: GiftCardType;
+};
+
 export type CreatorType = {
   username: string,
   avatar: string

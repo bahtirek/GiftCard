@@ -15,6 +15,12 @@ const AllCardsScreen = () => {
     
   }
 
+  const goToCardDetailsScreen = (giftCardId: string) => {
+    console.log('Go to card details for card id:', giftCardId);
+    
+    navigation.navigate('GiftCardDetails' as never);
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -30,7 +36,7 @@ const AllCardsScreen = () => {
           data={giftCards}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <GiftCard giftCard={item} showDescription />
+            <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
           )}
         />
       </View>

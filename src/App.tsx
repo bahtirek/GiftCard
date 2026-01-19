@@ -17,24 +17,27 @@ import ExpoIcons from '@expo/vector-icons/Feather';
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
-const GiftCardsOverview = () => {
+const MainTabsView = () => {
   return <Tabs.Navigator screenOptions={{
     headerStyle: { backgroundColor: 'white'},
     headerTintColor: Colors.primary,
-    tabBarStyle: { backgroundColor: 'white'},
+    tabBarStyle: { backgroundColor: 'white', height: 70, paddingBottom: 5 },
     tabBarInactiveTintColor: '#FCAF58',
     tabBarActiveTintColor: Colors.primary
   }}>
     <Tabs.Screen name='Home' component={HomeScreen} options={{
       title: 'Home',
       tabBarLabel: 'Home',
+      tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="home" size={22} color={color} />
       )
     }}/>
-    <Tabs.Screen name='AllGiftCards' component={AllCardsScreen} options={{
+    <Tabs.Screen name='GiftCardsScreens' component={GiftCardsScreens} options={{
+      headerShown: false,
       title: 'Gift Cards',
       tabBarLabel: 'Gift Cards',
+      tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="gift" size={22} color={color} />
       )
@@ -42,6 +45,7 @@ const GiftCardsOverview = () => {
     <Tabs.Screen name='Cart' component={CartScreen} options={{
       title: 'Shopping Bag',
       tabBarLabel: 'Bag',
+      tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="shopping-bag" size={22} color={color} />
       )
@@ -49,11 +53,29 @@ const GiftCardsOverview = () => {
     <Tabs.Screen name='Profile' component={ProfileScreen} options={{
       title: 'Profile',
       tabBarLabel: 'Profile',
+      tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="user" size={22} color={color} />
       )
     }}/>
   </Tabs.Navigator>
+}
+
+const GiftCardsScreens = () => {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: { backgroundColor: 'white'},
+      headerTintColor: '#FCAF58',
+      headerTitleStyle: {
+        color: Colors.primary,
+      }
+    }}>
+      <Stack.Screen name='AllGiftCards' component={AllCardsScreen} options={{
+        title: 'Gift Cards',
+      }} />
+      <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } />
+    </Stack.Navigator>
+  )
 }
 
 export default function App() {
@@ -62,7 +84,7 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='GiftCardsOverview' component={GiftCardsOverview} options={{headerShown: false}} />
+          <Stack.Screen name='MainTabsView' component={MainTabsView} options={{headerShown: false}} />
           <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } />
           <Stack.Screen name='Settings' component={SettingsScreen} />
         </Stack.Navigator>
