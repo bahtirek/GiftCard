@@ -4,7 +4,7 @@ import giftCards from '@/data/giftcards'
 import GiftCard from '@/components/GiftCard/GiftCard'
 import MainView from '@/components/common/MainView'
 import { useNavigation } from '@react-navigation/native'
-import IconButton from '@/components/UI/IconButton'
+import IconButton from '@/components/UI/buttons/IconButton'
 
 
 const AllCardsScreen = () => {

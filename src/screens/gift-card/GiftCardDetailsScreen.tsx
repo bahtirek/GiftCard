@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image, Platform } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CustomButton from '@/components/UI/CustomButton';
+import CustomButton from '@/components/UI/buttons/CustomButton';
 import { useGiftCardsStore } from '@/stores/giftCard.store';
 import { GiftCardType, GiftCardsStoreState } from '@/types';
 import { useNavigation, Link } from '@react-navigation/native';
-import OpenURLButton from '@/components/UI/OpenURLButton';
+import OpenURLButton from '@/components/UI/buttons/OpenURLButton';
 import {commonStyles, pb, text} from '@/styles/styles';
 
 const CardDetailsScreen = () => {
@@ -20,7 +20,7 @@ const CardDetailsScreen = () => {
 
   const handlePurchase = () => {
     console.log('Purchase gift card:', giftCard?.id);
-    // Here you can add the logic to handle the purchase process
+    navigation.navigate('Purchase' as never);
   }
 
   return (
