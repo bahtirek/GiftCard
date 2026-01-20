@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import React from 'react';
 import { GiftCardType } from '@/types';
-import commonStyles from '@/styles/styles';
+import {commonStyles} from '@/styles/styles';
 import { Colors, Font } from '@/styles/constants';
 import { useGiftCardsStore } from '@/stores/giftCard.store';
 
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     marginTop: 8,
-    borderRadius: 8,
+    borderRadius: 12,
     overflow: 'hidden',
     marginHorizontal: 8
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 8,
+    borderRadius: 12,
     opacity: .9
   },
   detailsContainer: {

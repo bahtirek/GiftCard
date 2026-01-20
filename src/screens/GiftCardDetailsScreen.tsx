@@ -6,6 +6,7 @@ import { useGiftCardsStore } from '@/stores/giftCard.store';
 import { GiftCardType, GiftCardsStoreState } from '@/types';
 import { useNavigation, Link } from '@react-navigation/native';
 import OpenURLButton from '@/components/UI/OpenURLButton';
+import {commonStyles, pb, text} from '@/styles/styles';
 
 const CardDetailsScreen = () => {
   const giftCard = useGiftCardsStore(state => state.giftCard);
@@ -23,26 +24,27 @@ const CardDetailsScreen = () => {
   }
 
   return (
-    <SafeAreaView edges={["left", "right"]}>
-        <View >
-          <View >
+    <SafeAreaView edges={["left", "right"] } style={styles.flex}>
+        <View style={styles.flex}>
+          <View style={[styles.container, styles.flex]}>
             <View 
-              style={[styles.image, styles.shadow]}
+              style={[styles.imageContainer, commonStyles.shadow, commonStyles.shadowBorderRadius]}
             >
               <Image
                 source={{uri: giftCard?.thumbnail}}
                 resizeMode='cover'
+                style={styles.image}
               />
             </View>
-            <View>
-              <View>
-                <Text>{giftCard?.description}</Text>
-                <Text>{giftCard?.address}</Text>
-                <OpenURLButton url={`https://${giftCard?.website}`} title={giftCard?.website ?? ''} />
-                <OpenURLButton url={`tel:${giftCard?.phone}`} title={giftCard?.phone ?? ''} />
+            <View style={{flex: 1, justifyContent: 'space-between'}}>
+              <View style={styles.content}>
+                <Text style={[text.grey]}>{giftCard?.description}</Text>
+                <Text style={[text.grey]}>{giftCard?.address}</Text>
+                <Text style={[text.grey]}>{giftCard?.website}</Text>
+                <Text style={[text.grey]}>{giftCard?.phone}</Text>
               </View>
               
-              <View>
+              <View style={pb.md}>
                 <CustomButton label='Purchase' handlePress={()=>{handlePurchase()}} />
               </View>
             </View>
@@ -55,25 +57,26 @@ const CardDetailsScreen = () => {
 export default CardDetailsScreen
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+  container: {
+    padding: 16,
+  },
+  imageContainer: {
+    width: '100%',
+    height: undefined,
+    // figure out your image aspect ratio
+    aspectRatio: 4/3,
+  },
   image: {
     width: '100%',
-    aspectRatio: 1.15,
+    height: '100%',
+    borderRadius: 12,
+    opacity: .9
   },
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-        width: 0,
-        height: -1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-
-    elevation: 10,
-    ...Platform.select({
-      android: {
-        shadowColor: "rgba(0, 0, 0, 0.5)",
-        shadowOpacity: 1,
-      }
-    })
+  content: {
+    gap: 8,
+    marginVertical: 16,
   }
 })
