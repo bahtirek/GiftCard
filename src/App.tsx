@@ -3,15 +3,16 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SettingsScreen from './screens/SettingsScreen';
+import SettingsScreen from './screens/settings/SettingsScreen';
 import { BottomTabs } from 'react-native-screens';
 import HomeScreen from './screens/HomeScreen';
-import CartScreen from './screens/CartScreen';
-import AllCardsScreen from './screens/AllGiftCardsScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import GiftCardDetailsScreen from './screens/GiftCardDetailsScreen';
+import CartScreen from './screens/cart/CartScreen';
+import AllCardsScreen from './screens/gift-card/AllGiftCardsScreen';
+import ProfileScreen from './screens/profile/ProfileScreen';
+import GiftCardDetailsScreen from './screens/gift-card/GiftCardDetailsScreen';
 import { Colors } from './styles/constants';
 import ExpoIcons from '@expo/vector-icons/Feather';
+import PurchaseScreen from './screens/gift-card/PurchaseScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -74,6 +75,7 @@ const GiftCardsScreens = () => {
         title: 'Gift Cards',
       }} />
       <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } />
+      <Stack.Screen name='Purchase' component={ PurchaseScreen } />
     </Stack.Navigator>
   )
 }
