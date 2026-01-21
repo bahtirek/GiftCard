@@ -39,6 +39,9 @@ const PurchaseScreen = () => {
   const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
   const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
   const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
+  const [isPhoneInputTouched, setIsPhoneInputTouched] = useState(false);
+  const [isEmailInputTouched, setIsEmailInputTouched] = useState(false);
+  const [isOtherAmountInputTouched, setIsOtherAmountInputTouched] = useState(false);
 
   let minAmount = '';
   if (giftCard?.priceSet) {
@@ -68,7 +71,16 @@ const PurchaseScreen = () => {
 
   const addToCart = () => {
     isFormCompleted();
-    
+    if(!isPhoneInputTouched && phone.value) {
+      setIsPhoneInputTouched(true);
+    }
+    if(!isEmailInputTouched && email.value) {
+      setIsEmailInputTouched(true);
+    }
+    if(!isOtherAmountInputTouched && otherAmount.value) {
+      setIsOtherAmountInputTouched(true);
+    }
+
     const amount = otherAmount.value ? otherAmount.value : selectedAmount;
     if(
       ((amount && amount != "other") || otherAmount.isValid) &&
@@ -109,7 +121,7 @@ const PurchaseScreen = () => {
       }
     }
 
-    if (!email.value && !phone.value) {
+    if (!email.value && !phone.value && otherAmount.isValid) {
       console.log('Missing data', "Please provide recepient details")
       return Alert.alert('Missing data', "Please provide recepient details")
     }   
@@ -165,6 +177,7 @@ const PurchaseScreen = () => {
                   mask='currency'
                   presetValue={cartItemToEdit?.otherAmount}
                   rules={amountRules}
+                  isTouched={isOtherAmountInputTouched}
                 />
               }
             </View>
@@ -179,7 +192,7 @@ const PurchaseScreen = () => {
                 presetValue={cartItemToEdit?.phone}
                 rules={phoneRules}
                 className='pl-14'
-                prefix='(998) '
+                isTouched={isPhoneInputTouched}
               />
             </View>
             <Text style={styles.sectionTitle}>Or</Text>
@@ -190,6 +203,7 @@ const PurchaseScreen = () => {
                 keyboardType='email-address'
                 presetValue={cartItemToEdit?.email}
                 rules={emailRules}
+                isTouched={isEmailInputTouched}
               />
             </View>
             <Text style={styles.sectionTitle}>Gift note:</Text>

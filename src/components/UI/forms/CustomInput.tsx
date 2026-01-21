@@ -7,7 +7,7 @@ type validationProp = {
   error: string
 }
 
-const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, prefix, ...rest }: any) => {
+const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, prefix, isTouched, ...rest }: any) => {
   const [value, setValue] = useState('');
   const [touched, setTouched] = useState(false);
   const [validation, setValidation] = useState<validationProp>({isValid: true, error: ''})
@@ -15,6 +15,12 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
   useEffect(() => {
     onChange(value)
   }, [value])
+
+  useEffect(() => {
+    if(isTouched) {
+      setTouched(true);
+    }
+  }, [isTouched])
 
   useEffect(() => {
     if(presetValue) {
