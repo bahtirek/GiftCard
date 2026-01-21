@@ -34,7 +34,7 @@ const AllCardsScreen = () => {
       <View>
         <FlatList
           data={giftCards}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id!}
           renderItem={({ item }) => (
             <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
           )}

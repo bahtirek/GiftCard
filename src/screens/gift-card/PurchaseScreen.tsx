@@ -8,12 +8,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import RadioButton from '@/components/UI/forms/RadioButton';
 import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 const PurchaseScreen = () => {
-  //const { addItemToEdit, cartItemToEdit } = useCart();
+  const navigation = useNavigation();
   const giftCard = useGiftCardsStore(state => state.giftCard);
+  const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
   const cartItemToEdit = useCartStore(state => state.cartItemToEdit);
-  //const addItemToEdit = useCartStore(state => state.addItemToEdit);
+  const addItemToEdit = useCartStore(state => state.addItemToEdit);
+  const addItem = useCartStore(state => state.addItem);
 
   useEffect(() => {
     if(cartItemToEdit?.id) {
@@ -36,7 +39,6 @@ const PurchaseScreen = () => {
   const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
   const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
   const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
-  //const { addItem } = useCart();
 
   let minAmount = '';
   if (giftCard?.priceSet) {
@@ -72,13 +74,17 @@ const PurchaseScreen = () => {
       ((amount && amount != "other") || otherAmount.isValid) &&
       (email.isValid || phone.isValid)
     ) {
-      /* const id = cartItemToEdit.id ? cartItemToEdit.id : '';
-      
-      addItem(quantity, amount, giftCardSignal.value, email.value, phone.value, note.value, otherAmount.value, id);
+      const id = cartItemToEdit?.id ? cartItemToEdit.id : '';
+
+      addItem({id: id, quantity: quantity, amount: amount, giftCard: giftCard!, email: email.value, phone: phone.value, note: note.value, otherAmount: otherAmount.value});
       addItemToEdit({});
-      setGiftCard({});
       resetForm();
-      handleButtonPress(); */
+      Alert.alert('Success', 'Gift card added to cart', [
+        {
+          text: "OK",
+          onPress: () => {navigation.goBack();}
+        }
+      ]);
     }
   }
 
