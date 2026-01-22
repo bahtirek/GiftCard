@@ -8,8 +8,9 @@
       "@components/*": ["src/components/*"],
       "@assets/*": ["assets/*"],
       "@constants/*": ["src/constants/*"],
-      "@signals/*": ["src/signals/*"],
+      "@screens/*": ["src/screens/*"],
       "@api/*": ["src/api/*"],
+      "@styles/*": ["src/styles/*"]
     }
   }
 }

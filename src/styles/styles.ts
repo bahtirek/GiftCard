@@ -28,6 +28,9 @@ export const text = StyleSheet.create({
   grey: {
     color: Colors.secondary800
   },
+  primary: {
+    color: Colors.primary
+  },
   sm: {
     fontSize: 14,
   },
