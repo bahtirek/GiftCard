@@ -1,16 +1,18 @@
 import { View, TextInput, StyleSheet, Platform, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { maskPhone, maskCurrency, maskVisaCard, maskExpDate, maskName } from '../../../utils/masks'
+import { Colors } from '@/styles/constants'
 
 type validationProp = {
   isValid: boolean,
   error: string
 }
 
-const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, prefix, isTouched, ...rest }: any) => {
+const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, prefix, isTouched, style, textarea, ...rest }: any) => {
   const [value, setValue] = useState('');
   const [touched, setTouched] = useState(false);
   const [validation, setValidation] = useState<validationProp>({isValid: true, error: ''})
+  const [borderColor, setBorderColor] = useState(Colors.secondary200);
 
   useEffect(() => {
     onChange(value)
@@ -76,17 +78,23 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
 
   const onBlur = () => {
     setTouched(true);
+    setBorderColor(Colors.secondary200);
+  }
+
+  const onFocus = () => {
+    setBorderColor(Colors.primary500);
   }
 
   return (
     <View style={{width: '100%'}}>
       <View style={[styles.container]}>
         <TextInput
-          style={[styles.input, !validation.isValid && touched ? { borderColor: 'red' } : {}]}
+          style={[style, { borderColor: borderColor }, !validation.isValid && touched ? { borderColor: 'red' } : {}, textarea ? styles.textarea : styles.input, prefix ? { paddingLeft: 40 } : {} ]}
           value={value}
           placeholderTextColor="#FFA07A"
           onChangeText={onChange}
           onBlur={onBlur}
+          onFocus={onFocus}
           {...rest}
         />
         <View style={styles.prefixContainer}>
@@ -113,8 +121,16 @@ const styles = StyleSheet.create({
     height: 48,
     paddingHorizontal: 12,
     borderWidth: 1,
-    borderColor: '#eee',
     borderRadius: 8,
+  },
+  textarea: {
+    flex: 1,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderRadius: 8,
+    height: 100,
+    textAlignVertical: 'top',
+    paddingVertical: 9,
   },
   errorText: {
     color: 'red',
