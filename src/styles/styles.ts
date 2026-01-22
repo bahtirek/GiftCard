@@ -27,10 +27,22 @@ export const commonStyles = StyleSheet.create({
 export const text = StyleSheet.create({
   grey: {
     color: Colors.secondary800
-  }
+  },
+  sm: {
+    fontSize: 14,
+  },
+  md: {
+    fontSize: 16,
+  },
+  lg: {
+    fontSize: 20,
+  }, 
+  xl: {
+    fontSize: 24,
+  },
 })
 
-export const pa= StyleSheet.create({
+export const pa = StyleSheet.create({
   xs: {
     padding: 4,
   },
@@ -50,7 +62,7 @@ export const pa= StyleSheet.create({
     padding: 48,
   },
 })
-export const pl= StyleSheet.create({
+export const pl = StyleSheet.create({
   xs: {
     paddingLeft: 4,
   },
@@ -70,7 +82,7 @@ export const pl= StyleSheet.create({
     paddingLeft: 48,
   },
 })
-export const pr= StyleSheet.create({
+export const pr = StyleSheet.create({
   xs: {
     paddingRight: 4,
   },
@@ -90,7 +102,7 @@ export const pr= StyleSheet.create({
     paddingRight: 48,
   },
 })
-export const pt= StyleSheet.create({
+export const pt = StyleSheet.create({
   xs: {
     paddingTop: 4,
   },
@@ -110,7 +122,7 @@ export const pt= StyleSheet.create({
     paddingTop: 48,
   },
 })
-export const pb= StyleSheet.create({
+export const pb = StyleSheet.create({
   xs: {
     paddingBottom: 4,
   },
@@ -130,7 +142,7 @@ export const pb= StyleSheet.create({
     paddingBottom: 48,
   },
 })
-export const py= StyleSheet.create({
+export const py = StyleSheet.create({
   xs: {
     paddingVertical: 4,
   },
@@ -150,7 +162,7 @@ export const py= StyleSheet.create({
     paddingVertical: 48,
   },
 })
-export const px= StyleSheet.create({
+export const px = StyleSheet.create({
   xs: {
     paddingHorizontal: 4,
   },
@@ -168,5 +180,146 @@ export const px= StyleSheet.create({
   },
   xxl: {
     paddingHorizontal: 48,
+  },
+})
+
+export const ma = StyleSheet.create({
+  xs: {
+    margin: 4,
+  },
+  sm: {
+    margin: 8,
+  },
+  md: {
+    margin: 16,
+  },
+  lg: {
+    margin: 24,
+  },
+  xl: {
+    margin: 32,
+  },
+  xxl: {
+    margin: 48,
+  },
+})
+export const ml = StyleSheet.create({
+  xs: {
+    marginLeft: 4,
+  },
+  sm: {
+    marginLeft: 8,
+  },
+  md: {
+    marginLeft: 16,
+  },
+  lg: {
+    marginLeft: 24,
+  },
+  xl: {
+    marginLeft: 32,
+  },
+  xxl: {
+    marginLeft: 48,
+  },
+})
+export const mr = StyleSheet.create({
+  xs: {
+    marginRight: 4,
+  },
+  sm: {
+    marginRight: 8,
+  },
+  md: {
+    marginRight: 16,
+  },
+  lg: {
+    marginRight: 24,
+  },
+  xl: {
+    marginRight: 32,
+  },
+  xxl: {
+    marginRight: 48,
+  },
+})
+export const mt = StyleSheet.create({
+  xs: {
+    marginTop: 4,
+  },
+  sm: {
+    marginTop: 8,
+  },
+  md: {
+    marginTop: 16,
+  },
+  lg: {
+    marginTop: 24,
+  },
+  xl: {
+    marginTop: 32,
+  },
+  xxl: {
+    marginTop: 48,
+  },
+})
+export const mb = StyleSheet.create({
+  xs: {
+    marginBottom: 4,
+  },
+  sm: {
+    marginBottom: 8,
+  },
+  md: {
+    marginBottom: 16,
+  },
+  lg: {
+    marginBottom: 24,
+  },
+  xl: {
+    marginBottom: 32,
+  },
+  xxl: {
+    marginBottom: 48,
+  },
+})
+export const my = StyleSheet.create({
+  xs: {
+    marginVertical: 4,
+  },
+  sm: {
+    marginVertical: 8,
+  },
+  md: {
+    marginVertical: 16,
+  },
+  lg: {
+    marginVertical: 24,
+  },
+  xl: {
+    marginVertical: 32,
+  },
+  xxl: {
+    marginVertical: 48,
+  },
+})
+export const mx = StyleSheet.create({
+  xs: {
+    marginHorizontal: 4,
+  },
+  sm: {
+    marginHorizontal: 8,
+  },
+  md: {
+    marginHorizontal: 16,
+  },
+  lg: {
+    marginHorizontal: 24,
+  },
+  xl: {
+    marginHorizontal: 32,
+  },
+  xxl: {
+    marginHorizontal: 48,
   },
 })

@@ -9,6 +9,7 @@ import RadioButton from '@/components/UI/forms/RadioButton';
 import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import { mb, mt, pb, text } from '@/styles/styles';
 
 const PurchaseScreen = () => {
   const navigation = useNavigation();
@@ -121,7 +122,7 @@ const PurchaseScreen = () => {
       }
     }
 
-    if (!email.value && !phone.value && otherAmount.isValid) {
+    if (!email.value && !phone.value) {
       console.log('Missing data', "Please provide recepient details")
       return Alert.alert('Missing data', "Please provide recepient details")
     }   
@@ -145,8 +146,8 @@ const PurchaseScreen = () => {
       {giftCard?.id  &&
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.container}>
-          <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 32, paddingBottom: 40}}>
-            <Text style={[]}>Choose amount</Text>
+          <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 32, paddingBottom: 32}}>
+            <Text style={[text.md, text.grey, pb.sm]}>Choose amount</Text>
             <View>
               {
                 giftCard?.priceSet!.map((price, index) => {
@@ -168,20 +169,22 @@ const PurchaseScreen = () => {
                 onSelect={() => handleSelect('other')}
               />
             </View>
-            <View style={{marginTop: 16, marginBottom: 24}}>
+            <View>
               { (selectedAmount === 'other') &&
-                <CustomInput 
-                  onInput={(amount: InputValueType) => {handleAmountInput(amount)}} 
-                  keyboardType="number-pad" 
-                  placeholder='Other amount' 
-                  mask='currency'
-                  presetValue={cartItemToEdit?.otherAmount}
-                  rules={amountRules}
-                  isTouched={isOtherAmountInputTouched}
-                />
+                <View style={{marginTop: 16}}>
+                    <CustomInput 
+                      onInput={(amount: InputValueType) => {handleAmountInput(amount)}} 
+                      keyboardType="number-pad" 
+                      placeholder='Other amount' 
+                      mask='currency'
+                      presetValue={cartItemToEdit?.otherAmount}
+                      rules={amountRules}
+                      isTouched={isOtherAmountInputTouched}
+                    />
+                </View>
               }
             </View>
-            <Text style={styles.sectionTitle}>Recepient details:</Text>
+            <Text style={[text.md, text.grey, pb.md, mt.xl]}>Recepient details:</Text>
             <View style={styles.inputContainer}>
               <CustomInput 
                 onInput={(phone: InputValueType) => {handlePhoneInput(phone)}} 
@@ -195,8 +198,8 @@ const PurchaseScreen = () => {
                 isTouched={isPhoneInputTouched}
               />
             </View>
-            <Text style={styles.sectionTitle}>Or</Text>
-            <View>
+            <Text style={[text.md, text.grey, pb.md]}>Or</Text>
+            <View style={[mb.xl]}>
               <CustomInput 
                 onInput={(email: InputValueType) => {handleEmailInput(email)}} 
                 placeholder='Email'
@@ -206,7 +209,7 @@ const PurchaseScreen = () => {
                 isTouched={isEmailInputTouched}
               />
             </View>
-            <Text style={styles.sectionTitle}>Gift note:</Text>
+            <Text style={[text.md, text.grey, pb.md]}>Gift note:</Text>
             <View>
               <CustomInput 
                 onInput={(note: InputValueType) => {handleNoteInput(note)}} 
@@ -214,12 +217,7 @@ const PurchaseScreen = () => {
                 multiline={true}
                 numberOfLines={10}
                 presetValue={cartItemToEdit?.note}
-                style={{ 
-                  height: 100,
-                  textAlignVertical: 'top',
-                  paddingTop: 9,
-                  paddingBottom: 9
-                }}
+                textarea={true}
               />
             </View>
             <View style={{marginTop: 32}}>
