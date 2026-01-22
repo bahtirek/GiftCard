@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
+import { Colors } from '@/styles/constants';
 
 const RadioButton = ({className, label, status, onSelect}: any) => {
   const changeValue = () => {
@@ -33,22 +34,22 @@ const styles = StyleSheet.create({
     width: 28,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: '#FCAF58',
+    borderColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonSelected: {
-    backgroundColor: '#FCAF58',
+    backgroundColor: Colors.primary,
   },
   label: {
     marginLeft: 12,
     fontSize: 16,
-    color: '#4A4A4A',
+    color: Colors.secondary800,
   },
   indicator: {
     height: 14,
     width: 14,
     borderRadius: 7,
-    backgroundColor: '#FCAF58',
+    backgroundColor: Colors.primary,
   },
 })
