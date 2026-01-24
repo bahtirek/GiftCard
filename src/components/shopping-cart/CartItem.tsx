@@ -6,6 +6,12 @@ import RecipientDetails from './RecepientDetails'
 import IconButton from '../UI/buttons/IconButton'
 import { useCartStore } from '@/stores/cart.store'
 import { useNavigation } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { CartStackParamList } from '@/navigation/navigation-types'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator<CartStackParamList>();
+type NavigationProp = NativeStackNavigationProp<CartStackParamList, 'EditCartItem'>;
 
 type CartItemPropType = {
   cartItem: CartItemType,
@@ -16,14 +22,14 @@ type CartItemPropType = {
 const CartItem = ({ cartItem }: CartItemPropType) => {
   const {amount, phone, email, giftCard, note, orderedDate} = cartItem;
   const {label, thumbnail} = giftCard!;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
 
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
   const deleteItemFromCart = useCartStore(state => state.deleteItemFromCart);
 
   const editCartItem = () => {
     addItemToEdit(cartItem);
-    //navigation.navigate('/basket/purchase-details', {cartItem: cartItem} as never);
+    navigation.navigate('EditCartItem', { cartItem: cartItem });
   }
 
   const deleteCartItem = () => {

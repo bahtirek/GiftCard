@@ -4,10 +4,11 @@ import CartScreen from '@/screens/cart/CartScreen';
 import ProfileScreen from '@/screens/profile/ProfileScreen';
 import { Colors } from '@/styles/constants';
 import ExpoIcons from '@expo/vector-icons/Feather';
-import GiftCardsScreens from './GiftCard.navigation';
+import GiftCardsNavigation from './GiftCard.navigation';
 import { View, Text, StyleSheet } from 'react-native';
 import { useCartStore } from '@/stores/cart.store';
 import { text } from '@/styles/styles';
+import CartNavigation from './Cart.navigation';
 
 
 const Tabs = createBottomTabNavigator();
@@ -43,7 +44,7 @@ const MainTabsView = () => {
         <ExpoIcons name="home" size={22} color={color} />
       )
     }}/>
-    <Tabs.Screen name='GiftCardsScreens' component={GiftCardsScreens} options={{
+    <Tabs.Screen name='GiftCardsNavigation' component={GiftCardsNavigation} options={{
       headerShown: false,
       title: 'Gift Cards',
       tabBarLabel: 'Gift Cards',
@@ -52,7 +53,7 @@ const MainTabsView = () => {
         <ExpoIcons name="gift" size={22} color={color} />
       )
     }}/>
-    <Tabs.Screen name='Cart' component={CartScreen} options={{
+    <Tabs.Screen name='CartNavigation' component={CartNavigation} options={{
       title: 'Shopping Bag',
       tabBarLabel: 'Bag',
       tabBarShowLabel: false,

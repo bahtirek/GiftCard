@@ -6,7 +6,7 @@ import PurchaseScreen from '@/screens/gift-card/PurchaseScreen';
 
 const Stack = createNativeStackNavigator();
 
-const GiftCardsScreens = () => {
+const GiftCardsNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: { backgroundColor: 'white'},
@@ -24,4 +24,4 @@ const GiftCardsScreens = () => {
   )
 }
 
-export default GiftCardsScreens;
+export default GiftCardsNavigation;
