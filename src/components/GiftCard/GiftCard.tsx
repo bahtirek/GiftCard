@@ -17,7 +17,7 @@ const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: Gi
   const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
   const handlePress = () => {
     setGiftCard(giftCard);
-    goToCardDetailsScreen(giftCard.id);
+    goToCardDetailsScreen(giftCard.id!);
   }
   return (
     <View style={[styles.container]}>

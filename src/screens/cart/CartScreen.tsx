@@ -5,7 +5,7 @@ import { useCartStore } from '@/stores/cart.store';
 import CartItem from '@/components/shopping-cart/CartItem';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 import CustomButton from '@/components/UI/buttons/CustomButton';
-import { commonStyles } from '@/styles/styles';
+import { commonStyles, pa } from '@/styles/styles';
 
 const CartScreen = () => {
 const items = useCartStore(state => state.items)
@@ -20,7 +20,7 @@ const items = useCartStore(state => state.items)
   }
 
   return (
-    <SafeAreaView edges={["left", "right"]} style={[styles.container]}>
+    <SafeAreaView edges={["left", "right"]}>
       <FlatList
         data={items}
         keyExtractor={(item) => item.id!}

@@ -24,6 +24,42 @@ export const commonStyles = StyleSheet.create({
   },
 })
 
+export const flex = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
+  column: {
+    flexDirection: 'column',
+  },
+  wrap: {
+    flexWrap: 'wrap',
+  },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
+  justifyBetween: {
+    justifyContent: 'space-between',
+  },
+  justifyEnd: {
+    justifyContent: 'flex-end',
+  },
+  justifyStart: {
+    justifyContent: 'flex-start',
+  },
+  alignStretch: {
+    alignItems: 'stretch',
+  },
+  alignStart: {
+    alignItems: 'flex-start',
+  },
+  alignEnd: {
+    alignItems: 'flex-end',
+  },
+})
+
 export const text = StyleSheet.create({
   grey: {
     color: Colors.secondary800
