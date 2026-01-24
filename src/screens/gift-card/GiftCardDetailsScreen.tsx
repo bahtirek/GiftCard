@@ -44,7 +44,7 @@ const CardDetailsScreen = () => {
                 <Text style={[text.grey]}>{giftCard?.phone}</Text>
               </View>
               
-              <View style={pb.md}>
+              <View style={pb.sm}>
                 <CustomButton label='Purchase' handlePress={()=>{handlePurchase()}} />
               </View>
             </View>

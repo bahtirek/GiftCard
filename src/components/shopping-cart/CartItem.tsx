@@ -38,7 +38,7 @@ const CartItem = ({ cartItem }: CartItemPropType) => {
   }
   return (
     <View style={[px.md, pt.md]}>
-      <View style={[styles.border]}>
+      <View style={[]}>
         <View style={[]}>
           <View style={[styles.imageTextWrapper, mb.md]}>
             <View style={styles.imageContainer}>
@@ -96,10 +96,6 @@ const CartItem = ({ cartItem }: CartItemPropType) => {
 export default CartItem
 
 const styles = StyleSheet.create({
-  border: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-  },
   imageTextWrapper: {
     flexDirection: 'row',
     alignItems: 'center',

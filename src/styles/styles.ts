@@ -25,6 +25,9 @@ export const commonStyles = StyleSheet.create({
 })
 
 export const flex = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
   row: {
     flexDirection: 'row',
   },

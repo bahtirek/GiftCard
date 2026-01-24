@@ -5,10 +5,10 @@ import { useCartStore } from '@/stores/cart.store';
 import CartItem from '@/components/shopping-cart/CartItem';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 import CustomButton from '@/components/UI/buttons/CustomButton';
-import { commonStyles, pa } from '@/styles/styles';
+import { commonStyles, flex, pa, pb, pt, px, py } from '@/styles/styles';
 
 const CartScreen = () => {
-const items = useCartStore(state => state.items)
+  const items = useCartStore(state => state.items)
 
   const checkout = () => {
     console.log('checkout');
@@ -20,27 +20,35 @@ const items = useCartStore(state => state.items)
   }
 
   return (
-    <SafeAreaView edges={["left", "right"]}>
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id!}
-        renderItem={({item }) => (
-          <CartItem cartItem={item} />
-        )}
-        keyboardDismissMode='on-drag'
-        ListEmptyComponent={() => (
-          <ListEmptyComponent
-            icon={"shopping-bag"}
-            title='No Gift cards Found'
-          />
-        )}
-      />
-      {
-        items.length > 0 &&
-        <View style={[]}>
-          <CustomButton label='Checkout' handlePress={checkout} />
-        </View>
-      }
+    <SafeAreaView edges={["left", "right"]} style={[flex.flex]}>
+      <View style={[flex.flex]}>
+        <FlatList
+          contentContainerStyle={{ flexGrow: 1 }}
+          ListFooterComponentStyle={{ flex: 1, justifyContent: 'flex-end' }}
+          data={items}
+          keyExtractor={(item) => item.id!}
+          renderItem={({ item }) => (
+            <CartItem cartItem={item} />
+          )}
+          keyboardDismissMode='on-drag'
+          ListEmptyComponent={() => (
+            <ListEmptyComponent
+              icon={"shopping-bag"}
+              title='No Gift cards Found'
+            />
+          )}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          ListFooterComponent={
+            <View>
+              {items.length > 0 && (
+                <View style={[px.md, pb.lg, pt.xl]}>
+                  <CustomButton label='Checkout' handlePress={checkout} />
+                </View>
+              )}
+            </View>
+          }
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -48,7 +56,9 @@ const items = useCartStore(state => state.items)
 export default CartScreen
 
 const styles = StyleSheet.create({
-  container: {
-
+  separator: {
+    backgroundColor: '#E2E2E2',
+    height: 1,
+    marginHorizontal: 16,
   }
 })
