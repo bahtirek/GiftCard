@@ -71,12 +71,12 @@ const SubmitOrder = () => {
     console.log('Order submitted');
   }
   return (
-    <SafeAreaView edges={["left", "right"]} style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+    <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <View style={[flex.flex]}>
         {/* <Text style={[pa.md, text.grey, text.lg]}>Gift cards:</Text> */}
         <FlatList
           contentContainerStyle={{ flexGrow: 1 }}
-          ListFooterComponentStyle={{ flex: 1, justifyContent: 'flex-end' }}
+          ListFooterComponentStyle={styles.listFooter}
           data={items}
           keyExtractor={(item) => item.id!}
           renderItem={({ item }) => (
@@ -86,19 +86,19 @@ const SubmitOrder = () => {
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           ListFooterComponent={
             <View style={[pa.md]}>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                <Text style={{ paddingRight: 16, fontSize: 16, color: '#6B7280' }}>Total:</Text>
-                <Text style={{ fontSize: 16, color: '#1F2937' }}>{totalAmount}</Text>
+              <View style={styles.totalRow}>
+                <Text style={styles.totalLabel}>Total:</Text>
+                <Text style={styles.totalValue}>{totalAmount}</Text>
               </View>
-              <Text style={{ fontSize: 20, color: '#4B5563', marginTop: 32 }}>Payment method:</Text>
+              <Text style={styles.paymentTitle}>Payment method:</Text>
               <View>
-                <View style={{ marginTop: 16, flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ fontSize: 12, color: '#4B5563', paddingRight: 8 }}>Credit Card #</Text>
-                  <Text style={{ fontSize: 16, color: '#6B7280' }}>{maskedCreditCard}</Text>
+                <View style={styles.paymentInfo}>
+                  <Text style={styles.paymentLabel}>Credit Card #</Text>
+                  <Text style={styles.paymentValue}>{maskedCreditCard}</Text>
                 </View>
-                <View style={{ marginTop: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 32 }}>
-                  <Text style={{ fontSize: 12, color: '#4B5563', paddingRight: 8 }}>Exp. Date</Text>
-                  <Text style={{ fontSize: 16, color: '#6B7280' }}>{payment?.expDate}</Text>
+                <View style={styles.expDateRow}>
+                  <Text style={styles.paymentLabel}>Exp. Date</Text>
+                  <Text style={styles.paymentValue}>{payment?.expDate}</Text>
                 </View>
               </View>
               <View style={[pb.lg, pt.xl]}>
@@ -113,7 +113,7 @@ const SubmitOrder = () => {
         transparent={true}
         visible={showModal}
       >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+        <View style={styles.modalContainer}>
           <ActivityIndicator size={'large'} color={"#FF4416"} />
         </View>
       </Modal>
@@ -122,11 +122,66 @@ const SubmitOrder = () => {
 }
 
 export default SubmitOrder;
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  flex: {
+    flex: 1,
+  },
+  listFooter: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   separator: {
     backgroundColor: '#E2E2E2',
     height: 1,
     marginHorizontal: 16,
-  }
-})
+  },
+  totalRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  totalLabel: {
+    paddingRight: 16,
+    fontSize: 16,
+    color: '#6B7280',
+  },
+  totalValue: {
+    fontSize: 16,
+    color: '#1F2937',
+  },
+  paymentTitle: {
+    fontSize: 20,
+    color: '#4B5563',
+    marginTop: 32,
+  },
+  paymentInfo: {
+    marginTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  paymentLabel: {
+    fontSize: 12,
+    color: '#4B5563',
+    paddingRight: 8,
+  },
+  paymentValue: {
+    fontSize: 16,
+    color: '#6B7280',
+  },
+  expDateRow: {
+    marginTop: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    marginBottom: 32,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+});

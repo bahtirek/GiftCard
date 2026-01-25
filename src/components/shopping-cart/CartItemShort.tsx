@@ -1,5 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, Platform, Alert } from 'react-native'
-import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native'
 import { CartItemType } from 'src/types';
 import { Colors } from '@/styles/constants';
 import { pa } from '@/styles/styles';
@@ -16,13 +15,13 @@ const GiftCard = ({cartItem}: GiftCardPropType, ) => {
   const {label} = giftCard!;
 
   return (
-    <View style={[pa.md]}>
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1, gap: 6}}>
-          <Text style={{fontSize: 16, color: Colors.primary}} numberOfLines={1}>{label}</Text>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 14, color: Colors.secondary800}}>Value:</Text>
-            <Text style={{fontSize: 16, color: Colors.secondary800}}>{amount}</Text>
+    <View>
+      <View style={styles.container}>
+        <View style={styles.innerContainer}>
+          <Text style={styles.title} numberOfLines={1}>{label}</Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.valueLabel}>Value:</Text>
+            <Text style={styles.value}>{amount}</Text>
           </View>
         </View>
       </View>
@@ -31,23 +30,32 @@ const GiftCard = ({cartItem}: GiftCardPropType, ) => {
 }
 
 const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: {
-        width: 0,
-        height: 0,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-
-    elevation: 10,
-    ...Platform.select({
-      android: {
-        shadowColor: "rgba(0, 0, 0, 0.5)",
-        shadowOpacity: 1,
-      }
-    })
-  }
+  container: {
+    padding: 16,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E2E2E2',
+  },
+  innerContainer: {
+    flex: 1,
+    gap: 6,
+  },
+  title: {
+    fontSize: 16,
+    color: Colors.primary,
+  },
+  valueContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  valueLabel: {
+    fontSize: 14,
+    color: Colors.secondary800,
+  },
+  value: {
+    fontSize: 16,
+    color: Colors.secondary800,
+  },
 });
 
 export default GiftCard

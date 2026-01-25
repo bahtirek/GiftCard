@@ -1,11 +1,11 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, FlatList, StyleSheet } from 'react-native'
+import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useCartStore } from '@/stores/cart.store';
 import CartItem from '@/components/shopping-cart/CartItem';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 import CustomButton from '@/components/UI/buttons/CustomButton';
-import { commonStyles, flex, pa, pb, pt, px, py } from '@/styles/styles';
+import { flex, pb, pt, px } from '@/styles/styles';
 import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
@@ -20,8 +20,8 @@ const CartScreen = () => {
     <SafeAreaView edges={["left", "right"]} style={[flex.flex]}>
       <View style={[flex.flex]}>
         <FlatList
-          contentContainerStyle={{ flexGrow: 1 }}
-          ListFooterComponentStyle={{ flex: 1, justifyContent: 'flex-end' }}
+          contentContainerStyle={styles.flatListContent}
+          ListFooterComponentStyle={styles.flatListFooter}
           data={items}
           keyExtractor={(item) => item.id!}
           renderItem={({ item }) => (
@@ -53,6 +53,13 @@ const CartScreen = () => {
 export default CartScreen
 
 const styles = StyleSheet.create({
+  flatListContent: {
+    flexGrow: 1,
+  },
+  flatListFooter: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   separator: {
     backgroundColor: '#E2E2E2',
     height: 1,
