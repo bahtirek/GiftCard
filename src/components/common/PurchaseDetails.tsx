@@ -146,7 +146,7 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit }: Pur
       {giftCard?.id  &&
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.container}>
-          <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 32, paddingBottom: 32}}>
+          <View>
             <Text style={[text.md, text.grey, pb.sm]}>Choose amount</Text>
             <View>
               {
@@ -220,7 +220,7 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit }: Pur
                 textarea={true}
               />
             </View>
-            <View style={{marginTop: 'auto', paddingTop: 38}}>
+            <View style={{marginTop: 'auto', paddingTop: 38, paddingBottom: 8}}>
               <CustomButton label={buttonLabel} handlePress={addToCart}/>
             </View>
           </View>
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#FFFFFF',
-    paddingTop: 24, // pt-6 in Tailwind is 24px
+    padding: 16,
   },
   sectionTitle: {
     fontSize: 18,
