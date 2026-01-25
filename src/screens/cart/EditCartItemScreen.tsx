@@ -1,8 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { CartStackParamList } from '@/navigation/navigation-types';
-import { Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import PurchaseDetails from '@/components/common/PurchaseDetails';
