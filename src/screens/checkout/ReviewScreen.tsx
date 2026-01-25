@@ -8,14 +8,18 @@ import CartItemShort from '@/components/shopping-cart/CartItemShort';
 import { useCartStore } from '@/stores/cart.store';
 import { usePaymentStore } from '@/stores/payment.store';
 import { flex, pa, pb, pt, px, text } from '@/styles/styles';
+import { useNavigation } from '@react-navigation/native';
 
 
 const SubmitOrder = () => {
   const items = useCartStore(state => state.items);
+  const deleteAllItemsFromCart = useCartStore(state => state.deleteAllItemsFromCart);
   const payment = usePaymentStore(state => state.payment);
+  const removePaymentDetails = usePaymentStore(state => state.removePaymentDetails);
   const [totalAmount, setTotalAmount] = useState('');
   const [maskedCreditCard, setMaskedCreditCard] = useState('**** **** **** ****');
   const [showModal, setShowModal] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
     getTotalAmount();
@@ -47,16 +51,19 @@ const SubmitOrder = () => {
   const onSubmit = () => {
     setShowModal(true);
     setTimeout(() => {
-      if (Math.floor(Math.random() * 10) > 8) {
-        /* Alert.alert('Something went wrong!', 'Please try later', [
-          {text: 'OK', onPress: () => router.replace('/basket')},
-        ]); */
-        //router.replace('/basket')
+      /* if (Math.floor(Math.random() * 10) > 8) {
+        Alert.alert('Something went wrong!', 'Please try later', [
+          {text: 'OK', onPress: () => {
+            navigation.navigate('basket' as never)}},
+        ]);
+        router.replace('/basket')
       } else {
-        submitOrder();
-        //router.replace('/order-confirmation-modal')
-      }
+        navigation.navigate('ConfirmationScreen' as never);
+    } */
+      deleteAllItemsFromCart();
+      removePaymentDetails();
       setShowModal(false)
+      navigation.navigate('ConfirmationScreen' as never);
     }, 1000)
   }
 

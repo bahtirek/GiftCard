@@ -9,6 +9,7 @@ type CartStoreType = {
   addItem: (cartItem: CartItemType) => void;
   addItemToEdit: (item: CartItemType) => void,
   deleteItemFromCart: (id: string) => void,
+  deleteAllItemsFromCart: () => void,
   submitOrder: () => void,
   getOrders: () => any,
 }
@@ -61,6 +62,10 @@ export const useCartStore = create<CartStoreType>((set, get) => ({
     const items = get().items;
     const newItems = items.filter((item: CartItemType) => item.id !== id);
     set({ items: newItems, totalItemsInCart: newItems.length });
+  },
+
+  deleteAllItemsFromCart: () => {
+    set({ items: [], totalItemsInCart: 0 });
   },
 
   submitOrder: () => {

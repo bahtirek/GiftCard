@@ -38,7 +38,7 @@ export default function App() {
                 color: Colors.primary,
               },
               headerShown: false,
-            }} 
+          }} 
           />
         </Stack.Navigator>
       </NavigationContainer>

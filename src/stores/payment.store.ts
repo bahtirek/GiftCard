@@ -4,6 +4,7 @@ import { create } from "zustand";
 type PaymentStoreType = {
   payment: PaymentType | null;
   addPaymentDetails: (item: PaymentType) => void;
+  removePaymentDetails: () => void;
 }
 
 export const usePaymentStore = create<PaymentStoreType>((set, get) => ({
@@ -12,4 +13,8 @@ export const usePaymentStore = create<PaymentStoreType>((set, get) => ({
   addPaymentDetails: (item) => {
     set({ payment: item });
   },
+
+  removePaymentDetails: () => {
+    set({ payment: null });
+  }
 }));

@@ -4,6 +4,7 @@ import PaymentScreen from '@/screens/checkout/PaymentScreen';
 import ReviewScreen from '@/screens/checkout/ReviewScreen';
 import BackButton from '@/components/UI/buttons/BackButton';
 import { Platform } from 'react-native';
+import ConfirmationScreen from '@/screens/checkout/ConfirmationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,10 @@ const PaymentNavigation = () => {
       <Stack.Screen name='ReviewScreen' component={ ReviewScreen } options={{
         title: 'Review Order',
         headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='ConfirmationScreen' component={ ConfirmationScreen } options={{
+        title: 'Order Confirmation',
+        headerBackVisible: false,
       }} />
     </Stack.Navigator>
   )
