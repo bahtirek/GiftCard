@@ -6,17 +6,14 @@ import CartItem from '@/components/shopping-cart/CartItem';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 import CustomButton from '@/components/UI/buttons/CustomButton';
 import { commonStyles, flex, pa, pb, pt, px, py } from '@/styles/styles';
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
   const items = useCartStore(state => state.items)
+  const navigation = useNavigation();
 
   const checkout = () => {
-    console.log('checkout');
-    //router.navigate('/basket/payment-details')
-  }
-
-  const openSearchModal = () => {
-    //router.navigate('/gift-cards')
+    navigation.navigate('Payment' as never);
   }
 
   return (

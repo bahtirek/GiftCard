@@ -220,7 +220,7 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit }: Pur
                 textarea={true}
               />
             </View>
-            <View style={{marginTop: 32}}>
+            <View style={{marginTop: 'auto', paddingTop: 38}}>
               <CustomButton label={buttonLabel} handlePress={addToCart}/>
             </View>
           </View>

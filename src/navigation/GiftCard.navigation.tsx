@@ -18,8 +18,12 @@ const GiftCardsNavigation = () => {
       <Stack.Screen name='AllGiftCards' component={AllCardsScreen} options={{
         title: 'Gift Cards',
       }} />
-      <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } />
-      <Stack.Screen name='Purchase' component={ PurchaseScreen } />
+      <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } options={{
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='Purchase' component={ PurchaseScreen } options={{
+        headerBackTitle: 'Back',
+      }} />
     </Stack.Navigator>
   )
 }

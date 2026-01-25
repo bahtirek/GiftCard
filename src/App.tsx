@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsScreen from './screens/settings/SettingsScreen';
 import GiftCardDetailsScreen from './screens/gift-card/GiftCardDetailsScreen';
 import MainTabsView from './navigation/MainTabs.navigation';
+import PaymentNavigation from './navigation/Checkout.navigation';
+import { Colors } from './styles/constants';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +16,30 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='MainTabsView' component={MainTabsView} options={{headerShown: false}} />
-          <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } />
-          <Stack.Screen name='Settings' component={SettingsScreen} />
+          <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } options={{
+            headerBackTitle: 'Back',
+            headerTintColor: '#FCAF58',
+            headerTitleStyle: {
+              color: Colors.primary,
+            }
+          }} />
+          <Stack.Screen name='Settings' component={SettingsScreen} options={{
+            headerBackTitle: 'Back',
+            headerTintColor: '#FCAF58',
+            headerTitleStyle: {
+              color: Colors.primary,
+            }
+          }} />
+          <Stack.Screen name='Payment' component={PaymentNavigation} 
+            options={{
+              headerBackTitle: 'Back', 
+              headerTintColor: '#FCAF58',
+              headerTitleStyle: {
+                color: Colors.primary,
+              },
+              headerShown: false,
+            }} 
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
