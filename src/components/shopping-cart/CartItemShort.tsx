@@ -1,6 +1,8 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet, Platform, Alert } from 'react-native'
 import React, { useState } from 'react';
 import { CartItemType } from 'src/types';
+import { Colors } from '@/styles/constants';
+import { pa } from '@/styles/styles';
 
 
 type GiftCardPropType = {
@@ -14,13 +16,13 @@ const GiftCard = ({cartItem}: GiftCardPropType, ) => {
   const {label} = giftCard!;
 
   return (
-    <View style={[{padding: 12, backgroundColor: '#FFFFFF', borderRadius: 8}]}>
+    <View style={[pa.md]}>
       <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1, paddingBottom: 4, gap: 4}}>
-          <Text style={{fontSize: 16, color: '#1F2937'}} numberOfLines={1}>{label}</Text>
+        <View style={{flex: 1, gap: 6}}>
+          <Text style={{fontSize: 16, color: Colors.primary}} numberOfLines={1}>{label}</Text>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{fontSize: 14, color: '#6B7280'}}>Value:</Text>
-            <Text style={{fontSize: 16, color: '#1F2937'}}>{amount}</Text>
+            <Text style={{fontSize: 14, color: Colors.secondary800}}>Value:</Text>
+            <Text style={{fontSize: 16, color: Colors.secondary800}}>{amount}</Text>
           </View>
         </View>
       </View>
