@@ -7,8 +7,9 @@ import { useGiftCardsStore } from '@/stores/giftCard.store';
 
 type GiftCardPropType = {
   giftCard: GiftCardType,
-  showDescription: boolean,
-  goToCardDetailsScreen: (id: string) => void
+  showDescription?: boolean,
+  customeStyle?: object,
+  goToCardDetailsScreen?: (id: string) => void
 }
 
 
@@ -17,7 +18,7 @@ const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: Gi
   const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
   const handlePress = () => {
     setGiftCard(giftCard);
-    goToCardDetailsScreen(giftCard.id!);
+    goToCardDetailsScreen?.(giftCard.id!);
   }
   return (
     <View style={[styles.container]}>

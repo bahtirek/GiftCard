@@ -9,6 +9,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useCartStore } from '@/stores/cart.store';
 import { text } from '@/styles/styles';
 import CartNavigation from './Cart.navigation';
+import HomeHeader from '@/components/home/HomeHeader';
 
 
 const Tabs = createBottomTabNavigator();
@@ -42,7 +43,8 @@ const MainTabsView = () => {
       tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="home" size={22} color={color} />
-      )
+      ),
+      header: () => (<HomeHeader />)
     }}/>
     <Tabs.Screen name='GiftCardsNavigation' component={GiftCardsNavigation} options={{
       headerShown: false,

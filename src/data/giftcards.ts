@@ -303,3 +303,4 @@ const giftCards: GiftCardType[] = [
 ];
 
 export default giftCards;
+export const allGiftCards = giftCards;
