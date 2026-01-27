@@ -1,10 +1,9 @@
 import { View, Alert } from 'react-native'
-
 import React, {  useEffect, useState } from 'react'
 import CustomInput from '../UI/forms/CustomInput';
 import IconButton from '../UI/buttons/IconButton';
 import { StyleSheet } from 'react-native';
-import { useNavigation, useRoutePath } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 type CategoryListProps = {
   handleSearchQuery: (query: string) => void;
@@ -12,7 +11,6 @@ type CategoryListProps = {
 
 const SearchInput = ({ handleSearchQuery }: CategoryListProps) => {
   const navigation = useNavigation();
-  const pathname = useRoutePath();
   let searchQuery = ''
   
   const handleSearchInput = (value: string) => {
@@ -24,7 +22,7 @@ const SearchInput = ({ handleSearchQuery }: CategoryListProps) => {
   }
 
   const openSettings = () => {
-    //navigation.navigate('/search-settings-modal')
+    navigation.navigate('Settings' as never);
   }
 
   return (

@@ -10,7 +10,7 @@ export type CartStackParamList = {
 };
 
 export type GiftCardsStackParamList = {
-  GiftCardsScreen: undefined;
+  GiftCardsNavigation: { search: string };
   GiftCardDetails: { giftCardId: string };
 };
 
@@ -19,6 +19,8 @@ export type RootStackParamList = {
   MainTabsView: NavigatorScreenParams<MainTabParamList>;
   GiftCardDetails: { giftCardId: string };
   Settings: undefined;
+  Payment: undefined;
+  GiftCardsNavigation: NavigatorScreenParams<GiftCardsStackParamList>;
 };
 
 // Define the props for screens in the main stack navigator

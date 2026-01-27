@@ -10,12 +10,19 @@ import icons from '@/data/icons';
 import SearchInput from '@/components/common/SearchInput';
 import CategoryList from '@/components/common/CategoryList';
 import { Colors } from '@/styles/constants';
+import { useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types';
+
+const Stack = createNativeStackNavigator<GiftCardsStackParamList>();
+type NavigationProp = NativeStackNavigationProp<GiftCardsStackParamList, 'GiftCardsNavigation'>;
 
 export default function HomeScreen() {
   const [items, setItems] = useState<GiftCardType[]>([]);
   const [giftCards, setGiftCards] = useState<GiftCardType[]>([])
   const [loading, setLoading] = useState(false);
-  
+  const navigation = useNavigation<NavigationProp>();
+
   useEffect(() => {
     api();
   }, [])
@@ -36,12 +43,7 @@ export default function HomeScreen() {
     if(!searchQuery) {
       Alert.alert('Missing data', "Please input search query")
     } else {
-      /* router.navigate({
-        pathname: '/gift-cards',
-        params: {
-          search: searchQuery
-        }
-      }) */
+      navigation.navigate('GiftCardsNavigation', { search: searchQuery });
     }
   }
 

@@ -28,7 +28,8 @@ export default function App() {
             headerTintColor: '#FCAF58',
             headerTitleStyle: {
               color: Colors.primary,
-            }
+            },
+            presentation: 'modal',
           }} />
           <Stack.Screen name='Payment' component={PaymentNavigation} 
             options={{

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     color: '#4B5563', // text-gray-600
   },
   title: {
-    fontSize: 28, // text-3xl
+    fontSize: 26, // text-3xl
     fontFamily: 'PSemibold', // font-psemibold
     color: Colors.primary, // text-primary
   },
