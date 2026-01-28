@@ -14,8 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types';
 
-const Stack = createNativeStackNavigator<GiftCardsStackParamList>();
-type NavigationProp = NativeStackNavigationProp<GiftCardsStackParamList, 'GiftCardsNavigation'>;
+const Stack = createNativeStackNavigator<RootStackParamList>();
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
 export default function HomeScreen() {
   const [items, setItems] = useState<GiftCardType[]>([]);
@@ -39,11 +39,13 @@ export default function HomeScreen() {
   }
 
   const handleSearch = (searchQuery: string) => {
-    console.log('handle',searchQuery);
     if(!searchQuery) {
       Alert.alert('Missing data', "Please input search query")
     } else {
-      navigation.navigate('GiftCardsNavigation', { search: searchQuery });
+      navigation.navigate('GiftCardsNavigation', {
+        screen: 'AllGiftCards',
+        params: { search: searchQuery },
+      });
     }
   }
 

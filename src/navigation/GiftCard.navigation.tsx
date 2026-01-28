@@ -3,8 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllCardsScreen from '@/screens/gift-card/AllGiftCardsScreen';
 import GiftCardDetailsScreen from '@/screens/gift-card/GiftCardDetailsScreen';
 import PurchaseScreen from '@/screens/gift-card/PurchaseScreen';
+import { GiftCardsStackParamList, RootStackParamList } from './navigation-types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<GiftCardsStackParamList>();
 
 const GiftCardsNavigation = () => {
   return (

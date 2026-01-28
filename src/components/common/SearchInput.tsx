@@ -1,20 +1,30 @@
 import { View, Alert } from 'react-native'
-import React, {  useEffect, useState } from 'react'
+import React, {  use, useEffect, useState } from 'react'
 import CustomInput from '../UI/forms/CustomInput';
 import IconButton from '../UI/buttons/IconButton';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { InputValueType } from '@/types';
 
 type CategoryListProps = {
   handleSearchQuery: (query: string) => void;
+  searchQueryProp?: string;
 }
 
-const SearchInput = ({ handleSearchQuery }: CategoryListProps) => {
+const SearchInput = ({ handleSearchQuery, searchQueryProp }: CategoryListProps) => {
   const navigation = useNavigation();
+  const [initialValue, setInitialValue] = useState('');
+
+  useEffect(() => {
+    if (searchQueryProp) {
+      setInitialValue(searchQueryProp);
+    }
+  }, [searchQueryProp]);
+
   let searchQuery = ''
   
-  const handleSearchInput = (value: string) => {
-    searchQuery = value 
+  const handleSearchInput = (value: InputValueType) => {
+    searchQuery = value.value
   }  
   
   const handleSearch = () => {
@@ -29,9 +39,9 @@ const SearchInput = ({ handleSearchQuery }: CategoryListProps) => {
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
         <CustomInput
-          onInput={(value: string) => { handleSearchInput(value) }}
+          onInput={(value: InputValueType) => { handleSearchInput(value) }}
           placeholder='Search for perfect gift'
-          reset={true}
+          presetValue={searchQueryProp}
           style={styles.input}
         />
 

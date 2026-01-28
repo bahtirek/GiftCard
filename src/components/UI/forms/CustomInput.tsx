@@ -24,7 +24,7 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
     }
   }, [isTouched])
 
-  useEffect(() => {
+  useEffect(() => {    
     if(presetValue) {
       onChange(presetValue)
     }

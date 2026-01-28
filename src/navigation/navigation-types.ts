@@ -10,8 +10,9 @@ export type CartStackParamList = {
 };
 
 export type GiftCardsStackParamList = {
-  GiftCardsNavigation: { search: string };
+  AllGiftCards: { search: string };
   GiftCardDetails: { giftCardId: string };
+  Purchase: undefined
 };
 
 // Define the parameters for the main stack navigator
