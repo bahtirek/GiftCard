@@ -7,7 +7,7 @@ import { GiftCardType } from '@/types';
 import allGiftCards from '@/data/giftcards';
 import GiftCard from '@/components/GiftCard/GiftCard';
 import icons from '@/data/icons';
-import SearchInput from '@/components/common/SearchInput';
+import SearchInput from '@/components/search/SearchInput';
 import CategoryList from '@/components/common/CategoryList';
 import { Colors } from '@/styles/constants';
 import { useNavigation } from '@react-navigation/native';

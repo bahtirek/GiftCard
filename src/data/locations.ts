@@ -2,10 +2,6 @@ import { LocationType } from "@/types";
 
 const allLocations: LocationType[] = [
   {
-    id: '0',
-    name: 'Not selected'
-  },
-  {
     id: '1',
     name: 'Toshkent'
   },
