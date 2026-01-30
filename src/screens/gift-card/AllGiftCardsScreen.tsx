@@ -1,5 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { FlatList, NativeSyntheticEvent, StyleSheet, Text, View } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import giftCards from '@/data/giftcards'
 import GiftCard from '@/components/GiftCard/GiftCard'
 import MainView from '@/components/common/MainView'
@@ -14,13 +14,12 @@ type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
 const AllCardsScreen = ({route}: Props) => {
   const { search } = route.params || {};
-  console.log('search param in AllCardsScreen:', search);
+  const [showSearchIcon, setShowSearchIcon] = useState(false);
   
   const navigation = useNavigation();
 
   const onSearchIconPress = () => {
-    console.log('search icon');
-    
+    //show modal with search input
   }
 
   const goToCardDetailsScreen = (giftCardId: string) => {
@@ -34,13 +33,24 @@ const AllCardsScreen = ({route}: Props) => {
     // Implement search functionality here
   }
 
-/*   useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton icon={'search'} onPress={onSearchIconPress} styles={styles.iconButton}/>
+        return (
+          <View>
+            {showSearchIcon && (
+              <IconButton icon={'search'} onPress={onSearchIconPress} styles={styles.iconButton}/>
+            )}
+          </View>
+        );
       },
     });
-  }, [navigation, onSearchIconPress]) */
+  }, [navigation, onSearchIconPress])
+
+  const handleScroll = (event: any) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    setShowSearchIcon(offsetY > 65);
+  };
 
   return (
     <MainView>
@@ -60,6 +70,8 @@ const AllCardsScreen = ({route}: Props) => {
           <Text style={styles.emptyText}>Loading...</Text>
         )}
         keyboardDismissMode='on-drag'
+        onScroll={handleScroll}
+        scrollEventThrottle={150}
         />
       </View>
     </MainView>
