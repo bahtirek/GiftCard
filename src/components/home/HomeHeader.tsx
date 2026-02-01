@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Platform } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import icons from '@/data/icons';
 import { Colors } from '@/styles/constants';
@@ -32,9 +32,14 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 4,
     paddingHorizontal: 16,
-    backgroundColor: '#f8f8f8',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    backgroundColor: '#fff',
+    elevation: 6,
+    ...Platform.select({
+      ios: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#eee',
+      }
+    })
   },
   headerRow: {
     flexDirection: 'row',
