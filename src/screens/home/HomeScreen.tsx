@@ -8,7 +8,7 @@ import allGiftCards from '@/data/giftcards';
 import GiftCard from '@/components/GiftCard/GiftCard';
 import icons from '@/data/icons';
 import SearchInput from '@/components/search/SearchInput';
-import CategoryList from '@/components/common/CategoryList';
+import CategoryList from '@/components/category/CategoryList';
 import { Colors } from '@/styles/constants';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -93,12 +93,13 @@ const styles = StyleSheet.create({
   categoryListContainer: {
     width: '100%',
     flex: 1,
-    paddingTop: 32, // pt-8
+    paddingTop: 16, // pt-8
   },
   trendingText: {
     color: Colors.primary, // text-primary
     fontSize: 24, // text-2xl
-    fontFamily: 'PRegular', // font-regular
+    fontFamily: 'PRegular',
+    marginTop: 8
   },
   giftCard: {
     marginBottom: 24, // mb-6

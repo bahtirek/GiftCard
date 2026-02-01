@@ -3,13 +3,22 @@ import { Colors } from './constants'
 
 export const commonStyles = StyleSheet.create({
   shadow: {
-    shadowColor: 'black',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 12,
-    overflow: Platform.OS === 'ios' ? 'visible' : 'hidden',
+    shadowRadius: 16,
     elevation: 5,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    ...Platform.select({
+      ios: {
+        shadowColor: "rgba(152, 152, 152, 0.5)",
+        shadowOffset: { width: 0, height: 7 },
+        shadowOpacity: 0.4,
+        shadowRadius: 7,
+      },
+      android: {
+        elevation: 10,
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOpacity: 1,
+      }
+    })
   },
   shadowBorderRadius: {
     borderRadius: 12,

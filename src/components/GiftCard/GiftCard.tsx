@@ -1,9 +1,10 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import React from 'react';
 import { GiftCardType } from '@/types';
-import {commonStyles} from '@/styles/styles';
 import { Colors, Font } from '@/styles/constants';
 import { useGiftCardsStore } from '@/stores/giftCard.store';
+import { combine } from 'zustand/middleware';
+import { commonStyles } from '@/styles/styles';
 
 type GiftCardPropType = {
   giftCard: GiftCardType,
@@ -28,7 +29,7 @@ const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: Gi
         style={[]}
       >
         <View style={[styles.card]}>
-          <View style={[styles.imageContainer, commonStyles.shadow, commonStyles.shadowBorderRadius]}>
+          <View style={[styles.imageContainer, commonStyles.shadow]}>
             <Image 
               source={{uri: thumbnail}}
               style={[styles.image]}
@@ -66,12 +67,28 @@ const styles = StyleSheet.create({
     width: 88,
     height: 88,
     flexBasis: 88,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+/*     ...Platform.select({
+      ios: {
+        shadowColor: "rgba(152, 152, 152, 0.6)",
+        shadowOffset: { width: 0, height: 7 },
+        shadowOpacity: 0.4,
+        shadowRadius: 7,
+      },
+      android: {
+        elevation: 8,
+        shadowColor: "rgba(0, 0, 0, 0.5)",
+        shadowOpacity: 1,
+      }
+    }) */
   },
   image: {
     width: '100%',
     height: '100%',
     borderRadius: 12,
-    opacity: .9
+    opacity: .9,
+    overflow: 'hidden'
   },
   detailsContainer: {
     paddingBottom: 4,

@@ -23,9 +23,9 @@ export type FormFieldType = {
 } & React.ComponentPropsWithoutRef<typeof TextInput>;
 
 export type CategoryItemType = {
-  label?: string,
+  label: string,
   icon?: string,
-  id?: string,
+  id: string,
   checked?: boolean
 };
 
