@@ -1,56 +1,70 @@
-import { FlatList, NativeSyntheticEvent, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Platform, StyleSheet, Text, View } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import giftCards from '@/data/giftcards'
 import GiftCard from '@/components/GiftCard/GiftCard'
 import MainView from '@/components/common/MainView'
 import { useNavigation } from '@react-navigation/native'
-import IconButton from '@/components/UI/buttons/IconButton'
 import SearchInput from '@/components/search/SearchInput'
 import { Colors } from '@/styles/constants'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types'
+import { GiftCardsStackParamList } from '@/navigation/navigation-types'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
-const AllCardsScreen = ({route}: Props) => {
+const AllCardsScreen = ({ route }: Props) => {
   const { search } = route.params || {};
   const [showSearchIcon, setShowSearchIcon] = useState(false);
-  
   const navigation = useNavigation();
-
-  const onSearchIconPress = () => {
-    //show modal with search input
-  }
+  const insets = useSafeAreaInsets();
 
   const goToCardDetailsScreen = (giftCardId: string) => {
     console.log('Go to card details for card id:', giftCardId);
-    
+
     navigation.navigate('GiftCardDetails' as never);
   }
 
   const handleSearch = (searchQuery: string) => {
-    console.log('handle',searchQuery);
+    console.log('handle', searchQuery);
     // Implement search functionality here
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => {
+      header: () => {
+        if (showSearchIcon) {
+          return (
+            <View style={[
+              styles.headerContainer,
+              {
+                ...Platform.select({
+                  android: {
+                    paddingTop: insets.top + 8
+                  },
+                  ios: {
+                    paddingTop: insets.top
+                  },
+                })
+              }
+            ]}>
+              <SearchInput handleSearchQuery={handleSearch} searchQueryProp={search} />
+            </View>
+          )
+        }
         return (
-          <View>
-            {showSearchIcon && (
-              <IconButton icon={'search'} onPress={onSearchIconPress} styles={styles.iconButton}/>
-            )}
+          <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
+            <Text style={[styles.headerTitle]}>Gift Cards</Text>
           </View>
-        );
+        )
       },
     });
-  }, [navigation, onSearchIconPress])
+  }, [navigation, showSearchIcon])
 
   const handleScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
     setShowSearchIcon(offsetY > 65);
   };
+
 
   return (
     <MainView>
@@ -62,16 +76,16 @@ const AllCardsScreen = ({route}: Props) => {
             <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
           )}
           ListHeaderComponent={() => (
-          <View style={styles.headerContainer}>
-            <SearchInput handleSearchQuery={handleSearch} searchQueryProp={search} />
-          </View>
-        )}
-        ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>Loading...</Text>
-        )}
-        keyboardDismissMode='on-drag'
-        onScroll={handleScroll}
-        scrollEventThrottle={150}
+            <View style={styles.listHeaderContainer}>
+              <SearchInput handleSearchQuery={handleSearch} searchQueryProp={search} />
+            </View>
+          )}
+          ListEmptyComponent={() => (
+            <Text style={styles.emptyText}>Loading...</Text>
+          )}
+          keyboardDismissMode='on-drag'
+          onScroll={handleScroll}
+          scrollEventThrottle={150}
         />
       </View>
     </MainView>
@@ -84,12 +98,45 @@ const styles = StyleSheet.create({
   iconButton: {
     marginRight: 16
   },
-  headerContainer: {
+  listHeaderContainer: {
     paddingTop: 16, // pt-4
     paddingHorizontal: 16, // px-4
   },
-    emptyText: {
-      color: Colors.secondary700, // text-secondary-700
-      fontSize: 18, // text-lg
-    },
+  emptyText: {
+    color: Colors.secondary700, // text-secondary-700
+    fontSize: 18, // text-lg
+  },
+  headerContainer: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 6,
+    ...Platform.select({
+      ios: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#eee',
+      }
+    })
+  },
+  headerTitle: {
+    fontFamily: 'SpaceMono-Regular',
+    fontWeight: '500',
+    fontSize: 17,
+    paddingTop: 10,
+    color: Colors.primary,
+    ...Platform.select({
+      android: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        textAlign: 'left',
+        fontSize: 20,
+        fontWeight: '700',
+        width: '100%',
+        paddingTop: 18,
+        paddingBottom: 10,
+      },
+    }),
+  },
 })
