@@ -6,12 +6,22 @@ import GiftCardDetailsScreen from './screens/gift-card/GiftCardDetailsScreen';
 import MainTabsView from './navigation/MainTabs.navigation';
 import PaymentNavigation from './navigation/Checkout.navigation';
 import { Colors } from './styles/constants';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator>
@@ -43,6 +53,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+    </QueryClientProvider>
   )
 }

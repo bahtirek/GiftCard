@@ -1,7 +1,5 @@
-import { FlatList, Platform, StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
-import giftCards from '@/data/giftcards'
-import GiftCard from '@/components/GiftCard/GiftCard'
 import MainView from '@/components/common/MainView'
 import { useNavigation } from '@react-navigation/native'
 import SearchInput from '@/components/search/SearchInput'
@@ -9,30 +7,28 @@ import { Colors } from '@/styles/constants'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GiftCardsStackParamList } from '@/navigation/navigation-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import GiftCardList from '@/components/GiftCard/GiftCardList'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
 const AllCardsScreen = ({ route }: Props) => {
   const { search } = route.params || {};
-  const [showSearchIcon, setShowSearchIcon] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
-  const goToCardDetailsScreen = (giftCardId: string) => {
-    console.log('Go to card details for card id:', giftCardId);
-
-    navigation.navigate('GiftCardDetails' as never);
-  }
-
   const handleSearch = (searchQuery: string) => {
     console.log('handle', searchQuery);
-    // Implement search functionality here
+  }
+
+  const onScroll = (isOutOfView: boolean) => {
+    setShowSearchInput(isOutOfView)
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       header: () => {
-        if (showSearchIcon) {
+        if (showSearchInput) {
           return (
             <View style={[
               styles.headerContainer,
@@ -58,35 +54,12 @@ const AllCardsScreen = ({ route }: Props) => {
         )
       },
     });
-  }, [navigation, showSearchIcon])
-
-  const handleScroll = (event: any) => {
-    const offsetY = event.nativeEvent.contentOffset.y;
-    setShowSearchIcon(offsetY > 65);
-  };
-
+  }, [navigation, showSearchInput])
 
   return (
     <MainView>
       <View>
-        <FlatList
-          data={giftCards}
-          keyExtractor={(item) => item.id!}
-          renderItem={({ item }) => (
-            <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
-          )}
-          ListHeaderComponent={() => (
-            <View style={styles.listHeaderContainer}>
-              <SearchInput handleSearchQuery={handleSearch} searchQueryProp={search} />
-            </View>
-          )}
-          ListEmptyComponent={() => (
-            <Text style={styles.emptyText}>Loading...</Text>
-          )}
-          keyboardDismissMode='on-drag'
-          onScroll={handleScroll}
-          scrollEventThrottle={150}
-        />
+        <GiftCardList search={search} onScroll={onScroll}/>
       </View>
     </MainView>
   )
@@ -95,17 +68,6 @@ const AllCardsScreen = ({ route }: Props) => {
 export default AllCardsScreen
 
 const styles = StyleSheet.create({
-  iconButton: {
-    marginRight: 16
-  },
-  listHeaderContainer: {
-    paddingTop: 16, // pt-4
-    paddingHorizontal: 16, // px-4
-  },
-  emptyText: {
-    color: Colors.secondary700, // text-secondary-700
-    fontSize: 18, // text-lg
-  },
   headerContainer: {
     backgroundColor: '#fff',
     paddingHorizontal: 16,
