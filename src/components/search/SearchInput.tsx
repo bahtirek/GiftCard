@@ -7,11 +7,12 @@ import { useNavigation } from '@react-navigation/native';
 import { InputValueType } from '@/types';
 
 type CategoryListProps = {
-  handleSearchQuery: (query: string) => void;
   searchQueryProp?: string;
+  handleSearchQuery: (query: string) => void;
+  handleSearchButton: () => void;
 }
 
-const SearchInput = ({ handleSearchQuery, searchQueryProp }: CategoryListProps) => {
+const SearchInput = ({ handleSearchQuery, handleSearchButton, searchQueryProp }: CategoryListProps) => {
   const navigation = useNavigation();
   const [initialValue, setInitialValue] = useState('');
 
@@ -21,14 +22,10 @@ const SearchInput = ({ handleSearchQuery, searchQueryProp }: CategoryListProps) 
     }
   }, [searchQueryProp]);
 
-  let searchQuery = ''
-  
-  const handleSearchInput = (value: InputValueType) => {
-    searchQuery = value.value
-  }  
-  
-  const handleSearch = () => {
-    handleSearchQuery(searchQuery);
+  const handleInput = (value: InputValueType) => {
+    if (value.value.length > 2) {
+      handleSearchQuery(value.value);
+    }
   }
 
   const openSettings = () => {
@@ -39,14 +36,13 @@ const SearchInput = ({ handleSearchQuery, searchQueryProp }: CategoryListProps) 
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
         <CustomInput
-          onInput={(value: InputValueType) => { handleSearchInput(value) }}
+          onInput={(value: InputValueType) => { handleInput(value) }}
           placeholder='Search for perfect gift'
-          presetValue={searchQueryProp}
           style={styles.input}
         />
 
         <View style={styles.searchIconWrapper}>
-          <IconButton icon={'search'} onPress={handleSearch} />
+          <IconButton icon={'search'} onPress={handleSearchButton} />
         </View>
       </View>
 

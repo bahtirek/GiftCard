@@ -1,5 +1,5 @@
-import { Platform, StyleSheet, Text, View } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import MainView from '@/components/common/MainView'
 import { useNavigation } from '@react-navigation/native'
 import SearchInput from '@/components/search/SearchInput'
@@ -7,19 +7,41 @@ import { Colors } from '@/styles/constants'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GiftCardsStackParamList } from '@/navigation/navigation-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import GiftCardList from '@/components/GiftCard/GiftCardList'
+import GiftCardList from '@/components/GiftCard/GiftCardList';
+import debounce from 'lodash.debounce';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSearchStore } from '@/stores/search.store'
+import { fetchItems, Item } from '@/api/search.api';
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
 const AllCardsScreen = ({ route }: Props) => {
+  const { searchQuery, setSearchQuery } = useSearchStore();
+  const [ query, setQuery ] = useState('')
   const { search } = route.params || {};
   const [showSearchInput, setShowSearchInput] = useState(false);
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const {
+    data,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    refetch,
+    isFetchingNextPage,
+    isRefetching,
+  } = useInfiniteQuery({
+    queryKey: ['items', query],
+    queryFn: ({ pageParam = 1 }) =>
+    fetchItems(query, pageParam),
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+    enabled: query.length > 1,
+    initialPageParam: 1,
+  });
 
-  const handleSearch = (searchQuery: string) => {
-    console.log('handle', searchQuery);
-  }
+  const items: Item[] = data?.pages.flatMap((page) => page.items) ?? [];
+
+  const handleSearchButton = () => {}
 
   const onScroll = (isOutOfView: boolean) => {
     setShowSearchInput(isOutOfView)
@@ -27,39 +49,50 @@ const AllCardsScreen = ({ route }: Props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => {
-        if (showSearchInput) {
-          return (
-            <View style={[
-              styles.headerContainer,
-              {
-                ...Platform.select({
-                  android: {
-                    paddingTop: insets.top + 8
-                  },
-                  ios: {
-                    paddingTop: insets.top
-                  },
-                })
-              }
-            ]}>
-              <SearchInput handleSearchQuery={handleSearch} searchQueryProp={search} />
-            </View>
-          )
-        }
-        return (
-          <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
-            <Text style={[styles.headerTitle]}>Gift Cards</Text>
-          </View>
-        )
-      },
+      header: () => <SearchHeader />
     });
   }, [navigation, showSearchInput])
 
+  const SearchHeader = () => {
+    return (
+      <View style={[
+        styles.headerContainer,
+        {
+          ...Platform.select({
+            android: { paddingTop: insets.top + 8 },
+            ios: { paddingTop: insets.top },
+          })
+        }
+      ]}>
+        <SearchInput handleSearchQuery={debouncedSearch} searchQueryProp={search} handleSearchButton={handleSearchButton} />
+      </View>
+    )
+  }
+
+  const debouncedSearch = useCallback(
+    debounce((text: string) => {
+      setQuery(text);
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    return () => debouncedSearch.cancel();
+  }, []);
+
   return (
     <MainView>
+      {isLoading && <ActivityIndicator />}
       <View>
-        <GiftCardList search={search} onScroll={onScroll}/>
+        <GiftCardList
+          items={items}
+          loading={isFetchingNextPage}
+          refreshing={isRefetching}
+          hasNextPage={!!hasNextPage}
+          onLoadMore={fetchNextPage}
+          onRefresh={refetch}
+          onScroll={onScroll}
+        />
       </View>
     </MainView>
   )

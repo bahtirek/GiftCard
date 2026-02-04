@@ -22,6 +22,7 @@ export default function HomeScreen() {
   const [giftCards, setGiftCards] = useState<GiftCardType[]>([])
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<NavigationProp>();
+  let searchQuery = '';
 
   useEffect(() => {
     api();
@@ -38,15 +39,17 @@ export default function HomeScreen() {
     return <ActivityIndicator />;
   }
 
-  const handleSearch = (searchQuery: string) => {
-    if(!searchQuery) {
-      Alert.alert('Missing data', "Please input search query")
-    } else {
-      navigation.navigate('GiftCardsNavigation', {
-        screen: 'AllGiftCards',
-        params: { search: searchQuery },
-      });
-    }
+  const handleSearch = (query: string) => {
+    searchQuery = query;
+  }
+  
+  const handleSearchButton = () => {
+    console.log('test', searchQuery);
+    
+    navigation.navigate('GiftCardsNavigation', {
+      screen: 'AllGiftCards',
+      params: { search: searchQuery },
+    });
   }
 
   return (
@@ -60,7 +63,7 @@ export default function HomeScreen() {
         )}
         ListHeaderComponent={() => (
           <View style={styles.headerContainer}>
-            <SearchInput handleSearchQuery={handleSearch} />
+            <SearchInput handleSearchQuery={handleSearch} handleSearchButton={handleSearchButton} />
 
             <View style={styles.categoryListContainer}>
               <CategoryList />

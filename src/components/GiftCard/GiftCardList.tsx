@@ -1,33 +1,26 @@
-import { FlatList, Platform, StyleSheet, Text, View, ActivityIndicator, RefreshControl, } from 'react-native'
-import React, { useState } from 'react'
+import { FlatList, StyleSheet, Text, ActivityIndicator, RefreshControl, View, } from 'react-native'
+import React from 'react'
 import { Colors } from '@/styles/constants'
-import SearchInput from '../search/SearchInput'
 import { useNavigation } from '@react-navigation/native'
-import giftCards, { allGiftCards } from '@/data/giftcards'
+import { allGiftCards } from '@/data/giftcards'
 import GiftCard from './GiftCard'
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchItems, Item } from '@/api/search.api';
+import { Item } from '@/api/search.api';
 
 type GiftCardListProp = {
-  search?: string,
-  onScroll: (isOutOfView: boolean) => void
+  items: Item[];
+  loading: boolean;
+  refreshing: boolean;
+  hasNextPage: boolean;
+  onScroll: (isOutOfView: boolean) => void,
+  onLoadMore: () => void;
+  onRefresh: () => void;
 }
 
-const GiftCardList = ({search, onScroll}: GiftCardListProp) => {
-  let query = '';
-  const [debouncedQuery, setDebouncedQuery] = useState(query);
-
+const GiftCardList = ({onScroll, items, loading, refreshing, hasNextPage, onLoadMore, onRefresh,}: GiftCardListProp) => {
   const navigation = useNavigation();
   
-
   const goToCardDetailsScreen = (giftCardId: string) => {
     navigation.navigate('GiftCardDetails' as never);
-  }
-
-  const handleSearch = (searchQuery: string) => {
-    console.log('handle123', searchQuery);
-    query = searchQuery
-    setDebouncedQuery(query)
   }
   
   const handleScroll = (event: any) => {
@@ -37,18 +30,35 @@ const GiftCardList = ({search, onScroll}: GiftCardListProp) => {
 
   return (
     <FlatList
-      data={allGiftCards}
+      data={items}
       keyExtractor={(item) => item.id!}
       renderItem={({ item }) => (
-        <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
-      )}
-      ListHeaderComponent={() => (
-        <View style={styles.listHeaderContainer}>
-          <SearchInput handleSearchQuery={handleSearch} searchQueryProp={search} />
+        <View>
+        {/* <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} /> */}
+        <Text style={{ padding: 12 }}>{item.name}</Text>
         </View>
       )}
+      onEndReached={() => {
+        if (hasNextPage) {
+          onLoadMore();
+        }
+      }}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={
+        loading ? (
+          <ActivityIndicator style={{ marginVertical: 16 }} />
+        ) : null
+      }
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
       ListEmptyComponent={() => (
-        <Text style={styles.emptyText}>No results found</Text>
+        !loading ? (
+          <Text style={styles.emptyText}>No results found</Text>
+        ) : null
       )}
       keyboardDismissMode='on-drag'
       onScroll={handleScroll}
