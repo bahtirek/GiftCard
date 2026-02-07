@@ -1,18 +1,16 @@
-import { View, Text, FlatList, Image, RefreshControl, Alert, ActivityIndicator, StyleSheet  } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator, StyleSheet  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from "expo-status-bar";
-import {} from 'react-native';
 import { GiftCardType } from '@/types';
 import allGiftCards from '@/data/giftcards';
 import GiftCard from '@/components/GiftCard/GiftCard';
-import icons from '@/data/icons';
 import SearchInput from '@/components/search/SearchInput';
 import CategoryList from '@/components/category/CategoryList';
 import { Colors } from '@/styles/constants';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types';
+import { RootStackParamList } from '@/navigation/navigation-types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
@@ -22,7 +20,6 @@ export default function HomeScreen() {
   const [giftCards, setGiftCards] = useState<GiftCardType[]>([])
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<NavigationProp>();
-  let searchQuery = '';
 
   useEffect(() => {
     api();
@@ -38,18 +35,9 @@ export default function HomeScreen() {
   if (loading) {
     return <ActivityIndicator />;
   }
-
-  const handleSearch = (query: string) => {
-    searchQuery = query;
-  }
   
   const handleSearchButton = () => {
-    console.log('test', searchQuery);
-    
-    navigation.navigate('GiftCardsNavigation', {
-      screen: 'AllGiftCards',
-      params: { search: searchQuery },
-    });
+    navigation.navigate('GiftCardsNavigation' as never );
   }
 
   return (
@@ -63,7 +51,7 @@ export default function HomeScreen() {
         )}
         ListHeaderComponent={() => (
           <View style={styles.headerContainer}>
-            <SearchInput handleSearchQuery={handleSearch} handleSearchButton={handleSearchButton} />
+            <SearchInput handleSearchButton={handleSearchButton} />
 
             <View style={styles.categoryListContainer}>
               <CategoryList />

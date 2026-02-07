@@ -30,15 +30,12 @@ type ApiResponse = {
 
 
 export const fetchItems = async (query: string, page: number) => {
-  console.log('fetch query', query);
-  
   const url = new URL('https://rickandmortyapi.com/api/character');
   url.searchParams.append('page', `${page}`);
   if (query) {
     url.searchParams.append('name', query);
   }
   const response = await axios.get(url.toString());
-  console.log('api reponse', response);
   
   return {
     items: response.data.results,

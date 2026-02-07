@@ -1,7 +1,7 @@
 import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native'
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import MainView from '@/components/common/MainView'
-import { useNavigation } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import SearchInput from '@/components/search/SearchInput'
 import { Colors } from '@/styles/constants'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -16,9 +16,11 @@ import { fetchItems, Item } from '@/api/search.api';
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
 const AllCardsScreen = ({ route }: Props) => {
+  const isFocused = useIsFocused();
   const { searchQuery, setSearchQuery } = useSearchStore();
   const [ query, setQuery ] = useState('')
   const { search } = route.params || {};
+  const [routeParam, setRouteParam] = useState('')
   const [showSearchInput, setShowSearchInput] = useState(false);
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -41,11 +43,15 @@ const AllCardsScreen = ({ route }: Props) => {
 
   const items: Item[] = data?.pages.flatMap((page) => page.items) ?? [];
 
-  const handleSearchButton = () => {}
-
   const onScroll = (isOutOfView: boolean) => {
     setShowSearchInput(isOutOfView)
   }
+  
+  useEffect(() => {
+    if(isFocused) {
+      setQuery(searchQuery)
+    }
+  }, [searchQuery, isFocused])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -64,21 +70,10 @@ const AllCardsScreen = ({ route }: Props) => {
           })
         }
       ]}>
-        <SearchInput handleSearchQuery={debouncedSearch} searchQueryProp={search} handleSearchButton={handleSearchButton} />
+        <SearchInput searchQueryProp={search} handleSearchButton={()=>{}} />
       </View>
     )
   }
-
-  const debouncedSearch = useCallback(
-    debounce((text: string) => {
-      setQuery(text);
-    }, 500),
-    []
-  );
-
-  useEffect(() => {
-    return () => debouncedSearch.cancel();
-  }, []);
 
   return (
     <MainView>
