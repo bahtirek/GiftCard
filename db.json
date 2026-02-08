@@ -1,0 +1,3004 @@
+{
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Plov & Co House",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant1/400/300",
+      "description": "A well-known Plov & Co House offering authentic Middle Eastern cuisine in Tashkent.",
+      "phone": "+998 97 688 12 34",
+      "website": "https://plovandcohouse.uz",
+      "address": {
+        "line_one": "77 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100000"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Registan Terrace House",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant2/400/300",
+      "description": "A well-known Registan Terrace House offering authentic Grill cuisine in Samarkand.",
+      "phone": "+998 90 793 53 38",
+      "website": "https://registanterracehouse.uz",
+      "address": {
+        "line_one": "27 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100001"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Silk Road Bites House",
+      "category": "Family Dining",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant3/400/300",
+      "description": "A well-known Silk Road Bites House offering authentic Middle Eastern cuisine in Andijan.",
+      "phone": "+998 91 956 35 72",
+      "website": "https://silkroadbiteshouse.uz",
+      "address": {
+        "line_one": "44 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100002"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Chorsu Grill House",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant4/400/300",
+      "description": "A well-known Chorsu Grill House offering authentic Central Asian cuisine in Namangan.",
+      "phone": "+998 96 592 18 20",
+      "website": "https://chorsugrillhouse.uz",
+      "address": {
+        "line_one": "37 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100003"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Andijan Hearth House",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant5/400/300",
+      "description": "A well-known Andijan Hearth House offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 97 519 72 35",
+      "website": "https://andijanhearthhouse.uz",
+      "address": {
+        "line_one": "52 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100004"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Namangan Garden House",
+      "category": "Bistro",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant6/400/300",
+      "description": "A well-known Namangan Garden House offering authentic Grill cuisine in Yangiyul.",
+      "phone": "+998 94 835 95 39",
+      "website": "https://namangangardenhouse.uz",
+      "address": {
+        "line_one": "98 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100005"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Oasis Lounge House",
+      "category": "Restaurant",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant7/400/300",
+      "description": "A well-known Oasis Lounge House offering authentic Uzbek cuisine in Tashkent.",
+      "phone": "+998 97 763 50 33",
+      "website": "https://oasisloungehouse.uz",
+      "address": {
+        "line_one": "38 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100006"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Golden Kebab House",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant8/400/300",
+      "description": "A well-known Golden Kebab House offering authentic Uzbek Fusion cuisine in Samarkand.",
+      "phone": "+998 97 779 95 37",
+      "website": "https://goldenkebabhouse.uz",
+      "address": {
+        "line_one": "18 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100007"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Bazaar Kitchen House",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant9/400/300",
+      "description": "A well-known Bazaar Kitchen House offering authentic Grill cuisine in Andijan.",
+      "phone": "+998 97 265 57 45",
+      "website": "https://bazaarkitchenhouse.uz",
+      "address": {
+        "line_one": "65 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100008"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Caravan Dining House",
+      "category": "Cafe",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant10/400/300",
+      "description": "A well-known Caravan Dining House offering authentic Uzbek Fusion cuisine in Namangan.",
+      "phone": "+998 91 911 88 90",
+      "website": "https://caravandininghouse.uz",
+      "address": {
+        "line_one": "62 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100009"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Saffron Table House",
+      "category": "Cafe",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant11/400/300",
+      "description": "A well-known Saffron Table House offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 95 649 92 46",
+      "website": "https://saffrontablehouse.uz",
+      "address": {
+        "line_one": "19 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100010"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Blue Dome Cafe House",
+      "category": "Bistro",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant12/400/300",
+      "description": "A well-known Blue Dome Cafe House offering authentic Grill cuisine in Yangiyul.",
+      "phone": "+998 90 392 50 26",
+      "website": "https://bluedomecafehouse.uz",
+      "address": {
+        "line_one": "85 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100011"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Old City Oven House",
+      "category": "Restaurant",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant13/400/300",
+      "description": "A well-known Old City Oven House offering authentic Middle Eastern cuisine in Tashkent.",
+      "phone": "+998 90 330 53 29",
+      "website": "https://oldcityovenhouse.uz",
+      "address": {
+        "line_one": "25 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100012"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Spice Route House",
+      "category": "Bistro",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant14/400/300",
+      "description": "A well-known Spice Route House offering authentic Uzbek Fusion cuisine in Samarkand.",
+      "phone": "+998 91 461 83 80",
+      "website": "https://spiceroutehouse.uz",
+      "address": {
+        "line_one": "13 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100013"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Amber Samarkand House",
+      "category": "Family Dining",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant15/400/300",
+      "description": "A well-known Amber Samarkand House offering authentic Uzbek cuisine in Andijan.",
+      "phone": "+998 96 971 29 25",
+      "website": "https://ambersamarkandhouse.uz",
+      "address": {
+        "line_one": "15 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100014"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Tandoor Palace House",
+      "category": "Bistro",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant16/400/300",
+      "description": "A well-known Tandoor Palace House offering authentic Uzbek cuisine in Namangan.",
+      "phone": "+998 92 489 68 16",
+      "website": "https://tandoorpalacehouse.uz",
+      "address": {
+        "line_one": "20 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100015"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Babur Bistro House",
+      "category": "Cafe",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant17/400/300",
+      "description": "A well-known Babur Bistro House offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 91 965 66 63",
+      "website": "https://baburbistrohouse.uz",
+      "address": {
+        "line_one": "63 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100016"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Uzbek Corner House",
+      "category": "Grill",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant18/400/300",
+      "description": "A well-known Uzbek Corner House offering authentic Uzbek Fusion cuisine in Yangiyul.",
+      "phone": "+998 96 199 22 37",
+      "website": "https://uzbekcornerhouse.uz",
+      "address": {
+        "line_one": "75 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100017"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Eastern Flame House",
+      "category": "Bistro",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant19/400/300",
+      "description": "A well-known Eastern Flame House offering authentic Middle Eastern cuisine in Tashkent.",
+      "phone": "+998 90 705 87 91",
+      "website": "https://easternflamehouse.uz",
+      "address": {
+        "line_one": "9 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100018"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Zarafshan Eatery House",
+      "category": "Bistro",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant20/400/300",
+      "description": "A well-known Zarafshan Eatery House offering authentic Middle Eastern cuisine in Samarkand.",
+      "phone": "+998 92 204 61 54",
+      "website": "https://zarafshaneateryhouse.uz",
+      "address": {
+        "line_one": "24 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100019"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Clay Oven House",
+      "category": "Restaurant",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant21/400/300",
+      "description": "A well-known Clay Oven House offering authentic Uzbek Fusion cuisine in Andijan.",
+      "phone": "+998 91 373 75 72",
+      "website": "https://clayovenhouse.uz",
+      "address": {
+        "line_one": "90 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100020"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Copper Teapot House",
+      "category": "Grill",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant22/400/300",
+      "description": "A well-known Copper Teapot House offering authentic Middle Eastern cuisine in Namangan.",
+      "phone": "+998 95 650 21 82",
+      "website": "https://copperteapothouse.uz",
+      "address": {
+        "line_one": "94 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100021"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Fig & Pomegranate House",
+      "category": "Grill",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant23/400/300",
+      "description": "A well-known Fig & Pomegranate House offering authentic Grill cuisine in Qarshi.",
+      "phone": "+998 99 461 39 48",
+      "website": "https://figandpomegranatehouse.uz",
+      "address": {
+        "line_one": "33 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100022"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Nomad Kitchen House",
+      "category": "Bistro",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant24/400/300",
+      "description": "A well-known Nomad Kitchen House offering authentic Grill cuisine in Yangiyul.",
+      "phone": "+998 92 814 75 31",
+      "website": "https://nomadkitchenhouse.uz",
+      "address": {
+        "line_one": "66 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100023"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Sunrise Plov House",
+      "category": "Restaurant",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant25/400/300",
+      "description": "A well-known Sunrise Plov House offering authentic Uzbek Fusion cuisine in Tashkent.",
+      "phone": "+998 93 646 51 30",
+      "website": "https://sunriseplovhouse.uz",
+      "address": {
+        "line_one": "94 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100024"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Plov & Co Grill",
+      "category": "Cafe",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant26/400/300",
+      "description": "A well-known Plov & Co Grill offering authentic Grill cuisine in Samarkand.",
+      "phone": "+998 95 973 56 18",
+      "website": "https://plovandcogrill.uz",
+      "address": {
+        "line_one": "73 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100025"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Registan Terrace Grill",
+      "category": "Restaurant",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant27/400/300",
+      "description": "A well-known Registan Terrace Grill offering authentic Grill cuisine in Andijan.",
+      "phone": "+998 96 563 83 78",
+      "website": "https://registanterracegrill.uz",
+      "address": {
+        "line_one": "49 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100026"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Silk Road Bites Grill",
+      "category": "Restaurant",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant28/400/300",
+      "description": "A well-known Silk Road Bites Grill offering authentic Grill cuisine in Namangan.",
+      "phone": "+998 93 467 19 80",
+      "website": "https://silkroadbitesgrill.uz",
+      "address": {
+        "line_one": "88 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100027"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Chorsu Grill",
+      "category": "Bistro",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant29/400/300",
+      "description": "A well-known Chorsu Grill offering authentic Uzbek Fusion cuisine in Qarshi.",
+      "phone": "+998 91 762 60 94",
+      "website": "https://chorsugrill.uz",
+      "address": {
+        "line_one": "93 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100028"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Andijan Hearth Grill",
+      "category": "Grill",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant30/400/300",
+      "description": "A well-known Andijan Hearth Grill offering authentic Uzbek cuisine in Yangiyul.",
+      "phone": "+998 99 728 19 81",
+      "website": "https://andijanhearthgrill.uz",
+      "address": {
+        "line_one": "98 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100029"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Namangan Garden Grill",
+      "category": "Bistro",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant31/400/300",
+      "description": "A well-known Namangan Garden Grill offering authentic Grill cuisine in Tashkent.",
+      "phone": "+998 97 404 66 63",
+      "website": "https://namangangardengrill.uz",
+      "address": {
+        "line_one": "19 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100030"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Oasis Lounge Grill",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant32/400/300",
+      "description": "A well-known Oasis Lounge Grill offering authentic Uzbek Fusion cuisine in Samarkand.",
+      "phone": "+998 99 811 68 19",
+      "website": "https://oasisloungegrill.uz",
+      "address": {
+        "line_one": "4 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100031"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Golden Kebab House Grill",
+      "category": "Restaurant",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant33/400/300",
+      "description": "A well-known Golden Kebab House Grill offering authentic Grill cuisine in Andijan.",
+      "phone": "+998 96 388 42 54",
+      "website": "https://goldenkebabhousegrill.uz",
+      "address": {
+        "line_one": "16 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100032"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Bazaar Kitchen Grill",
+      "category": "Cafe",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant34/400/300",
+      "description": "A well-known Bazaar Kitchen Grill offering authentic Grill cuisine in Namangan.",
+      "phone": "+998 97 500 26 54",
+      "website": "https://bazaarkitchengrill.uz",
+      "address": {
+        "line_one": "28 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100033"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Caravan Dining Grill",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant35/400/300",
+      "description": "A well-known Caravan Dining Grill offering authentic Middle Eastern cuisine in Qarshi.",
+      "phone": "+998 90 504 63 81",
+      "website": "https://caravandininggrill.uz",
+      "address": {
+        "line_one": "81 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100034"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Saffron Table Grill",
+      "category": "Bistro",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant36/400/300",
+      "description": "A well-known Saffron Table Grill offering authentic Middle Eastern cuisine in Yangiyul.",
+      "phone": "+998 93 112 51 18",
+      "website": "https://saffrontablegrill.uz",
+      "address": {
+        "line_one": "1 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100035"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Blue Dome Cafe Grill",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant37/400/300",
+      "description": "A well-known Blue Dome Cafe Grill offering authentic Central Asian cuisine in Tashkent.",
+      "phone": "+998 90 859 15 39",
+      "website": "https://bluedomecafegrill.uz",
+      "address": {
+        "line_one": "56 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100036"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Old City Oven Grill",
+      "category": "Family Dining",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant38/400/300",
+      "description": "A well-known Old City Oven Grill offering authentic Middle Eastern cuisine in Samarkand.",
+      "phone": "+998 99 934 57 40",
+      "website": "https://oldcityovengrill.uz",
+      "address": {
+        "line_one": "98 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100037"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Spice Route Grill",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant39/400/300",
+      "description": "A well-known Spice Route Grill offering authentic Central Asian cuisine in Andijan.",
+      "phone": "+998 95 546 20 67",
+      "website": "https://spiceroutegrill.uz",
+      "address": {
+        "line_one": "12 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100038"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Amber Samarkand Grill",
+      "category": "Restaurant",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant40/400/300",
+      "description": "A well-known Amber Samarkand Grill offering authentic Uzbek cuisine in Namangan.",
+      "phone": "+998 92 679 81 74",
+      "website": "https://ambersamarkandgrill.uz",
+      "address": {
+        "line_one": "45 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100039"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Tandoor Palace Grill",
+      "category": "Cafe",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant41/400/300",
+      "description": "A well-known Tandoor Palace Grill offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 94 826 69 22",
+      "website": "https://tandoorpalacegrill.uz",
+      "address": {
+        "line_one": "26 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100040"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Babur Bistro Grill",
+      "category": "Family Dining",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant42/400/300",
+      "description": "A well-known Babur Bistro Grill offering authentic Uzbek Fusion cuisine in Yangiyul.",
+      "phone": "+998 90 851 25 84",
+      "website": "https://baburbistrogrill.uz",
+      "address": {
+        "line_one": "65 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100041"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Uzbek Corner Grill",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant43/400/300",
+      "description": "A well-known Uzbek Corner Grill offering authentic Uzbek cuisine in Tashkent.",
+      "phone": "+998 99 255 44 71",
+      "website": "https://uzbekcornergrill.uz",
+      "address": {
+        "line_one": "96 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100042"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Eastern Flame Grill",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant44/400/300",
+      "description": "A well-known Eastern Flame Grill offering authentic Middle Eastern cuisine in Samarkand.",
+      "phone": "+998 91 486 36 81",
+      "website": "https://easternflamegrill.uz",
+      "address": {
+        "line_one": "2 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100043"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Zarafshan Eatery Grill",
+      "category": "Bistro",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant45/400/300",
+      "description": "A well-known Zarafshan Eatery Grill offering authentic Middle Eastern cuisine in Andijan.",
+      "phone": "+998 96 633 52 47",
+      "website": "https://zarafshaneaterygrill.uz",
+      "address": {
+        "line_one": "57 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100044"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Clay Oven Grill",
+      "category": "Cafe",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant46/400/300",
+      "description": "A well-known Clay Oven Grill offering authentic Uzbek cuisine in Namangan.",
+      "phone": "+998 94 325 78 12",
+      "website": "https://clayovengrill.uz",
+      "address": {
+        "line_one": "66 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100045"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Copper Teapot Grill",
+      "category": "Grill",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant47/400/300",
+      "description": "A well-known Copper Teapot Grill offering authentic Grill cuisine in Qarshi.",
+      "phone": "+998 96 787 56 67",
+      "website": "https://copperteapotgrill.uz",
+      "address": {
+        "line_one": "36 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100046"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Fig & Pomegranate Grill",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant48/400/300",
+      "description": "A well-known Fig & Pomegranate Grill offering authentic Uzbek Fusion cuisine in Yangiyul.",
+      "phone": "+998 98 499 36 88",
+      "website": "https://figandpomegranategrill.uz",
+      "address": {
+        "line_one": "80 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100047"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Nomad Kitchen Grill",
+      "category": "Restaurant",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant49/400/300",
+      "description": "A well-known Nomad Kitchen Grill offering authentic Middle Eastern cuisine in Tashkent.",
+      "phone": "+998 98 499 85 60",
+      "website": "https://nomadkitchengrill.uz",
+      "address": {
+        "line_one": "18 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100048"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "name": "Sunrise Plov Grill",
+      "category": "Cafe",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant50/400/300",
+      "description": "A well-known Sunrise Plov Grill offering authentic Grill cuisine in Samarkand.",
+      "phone": "+998 91 911 63 73",
+      "website": "https://sunriseplovgrill.uz",
+      "address": {
+        "line_one": "36 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100049"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Plov & Co Kitchen",
+      "category": "Restaurant",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant51/400/300",
+      "description": "A well-known Plov & Co Kitchen offering authentic Uzbek Fusion cuisine in Andijan.",
+      "phone": "+998 92 572 39 81",
+      "website": "https://plovandcokitchen.uz",
+      "address": {
+        "line_one": "91 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100050"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Registan Terrace Kitchen",
+      "category": "Family Dining",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant52/400/300",
+      "description": "A well-known Registan Terrace Kitchen offering authentic Middle Eastern cuisine in Namangan.",
+      "phone": "+998 98 273 84 89",
+      "website": "https://registanterracekitchen.uz",
+      "address": {
+        "line_one": "96 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100051"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Silk Road Bites Kitchen",
+      "category": "Cafe",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant53/400/300",
+      "description": "A well-known Silk Road Bites Kitchen offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 99 312 96 15",
+      "website": "https://silkroadbiteskitchen.uz",
+      "address": {
+        "line_one": "90 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100052"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Chorsu Grill Kitchen",
+      "category": "Bistro",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant54/400/300",
+      "description": "A well-known Chorsu Grill Kitchen offering authentic Grill cuisine in Yangiyul.",
+      "phone": "+998 96 227 25 80",
+      "website": "https://chorsugrillkitchen.uz",
+      "address": {
+        "line_one": "34 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100053"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Andijan Hearth Kitchen",
+      "category": "Bistro",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant55/400/300",
+      "description": "A well-known Andijan Hearth Kitchen offering authentic Uzbek Fusion cuisine in Tashkent.",
+      "phone": "+998 95 208 56 47",
+      "website": "https://andijanhearthkitchen.uz",
+      "address": {
+        "line_one": "70 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100054"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Namangan Garden Kitchen",
+      "category": "Family Dining",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant56/400/300",
+      "description": "A well-known Namangan Garden Kitchen offering authentic Uzbek cuisine in Samarkand.",
+      "phone": "+998 94 376 24 55",
+      "website": "https://namangangardenkitchen.uz",
+      "address": {
+        "line_one": "93 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100055"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Oasis Lounge Kitchen",
+      "category": "Bistro",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant57/400/300",
+      "description": "A well-known Oasis Lounge Kitchen offering authentic Uzbek Fusion cuisine in Andijan.",
+      "phone": "+998 96 362 46 93",
+      "website": "https://oasisloungekitchen.uz",
+      "address": {
+        "line_one": "77 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100056"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Golden Kebab House Kitchen",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant58/400/300",
+      "description": "A well-known Golden Kebab House Kitchen offering authentic Central Asian cuisine in Namangan.",
+      "phone": "+998 98 328 32 28",
+      "website": "https://goldenkebabhousekitchen.uz",
+      "address": {
+        "line_one": "77 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100057"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Bazaar Kitchen",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant59/400/300",
+      "description": "A well-known Bazaar Kitchen offering authentic Central Asian cuisine in Qarshi.",
+      "phone": "+998 97 218 85 60",
+      "website": "https://bazaarkitchen.uz",
+      "address": {
+        "line_one": "69 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100058"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Caravan Dining Kitchen",
+      "category": "Family Dining",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant60/400/300",
+      "description": "A well-known Caravan Dining Kitchen offering authentic Uzbek cuisine in Yangiyul.",
+      "phone": "+998 97 589 17 70",
+      "website": "https://caravandiningkitchen.uz",
+      "address": {
+        "line_one": "26 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100059"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Saffron Table Kitchen",
+      "category": "Family Dining",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant61/400/300",
+      "description": "A well-known Saffron Table Kitchen offering authentic Middle Eastern cuisine in Tashkent.",
+      "phone": "+998 97 818 96 25",
+      "website": "https://saffrontablekitchen.uz",
+      "address": {
+        "line_one": "68 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100060"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Blue Dome Cafe Kitchen",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant62/400/300",
+      "description": "A well-known Blue Dome Cafe Kitchen offering authentic Uzbek cuisine in Samarkand.",
+      "phone": "+998 91 593 80 25",
+      "website": "https://bluedomecafekitchen.uz",
+      "address": {
+        "line_one": "58 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100061"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Old City Oven Kitchen",
+      "category": "Cafe",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant63/400/300",
+      "description": "A well-known Old City Oven Kitchen offering authentic Central Asian cuisine in Andijan.",
+      "phone": "+998 94 734 19 49",
+      "website": "https://oldcityovenkitchen.uz",
+      "address": {
+        "line_one": "90 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100062"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Spice Route Kitchen",
+      "category": "Restaurant",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant64/400/300",
+      "description": "A well-known Spice Route Kitchen offering authentic Central Asian cuisine in Namangan.",
+      "phone": "+998 98 511 53 86",
+      "website": "https://spiceroutekitchen.uz",
+      "address": {
+        "line_one": "8 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100063"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Amber Samarkand Kitchen",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant65/400/300",
+      "description": "A well-known Amber Samarkand Kitchen offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 93 328 20 87",
+      "website": "https://ambersamarkandkitchen.uz",
+      "address": {
+        "line_one": "68 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100064"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Tandoor Palace Kitchen",
+      "category": "Cafe",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant66/400/300",
+      "description": "A well-known Tandoor Palace Kitchen offering authentic Grill cuisine in Yangiyul.",
+      "phone": "+998 97 794 15 62",
+      "website": "https://tandoorpalacekitchen.uz",
+      "address": {
+        "line_one": "83 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100065"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Babur Bistro Kitchen",
+      "category": "Restaurant",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant67/400/300",
+      "description": "A well-known Babur Bistro Kitchen offering authentic Grill cuisine in Tashkent.",
+      "phone": "+998 99 381 97 29",
+      "website": "https://baburbistrokitchen.uz",
+      "address": {
+        "line_one": "6 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100066"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Uzbek Corner Kitchen",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant68/400/300",
+      "description": "A well-known Uzbek Corner Kitchen offering authentic Middle Eastern cuisine in Samarkand.",
+      "phone": "+998 95 663 64 91",
+      "website": "https://uzbekcornerkitchen.uz",
+      "address": {
+        "line_one": "82 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100067"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Eastern Flame Kitchen",
+      "category": "Bistro",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant69/400/300",
+      "description": "A well-known Eastern Flame Kitchen offering authentic Central Asian cuisine in Andijan.",
+      "phone": "+998 92 461 74 37",
+      "website": "https://easternflamekitchen.uz",
+      "address": {
+        "line_one": "18 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100068"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "name": "Zarafshan Eatery Kitchen",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant70/400/300",
+      "description": "A well-known Zarafshan Eatery Kitchen offering authentic Uzbek cuisine in Namangan.",
+      "phone": "+998 99 689 21 18",
+      "website": "https://zarafshaneaterykitchen.uz",
+      "address": {
+        "line_one": "73 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100069"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Clay Oven Kitchen",
+      "category": "Cafe",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant71/400/300",
+      "description": "A well-known Clay Oven Kitchen offering authentic Central Asian cuisine in Qarshi.",
+      "phone": "+998 95 159 13 85",
+      "website": "https://clayovenkitchen.uz",
+      "address": {
+        "line_one": "51 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100070"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Copper Teapot Kitchen",
+      "category": "Bistro",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant72/400/300",
+      "description": "A well-known Copper Teapot Kitchen offering authentic Uzbek Fusion cuisine in Yangiyul.",
+      "phone": "+998 99 742 87 93",
+      "website": "https://copperteapotkitchen.uz",
+      "address": {
+        "line_one": "45 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100071"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Fig & Pomegranate Kitchen",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant73/400/300",
+      "description": "A well-known Fig & Pomegranate Kitchen offering authentic Uzbek cuisine in Tashkent.",
+      "phone": "+998 93 904 24 80",
+      "website": "https://figandpomegranatekitchen.uz",
+      "address": {
+        "line_one": "62 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100072"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Nomad Kitchen",
+      "category": "Family Dining",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant74/400/300",
+      "description": "A well-known Nomad Kitchen offering authentic Uzbek Fusion cuisine in Samarkand.",
+      "phone": "+998 97 182 51 98",
+      "website": "https://nomadkitchen.uz",
+      "address": {
+        "line_one": "45 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100073"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Sunrise Plov Kitchen",
+      "category": "Restaurant",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant75/400/300",
+      "description": "A well-known Sunrise Plov Kitchen offering authentic Uzbek Fusion cuisine in Andijan.",
+      "phone": "+998 93 217 98 29",
+      "website": "https://sunriseplovkitchen.uz",
+      "address": {
+        "line_one": "9 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100074"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Plov & Co Cafe",
+      "category": "Cafe",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant76/400/300",
+      "description": "A well-known Plov & Co Cafe offering authentic Uzbek cuisine in Namangan.",
+      "phone": "+998 96 566 91 32",
+      "website": "https://plovandcocafe.uz",
+      "address": {
+        "line_one": "32 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100075"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Registan Terrace Cafe",
+      "category": "Grill",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant77/400/300",
+      "description": "A well-known Registan Terrace Cafe offering authentic Central Asian cuisine in Qarshi.",
+      "phone": "+998 92 678 83 62",
+      "website": "https://registanterracecafe.uz",
+      "address": {
+        "line_one": "18 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100076"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Silk Road Bites Cafe",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant78/400/300",
+      "description": "A well-known Silk Road Bites Cafe offering authentic Central Asian cuisine in Yangiyul.",
+      "phone": "+998 95 734 92 23",
+      "website": "https://silkroadbitescafe.uz",
+      "address": {
+        "line_one": "56 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100077"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Chorsu Grill Cafe",
+      "category": "Bistro",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant79/400/300",
+      "description": "A well-known Chorsu Grill Cafe offering authentic Uzbek cuisine in Tashkent.",
+      "phone": "+998 95 169 12 95",
+      "website": "https://chorsugrillcafe.uz",
+      "address": {
+        "line_one": "91 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100078"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Andijan Hearth Cafe",
+      "category": "Bistro",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant80/400/300",
+      "description": "A well-known Andijan Hearth Cafe offering authentic Uzbek Fusion cuisine in Samarkand.",
+      "phone": "+998 97 281 43 78",
+      "website": "https://andijanhearthcafe.uz",
+      "address": {
+        "line_one": "94 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100079"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Namangan Garden Cafe",
+      "category": "Restaurant",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant81/400/300",
+      "description": "A well-known Namangan Garden Cafe offering authentic Middle Eastern cuisine in Andijan.",
+      "phone": "+998 96 233 86 23",
+      "website": "https://namangangardencafe.uz",
+      "address": {
+        "line_one": "14 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100080"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Oasis Lounge Cafe",
+      "category": "Cafe",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant82/400/300",
+      "description": "A well-known Oasis Lounge Cafe offering authentic Grill cuisine in Namangan.",
+      "phone": "+998 95 505 54 23",
+      "website": "https://oasisloungecafe.uz",
+      "address": {
+        "line_one": "17 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100081"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Golden Kebab House Cafe",
+      "category": "Bistro",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant83/400/300",
+      "description": "A well-known Golden Kebab House Cafe offering authentic Uzbek cuisine in Qarshi.",
+      "phone": "+998 98 545 29 86",
+      "website": "https://goldenkebabhousecafe.uz",
+      "address": {
+        "line_one": "6 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100082"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "name": "Bazaar Kitchen Cafe",
+      "category": "Cafe",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant84/400/300",
+      "description": "A well-known Bazaar Kitchen Cafe offering authentic Uzbek Fusion cuisine in Yangiyul.",
+      "phone": "+998 94 244 56 19",
+      "website": "https://bazaarkitchencafe.uz",
+      "address": {
+        "line_one": "9 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100083"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Caravan Dining Cafe",
+      "category": "Cafe",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant85/400/300",
+      "description": "A well-known Caravan Dining Cafe offering authentic Grill cuisine in Tashkent.",
+      "phone": "+998 91 684 29 26",
+      "website": "https://caravandiningcafe.uz",
+      "address": {
+        "line_one": "60 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100084"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Saffron Table Cafe",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant86/400/300",
+      "description": "A well-known Saffron Table Cafe offering authentic Grill cuisine in Samarkand.",
+      "phone": "+998 97 130 39 23",
+      "website": "https://saffrontablecafe.uz",
+      "address": {
+        "line_one": "16 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100085"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Blue Dome Cafe",
+      "category": "Restaurant",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant87/400/300",
+      "description": "A well-known Blue Dome Cafe offering authentic Central Asian cuisine in Andijan.",
+      "phone": "+998 97 700 21 82",
+      "website": "https://bluedomecafe.uz",
+      "address": {
+        "line_one": "99 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100086"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Old City Oven Cafe",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek Fusion",
+      "image": "https://picsum.photos/seed/restaurant88/400/300",
+      "description": "A well-known Old City Oven Cafe offering authentic Uzbek Fusion cuisine in Namangan.",
+      "phone": "+998 92 687 44 41",
+      "website": "https://oldcityovencafe.uz",
+      "address": {
+        "line_one": "3 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100087"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Spice Route Cafe",
+      "category": "Grill",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant89/400/300",
+      "description": "A well-known Spice Route Cafe offering authentic Grill cuisine in Qarshi.",
+      "phone": "+998 98 419 12 70",
+      "website": "https://spiceroutecafe.uz",
+      "address": {
+        "line_one": "7 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100088"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Amber Samarkand Cafe",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant90/400/300",
+      "description": "A well-known Amber Samarkand Cafe offering authentic Uzbek cuisine in Yangiyul.",
+      "phone": "+998 90 736 81 47",
+      "website": "https://ambersamarkandcafe.uz",
+      "address": {
+        "line_one": "56 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100089"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Tandoor Palace Cafe",
+      "category": "Grill",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant91/400/300",
+      "description": "A well-known Tandoor Palace Cafe offering authentic Middle Eastern cuisine in Tashkent.",
+      "phone": "+998 96 238 42 51",
+      "website": "https://tandoorpalacecafe.uz",
+      "address": {
+        "line_one": "66 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100090"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Babur Bistro Cafe",
+      "category": "Family Dining",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant92/400/300",
+      "description": "A well-known Babur Bistro Cafe offering authentic Middle Eastern cuisine in Samarkand.",
+      "phone": "+998 97 672 62 43",
+      "website": "https://baburbistrocafe.uz",
+      "address": {
+        "line_one": "74 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100091"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Uzbek Corner Cafe",
+      "category": "Cafe",
+      "cuisineType": "Central Asian",
+      "image": "https://picsum.photos/seed/restaurant93/400/300",
+      "description": "A well-known Uzbek Corner Cafe offering authentic Grill cuisine in Andijan.",
+      "phone": "+998 96 311 87 14",
+      "website": "https://uzbekcornercafe.uz",
+      "address": {
+        "line_one": "36 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100092"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Eastern Flame Cafe",
+      "category": "Family Dining",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant94/400/300",
+      "description": "A well-known Eastern Flame Cafe offering authentic Central Asian cuisine in Namangan.",
+      "phone": "+998 97 577 76 87",
+      "website": "https://easternflamecafe.uz",
+      "address": {
+        "line_one": "97 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100093"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "name": "Zarafshan Eatery Cafe",
+      "category": "Restaurant",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant95/400/300",
+      "description": "A well-known Zarafshan Eatery Cafe offering authentic Grill cuisine in Qarshi.",
+      "phone": "+998 97 964 19 55",
+      "website": "https://zarafshaneaterycafe.uz",
+      "address": {
+        "line_one": "67 Main Street",
+        "line_two": "Near City Center",
+        "city": "Qarshi",
+        "zip": "100094"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Clay Oven Cafe",
+      "category": "Grill",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant96/400/300",
+      "description": "A well-known Clay Oven Cafe offering authentic Central Asian cuisine in Yangiyul.",
+      "phone": "+998 93 801 53 96",
+      "website": "https://clayovencafe.uz",
+      "address": {
+        "line_one": "41 Main Street",
+        "line_two": "Near City Center",
+        "city": "Yangiyul",
+        "zip": "100095"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Copper Teapot Cafe",
+      "category": "Cafe",
+      "cuisineType": "Grill",
+      "image": "https://picsum.photos/seed/restaurant97/400/300",
+      "description": "A well-known Copper Teapot Cafe offering authentic Central Asian cuisine in Tashkent.",
+      "phone": "+998 94 940 37 95",
+      "website": "https://copperteapotcafe.uz",
+      "address": {
+        "line_one": "76 Main Street",
+        "line_two": "Near City Center",
+        "city": "Tashkent",
+        "zip": "100096"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "name": "Fig & Pomegranate Cafe",
+      "category": "Bistro",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant98/400/300",
+      "description": "A well-known Fig & Pomegranate Cafe offering authentic Middle Eastern cuisine in Samarkand.",
+      "phone": "+998 98 658 64 37",
+      "website": "https://figandpomegranatecafe.uz",
+      "address": {
+        "line_one": "98 Main Street",
+        "line_two": "Near City Center",
+        "city": "Samarkand",
+        "zip": "100097"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "name": "Nomad Kitchen Cafe",
+      "category": "Grill",
+      "cuisineType": "Uzbek",
+      "image": "https://picsum.photos/seed/restaurant99/400/300",
+      "description": "A well-known Nomad Kitchen Cafe offering authentic Uzbek cuisine in Andijan.",
+      "phone": "+998 96 593 55 54",
+      "website": "https://nomadkitchencafe.uz",
+      "address": {
+        "line_one": "58 Main Street",
+        "line_two": "Near City Center",
+        "city": "Andijan",
+        "zip": "100098"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "name": "Sunrise Plov Cafe",
+      "category": "Restaurant",
+      "cuisineType": "Middle Eastern",
+      "image": "https://picsum.photos/seed/restaurant100/400/300",
+      "description": "A well-known Sunrise Plov Cafe offering authentic Middle Eastern cuisine in Namangan.",
+      "phone": "+998 98 228 71 10",
+      "website": "https://sunriseplovcafe.uz",
+      "address": {
+        "line_one": "22 Main Street",
+        "line_two": "Near City Center",
+        "city": "Namangan",
+        "zip": "100099"
+      },
+      "priceSet": [
+        {
+          "id": "1",
+          "amount": "100 000"
+        },
+        {
+          "id": "2",
+          "amount": "200 000"
+        },
+        {
+          "id": "3",
+          "amount": "300 000"
+        }
+      ]
+    }
+  ]
+}

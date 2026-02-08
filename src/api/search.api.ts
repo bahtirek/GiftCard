@@ -29,7 +29,7 @@ type ApiResponse = {
 }; */
 
 
-export const fetchItems = async (query: string, page: number) => {
+/* export const fetchItems = async (query: string, page: number) => {
   const url = new URL('https://rickandmortyapi.com/api/character');
   url.searchParams.append('page', `${page}`);
   if (query) {
@@ -42,5 +42,26 @@ export const fetchItems = async (query: string, page: number) => {
     nextPage: response.data.info.next
       ? page + 1
       : null,
+  };
+}; */
+
+export const fetchItems = async (query: string, page: number) => {
+  console.log(query);
+  
+  const res = await fetch(
+    `http://localhost:3000/restaurants?name_like=${query}&_page=${page}&_limit=20`
+  );
+
+  const data = await res.json();
+  console.log('data', data);
+  
+
+  const hasNextPage =
+    res.headers.get('x-total-count') !== null &&
+    page * 20 < Number(res.headers.get('x-total-count'));
+
+  return {
+    items: data,
+    nextPage: hasNextPage ? page + 1 : null,
   };
 };

@@ -43,6 +43,27 @@ export type GiftCardType = {
   showDescription?: boolean 
 };
 
+export type GiftCardType2 = {
+  id: number,
+  name: string,
+  image: string,
+  description: string,
+  phone: string,
+  website: string,
+  address: Address,
+  instagram?: string,
+  telegram?: string,
+  priceSet?: PriceType[],
+  showDescription?: boolean 
+};
+
+export type Address = {
+  line_one: string,
+  line_two: string,
+  city: string,
+  zip: string
+};
+
 export type GiftCardsStoreState = {
   giftCard: GiftCardType;
 };
