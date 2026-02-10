@@ -1,66 +1,56 @@
-import { View, Text, FlatList, Image, RefreshControl, Alert, ActivityIndicator, StyleSheet  } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator, StyleSheet  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from "expo-status-bar";
-import {} from 'react-native';
 import { GiftCardType } from '@/types';
 import allGiftCards from '@/data/giftcards';
 import GiftCard from '@/components/GiftCard/GiftCard';
-import icons from '@/data/icons';
 import SearchInput from '@/components/search/SearchInput';
 import CategoryList from '@/components/category/CategoryList';
 import { Colors } from '@/styles/constants';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types';
-
+import { RootStackParamList } from '@/navigation/navigation-types';
+import { useQuery } from '@tanstack/react-query';
+import { fetchTenItems } from '@/api/search.api';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
 export default function HomeScreen() {
-  const [items, setItems] = useState<GiftCardType[]>([]);
-  const [giftCards, setGiftCards] = useState<GiftCardType[]>([])
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation<NavigationProp>();
+  const {
+    data,
+    isLoading,
+    refetch,
+    isRefetching,
+    isError,
+    error
+  } = useQuery({
+    queryKey: ['items'],
+    queryFn: () => fetchTenItems(10),
+  });
 
-  useEffect(() => {
-    api();
-  }, [])
-
-  const api = () => {
-    setTimeout(() => {
-
-      setGiftCards(allGiftCards);
-    }, 2000)
-  }
-
-  if (loading) {
+  if (isLoading) {
     return <ActivityIndicator />;
   }
-
-  const handleSearch = (searchQuery: string) => {
-    if(!searchQuery) {
-      Alert.alert('Missing data', "Please input search query")
-    } else {
-      navigation.navigate('GiftCardsNavigation', {
-        screen: 'AllGiftCards',
-        params: { search: searchQuery },
-      });
-    }
+  
+  const handleSearchButton = () => {
+    navigation.navigate('GiftCardsNavigation' as never );
   }
-
+  
+  
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <FlatList 
         style={styles.flatList}
-        data={giftCards}
+        data={data?.items}
         keyExtractor={(item) => item.id ? String(item.id) : Math.random().toString()}
         renderItem={({item}) => (
           <GiftCard giftCard={item} customeStyle={styles.giftCard} />
         )}
         ListHeaderComponent={() => (
           <View style={styles.headerContainer}>
-            <SearchInput handleSearchQuery={handleSearch} />
+            <SearchInput handleSearchButton={handleSearchButton} />
 
             <View style={styles.categoryListContainer}>
               <CategoryList />
@@ -70,7 +60,7 @@ export default function HomeScreen() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>Loading...</Text>
+          <Text style={styles.emptyText}>No Gift Cards found</Text>
         )}
         keyboardDismissMode='on-drag'
       />

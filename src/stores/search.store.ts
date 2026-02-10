@@ -2,14 +2,14 @@ import { create } from "zustand";
 
 type SearchStoreType = {
   searchQuery: string;
-  addSearchQuery: (item: string) => void;
+  setSearchQuery: (item: string) => void;
   resetSearchQuery: () => void;
 }
 
 export const useSearchStore = create<SearchStoreType>((set, get) => ({
   searchQuery: '',
 
-  addSearchQuery: (item) => {
+  setSearchQuery: (item) => {
     set({ searchQuery: item });
   },
 
