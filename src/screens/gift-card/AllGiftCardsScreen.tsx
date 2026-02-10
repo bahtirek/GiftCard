@@ -1,5 +1,5 @@
-import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native'
-import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MainView from '@/components/common/MainView'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
 import SearchInput from '@/components/search/SearchInput'
@@ -8,10 +8,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GiftCardsStackParamList } from '@/navigation/navigation-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GiftCardList from '@/components/GiftCard/GiftCardList';
-import debounce from 'lodash.debounce';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchStore } from '@/stores/search.store'
 import { fetchItems, Item } from '@/api/search.api';
+import { GiftCardType } from '@/types'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
@@ -20,7 +20,6 @@ const AllCardsScreen = ({ route }: Props) => {
   const { searchQuery, setSearchQuery } = useSearchStore();
   const [ query, setQuery ] = useState('')
   const { search } = route.params || {};
-  const [routeParam, setRouteParam] = useState('')
   const [showSearchInput, setShowSearchInput] = useState(false);
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -41,7 +40,7 @@ const AllCardsScreen = ({ route }: Props) => {
     initialPageParam: 1,
   });
 
-  const items: Item[] = data?.pages.flatMap((page) => page.items) ?? [];
+  const items: GiftCardType[] = data?.pages.flatMap((page) => page.items) ?? [];
 
   const onScroll = (isOutOfView: boolean) => {
     setShowSearchInput(isOutOfView)

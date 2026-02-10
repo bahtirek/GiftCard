@@ -11,40 +11,39 @@ import { Colors } from '@/styles/constants';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigation/navigation-types';
-
+import { useQuery } from '@tanstack/react-query';
+import { fetchTenItems } from '@/api/search.api';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
 export default function HomeScreen() {
-  const [items, setItems] = useState<GiftCardType[]>([]);
-  const [giftCards, setGiftCards] = useState<GiftCardType[]>([])
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation<NavigationProp>();
+  const {
+    data,
+    isLoading,
+    refetch,
+    isRefetching,
+    isError,
+    error
+  } = useQuery({
+    queryKey: ['items'],
+    queryFn: () => fetchTenItems(10),
+  });
 
-  useEffect(() => {
-    api();
-  }, [])
-
-  const api = () => {
-    setTimeout(() => {
-
-      setGiftCards(allGiftCards);
-    }, 2000)
-  }
-
-  if (loading) {
+  if (isLoading) {
     return <ActivityIndicator />;
   }
   
   const handleSearchButton = () => {
     navigation.navigate('GiftCardsNavigation' as never );
   }
-
+  
+  
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <FlatList 
         style={styles.flatList}
-        data={giftCards}
+        data={data?.items}
         keyExtractor={(item) => item.id ? String(item.id) : Math.random().toString()}
         renderItem={({item}) => (
           <GiftCard giftCard={item} customeStyle={styles.giftCard} />
@@ -61,7 +60,7 @@ export default function HomeScreen() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>Loading...</Text>
+          <Text style={styles.emptyText}>No Gift Cards found</Text>
         )}
         keyboardDismissMode='on-drag'
       />

@@ -1,3 +1,4 @@
+import { GiftCardType } from '@/types';
 import axios from 'axios';
 
 export type Item = {
@@ -64,4 +65,16 @@ export const fetchItems = async (query: string, page: number) => {
     items: data,
     nextPage: hasNextPage ? page + 1 : null,
   };
+};
+
+export const fetchTenItems = async (limit = 20) => { 
+  const res = await fetch(
+    `http://localhost:3000/restaurants?_page=1&_limit=${limit}`
+  );
+
+  const data: GiftCardType[] = await res.json();
+  console.log('data', data);
+  
+
+  return {items: data};
 };

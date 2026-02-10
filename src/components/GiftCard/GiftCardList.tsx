@@ -2,12 +2,11 @@ import { FlatList, StyleSheet, Text, ActivityIndicator, RefreshControl, View, } 
 import React from 'react'
 import { Colors } from '@/styles/constants'
 import { useNavigation } from '@react-navigation/native'
-import { allGiftCards } from '@/data/giftcards'
 import GiftCard from './GiftCard'
-import { Item } from '@/api/search.api';
+import { GiftCardType } from '@/types'
 
 type GiftCardListProp = {
-  items: Item[];
+  items: GiftCardType[];
   loading: boolean;
   refreshing: boolean;
   hasNextPage: boolean;
@@ -31,11 +30,10 @@ const GiftCardList = ({onScroll, items, loading, refreshing, hasNextPage, onLoad
   return (
     <FlatList
       data={items}
-      keyExtractor={(item) => item.id!}
+      keyExtractor={(item) => item.id!.toString()}
       renderItem={({ item }) => (
         <View>
-        {/* <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} /> */}
-        <Text style={{ padding: 12 }}>{item.name}</Text>
+         <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
         </View>
       )}
       onEndReached={() => {

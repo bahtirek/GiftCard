@@ -29,7 +29,7 @@ export type CategoryItemType = {
   checked?: boolean
 };
 
-export type GiftCardType = {
+export type GiftCardType2 = {
   id?: string,
   label?: string,
   thumbnail?: string,
@@ -43,18 +43,25 @@ export type GiftCardType = {
   showDescription?: boolean 
 };
 
-export type GiftCardType2 = {
+export type GiftCardType = {
   id: number,
   name: string,
   image: string,
   description: string,
   phone: string,
-  website: string,
-  address: Address,
+  website?: string,
+  address?: Address,
   instagram?: string,
   telegram?: string,
   priceSet?: PriceType[],
-  showDescription?: boolean 
+  showDescription?: boolean
+  geo?: {
+    lat: number,
+    lng: number
+  },
+  distanceKm?: number,
+  isFeatured?: boolean,
+  isPromoted?: boolean,
 };
 
 export type Address = {

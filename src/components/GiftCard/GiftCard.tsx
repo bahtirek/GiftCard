@@ -3,7 +3,6 @@ import React from 'react';
 import { GiftCardType } from '@/types';
 import { Colors, Font } from '@/styles/constants';
 import { useGiftCardsStore } from '@/stores/giftCard.store';
-import { combine } from 'zustand/middleware';
 import { commonStyles } from '@/styles/styles';
 
 type GiftCardPropType = {
@@ -15,11 +14,10 @@ type GiftCardPropType = {
 
 
 const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: GiftCardPropType, ) => {
-  const {label, thumbnail, description, address} = giftCard;
   const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
   const handlePress = () => {
     setGiftCard(giftCard);
-    goToCardDetailsScreen?.(giftCard.id!);
+    goToCardDetailsScreen?.(giftCard.id!.toString());
   }
   return (
     <View style={[styles.container]}>
@@ -31,15 +29,15 @@ const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: Gi
         <View style={[styles.card]}>
           <View style={[styles.imageContainer, commonStyles.shadow]}>
             <Image 
-              source={{uri: thumbnail}}
+              source={{uri: giftCard.image}}
               style={[styles.image]}
               resizeMode='cover'
             />
           </View>
           <View style={[styles.detailsContainer]}>
-            <Text style={[styles.name]} numberOfLines={1}>{label}</Text>
-            <Text style={[styles.address]} numberOfLines={1}>{address}</Text>
-            {showDescription && <Text style={[styles.description]} numberOfLines={2}>{description}</Text>}
+            <Text style={[styles.name]} numberOfLines={1}>{giftCard.name}</Text>
+            <Text style={[styles.address]} numberOfLines={1}>{giftCard.address?.line_one}, {giftCard.address?.city}</Text>
+            {showDescription && <Text style={[styles.description]} numberOfLines={2}>{giftCard.description}</Text>}
           </View>
         </View>
       </TouchableOpacity>
