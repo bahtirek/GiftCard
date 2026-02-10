@@ -30,9 +30,9 @@ export default function HomeScreen() {
     queryFn: () => fetchTenItems(10),
   });
 
-  if (isLoading) {
+/*   if (isLoading) {
     return <ActivityIndicator />;
-  }
+  } */
   
   const handleSearchButton = () => {
     navigation.navigate('GiftCardsNavigation' as never );
@@ -41,7 +41,13 @@ export default function HomeScreen() {
   
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
-      <FlatList 
+      <View style={styles.headerContainer}>
+        <SearchInput handleSearchButton={handleSearchButton} />
+          <View style={styles.categoryListContainer} >
+          <CategoryList />
+        </View>
+      </View>
+     <FlatList 
         style={styles.flatList}
         data={data?.items}
         keyExtractor={(item) => item.id ? String(item.id) : Math.random().toString()}
@@ -49,18 +55,14 @@ export default function HomeScreen() {
           <GiftCard giftCard={item} customeStyle={styles.giftCard} />
         )}
         ListHeaderComponent={() => (
-          <View style={styles.headerContainer}>
-            <SearchInput handleSearchButton={handleSearchButton} />
+          <View>
+            {(isLoading || isRefetching) && <ActivityIndicator />}
+            {!(isLoading || isRefetching) && <Text style={styles.trendingText}>Trending</Text>}
 
-            <View style={styles.categoryListContainer}>
-              <CategoryList />
-
-              <Text style={styles.trendingText}>Trending</Text>
-            </View>
           </View>
         )}
         ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>No Gift Cards found</Text>
+          <Text style={styles.emptyText}>Looking for a Best Gift Cards</Text>
         )}
         keyboardDismissMode='on-drag'
       />
@@ -74,28 +76,30 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   flatList: {
-    paddingHorizontal: 0, // px-6
+    paddingHorizontal: 0,
+    flex: 1
   },
   headerContainer: {
-    paddingTop: 16, // pt-4
-    paddingHorizontal: 16, // px-4
+    paddingTop: 16,
+    paddingHorizontal: 16,
   },
   categoryListContainer: {
     width: '100%',
-    flex: 1,
-    paddingTop: 16, // pt-8
+    height: 110,
+    paddingTop: 16,
   },
   trendingText: {
-    color: Colors.primary, // text-primary
-    fontSize: 24, // text-2xl
+    color: Colors.primary,
+    fontSize: 24,
     fontFamily: 'PRegular',
-    marginTop: 8
+    marginTop: 8,
+    paddingLeft: 16
   },
   giftCard: {
-    marginBottom: 24, // mb-6
+    marginBottom: 24,
   },
   emptyText: {
-    color: Colors.secondary700, // text-secondary-700
-    fontSize: 18, // text-lg
+    color: Colors.secondary700,
+    fontSize: 18,
   },
 });
