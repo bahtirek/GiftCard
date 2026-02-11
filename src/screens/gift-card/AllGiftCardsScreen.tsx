@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GiftCardList from '@/components/GiftCard/GiftCardList';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchStore } from '@/stores/search.store'
-import { fetchItems, Item } from '@/api/search.api';
+import { fetchItems, Item } from '@/api/gift-cards/search.api';
 import { GiftCardType } from '@/types'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
@@ -33,8 +33,7 @@ const AllCardsScreen = ({ route }: Props) => {
     isRefetching,
   } = useInfiniteQuery({
     queryKey: ['items', query],
-    queryFn: ({ pageParam = 1 }) =>
-    fetchItems(query, pageParam),
+    queryFn: ({ pageParam = 1 }) => fetchItems(query, pageParam),
     getNextPageParam: (lastPage) => lastPage.nextPage,
     enabled: query.length > 1,
     initialPageParam: 1,
@@ -51,6 +50,12 @@ const AllCardsScreen = ({ route }: Props) => {
       setQuery(searchQuery)
     }
   }, [searchQuery, isFocused])
+  
+  useEffect(() => {
+    if(searchQuery) {
+      setQuery('')
+    }
+  }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({

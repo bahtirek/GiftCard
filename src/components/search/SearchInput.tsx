@@ -23,10 +23,10 @@ const SearchInput = ({ handleSearchButton, searchQueryProp }: CategoryListProps)
   const searchQuery = useSearchStore(state => state.searchQuery)
 
   useEffect(() => {  
-    if (searchQueryProp) {
+    if (searchQuery) {
       setInitialValue(searchQuery);
     }
-  }, [searchQueryProp, isFocused]);
+  }, [isFocused]);
 
   const handleInput = (value: InputValueType) => {
     if (value.value.length > 2) {
