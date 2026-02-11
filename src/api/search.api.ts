@@ -67,9 +67,9 @@ export const fetchItems = async (query: string, page: number) => {
   };
 };
 
-export const fetchTenItems = async (limit = 20) => { 
+export const fetchTenItems = async (limit = 20, city='Tashkent') => { 
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=1&_limit=${limit}`
+    `http://localhost:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
   );
 
   const data: GiftCardType[] = await res.json();
