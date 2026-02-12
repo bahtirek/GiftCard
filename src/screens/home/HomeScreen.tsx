@@ -10,6 +10,7 @@ import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-na
 import { RootStackParamList } from '@/navigation/navigation-types';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTenItems } from '@/api/gift-cards/search.api';
+import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
@@ -61,7 +62,7 @@ export default function HomeScreen() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>Looking for a Best Gift Cards</Text>
+          <ListEmptyComponent />
         )}
         keyboardDismissMode='on-drag'
       />

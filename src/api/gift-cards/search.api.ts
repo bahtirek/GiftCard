@@ -87,7 +87,11 @@ export const fetchAllItems = async (page: number) => {
   };
 };
 
-export const fetchTenItems = async (limit = 20, city='Tashkent') => { 
+export const fetchTenItems = async (limit = 20, city='Tashkent') => {
+/*   android
+  const res = await fetch(
+    `http://10.0.2.2:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
+  ); */
   const res = await fetch(
     `http://localhost:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
   );

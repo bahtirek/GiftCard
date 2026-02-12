@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "mock-api": "json-server --watch db.json --port 3000 --delay 500"
+    "mock-api": "json-server --watch db.json --port 3000 --delay 500",
+    "mock-api-android": "json-server --watch db.json --host 0.0.0.0"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

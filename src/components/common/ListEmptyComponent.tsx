@@ -15,11 +15,11 @@ type EmptyStateType = {
   handleAction?: any
 }
 
-const ListEmptyComponent = ({title, subtitle, icon, actionIcon, handleAction}: EmptyStateType) => {
+const ListEmptyComponent = ({title, subtitle, icon="gift", actionIcon, handleAction}: EmptyStateType) => {
   return (
     <View style={[styles.container]}>
-      <ExpoIcons name={icon} size={60} color={Colors.primary500} />
-      <Text style={[mt.xl, text.grey, text.md]}>{title}</Text>
+      <ExpoIcons name={icon} size={60} color={Colors.primary300} />
+     <Text style={[mt.xl, text.grey, text.md]}>{title}</Text>
       <Text style={[mt.xxl, text.grey]}>{subtitle}</Text>
       <View style={[mt.xl]}>
         {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 100
+    paddingTop: '70%'
   },
   icon: {
 
