@@ -41,17 +41,13 @@ const AllCardsScreen = ({ route }: Props) => {
   
   useEffect(() => {
     if(isFocused) {
-      setQuery(searchQuery)
+      if(searchQuery) {
+        setQuery(searchQuery)
+      } else {
+        setQuery('%%%')
+      }
     }
   }, [searchQuery, isFocused])
-  
-  useEffect(() => {
-    if(searchQuery) {
-      setQuery(searchQuery)
-    } else {
-      setQuery('%%%')
-    }
-  }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({
