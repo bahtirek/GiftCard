@@ -51,6 +51,7 @@ const MainTabsView = () => {
       title: 'Gift Cards',
       tabBarLabel: 'Gift Cards',
       tabBarShowLabel: false,
+      lazy: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="gift" size={22} color={color} />
       )
