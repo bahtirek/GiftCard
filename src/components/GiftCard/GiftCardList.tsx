@@ -4,6 +4,7 @@ import { Colors } from '@/styles/constants'
 import { useNavigation } from '@react-navigation/native'
 import GiftCard from './GiftCard'
 import { GiftCardType } from '@/types'
+import ListEmptyComponent from '../common/ListEmptyComponent'
 
 type GiftCardListProp = {
   items: GiftCardType[];
@@ -54,9 +55,9 @@ const GiftCardList = ({onScroll, items, loading, refreshing, hasNextPage, onLoad
         />
       }
       ListEmptyComponent={() => (
-        !loading ? (
-          <Text style={styles.emptyText}>No results found</Text>
-        ) : null
+        <View style={styles.listEmptyComponent}>
+          <ListEmptyComponent />
+        </View>
       )}
       keyboardDismissMode='on-drag'
       onScroll={handleScroll}
@@ -78,5 +79,8 @@ const styles = StyleSheet.create({
   emptyText: {
     color: Colors.secondary700, // text-secondary-700
     fontSize: 18, // text-lg
+  },
+  listEmptyComponent: {
+    
   }
 })

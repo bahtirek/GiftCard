@@ -49,6 +49,7 @@ type ApiResponse = {
 export const fetchItems = async (query: string, page: number) => {
   console.log(query);
   
+  
   const res = await fetch(
     `http://localhost:3000/restaurants?name_like=${query}&_page=${page}&_limit=20`
   );
@@ -67,9 +68,32 @@ export const fetchItems = async (query: string, page: number) => {
   };
 };
 
-export const fetchTenItems = async (limit = 20) => { 
+export const fetchAllItems = async (page: number) => {
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=1&_limit=${limit}`
+    `http://localhost:3000/restaurants?_page=${page}&_limit=20`
+  );
+
+  const data = await res.json();
+  console.log('data', data);
+  
+
+  const hasNextPage =
+    res.headers.get('x-total-count') !== null &&
+    page * 20 < Number(res.headers.get('x-total-count'));
+
+  return {
+    items: data,
+    nextPage: hasNextPage ? page + 1 : null,
+  };
+};
+
+export const fetchTenItems = async (limit = 20, city='Tashkent') => {
+/*   android
+  const res = await fetch(
+    `http://10.0.2.2:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
+  ); */
+  const res = await fetch(
+    `http://localhost:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
   );
 
   const data: GiftCardType[] = await res.json();

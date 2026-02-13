@@ -1,9 +1,6 @@
 import { View, Text, FlatList, ActivityIndicator, StyleSheet  } from 'react-native'
-import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from "expo-status-bar";
-import { GiftCardType } from '@/types';
-import allGiftCards from '@/data/giftcards';
 import GiftCard from '@/components/GiftCard/GiftCard';
 import SearchInput from '@/components/search/SearchInput';
 import CategoryList from '@/components/category/CategoryList';
@@ -12,7 +9,8 @@ import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigation/navigation-types';
 import { useQuery } from '@tanstack/react-query';
-import { fetchTenItems } from '@/api/search.api';
+import { fetchTenItems } from '@/api/gift-cards/search.api';
+import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
@@ -29,15 +27,17 @@ export default function HomeScreen() {
     queryKey: ['items'],
     queryFn: () => fetchTenItems(10),
   });
-
-/*   if (isLoading) {
-    return <ActivityIndicator />;
-  } */
   
   const handleSearchButton = () => {
     navigation.navigate('GiftCardsNavigation' as never );
   }
-  
+
+  const goToCardDetailsScreen = (giftCardId: string) => {
+    navigation.navigate('GiftCardsNavigation', {
+      screen: 'GiftCardDetails',
+      params: { giftCardId }
+    });
+  }
   
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
@@ -52,7 +52,7 @@ export default function HomeScreen() {
         data={data?.items}
         keyExtractor={(item) => item.id ? String(item.id) : Math.random().toString()}
         renderItem={({item}) => (
-          <GiftCard giftCard={item} customeStyle={styles.giftCard} />
+          <GiftCard giftCard={item} customeStyle={styles.giftCard} goToCardDetailsScreen={goToCardDetailsScreen} />
         )}
         ListHeaderComponent={() => (
           <View>
@@ -62,7 +62,7 @@ export default function HomeScreen() {
           </View>
         )}
         ListEmptyComponent={() => (
-          <Text style={styles.emptyText}>Looking for a Best Gift Cards</Text>
+          <ListEmptyComponent />
         )}
         keyboardDismissMode='on-drag'
       />
