@@ -1,7 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@/screens/home/HomeScreen';
-import CartScreen from '@/screens/cart/CartScreen';
-import ProfileScreen from '@/screens/profile/ProfileScreen';
 import { Colors } from '@/styles/constants';
 import ExpoIcons from '@expo/vector-icons/Feather';
 import GiftCardsNavigation from './GiftCard.navigation';
@@ -10,6 +8,7 @@ import { useCartStore } from '@/stores/cart.store';
 import { text } from '@/styles/styles';
 import CartNavigation from './Cart.navigation';
 import HomeHeader from '@/components/home/HomeHeader';
+import ProfileNavigation from './Profile.navigation';
 
 
 const Tabs = createBottomTabNavigator();
@@ -64,8 +63,8 @@ const MainTabsView = () => {
         <ShoppingBagIcon color={color} />
       )
     }}/>
-    <Tabs.Screen name='Profile' component={ProfileScreen} options={{
-      title: 'Profile',
+    <Tabs.Screen name='ProfileNavigation' component={ProfileNavigation} options={{
+      headerShown: false,
       tabBarLabel: 'Profile',
       tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
