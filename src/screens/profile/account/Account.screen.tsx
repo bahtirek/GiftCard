@@ -1,11 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import VerifyPhone from '@/components/profile/account/VerifyPhone'
+import VerifyPin from '@/components/profile/account/VerifyPin'
 
 const AccountScreen = () => {
+  const [isPhoneSubmitted, setIsPhoneSubmitted] = useState(false)
+
+  const phoneIsSubmitted= () => {
+    setIsPhoneSubmitted(true)
+  }
+
   return (
-    <View>
-      <Text>AccountScreen</Text>
-    </View>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      {!isPhoneSubmitted && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} />}
+      {isPhoneSubmitted && <VerifyPin />}
+      
+    </ScrollView>
   )
 }
 
