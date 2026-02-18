@@ -6,9 +6,9 @@ type ApiResponse = {
   
 };
 
-const BASE_URL = "http://localhost:3000/profileTemporary";
-
+const BASE_URL = "http://localhost:3000/profile";
 export const submitPhone = async (profileData: ProfileType) => {
+  profileData.pin = '1234'
   
   try {
     const response = await fetch(BASE_URL, {

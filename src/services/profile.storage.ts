@@ -38,7 +38,7 @@ export const profileStorage = {
   async saveProfileTemporary(profileData: ProfileType) {
     try {
       await SecureStore.setItemAsync(
-        PROFILE_TEMP,
+        PROFILE,
         JSON.stringify(profileData)
       );
       console.log('Secure save success:');
@@ -50,7 +50,7 @@ export const profileStorage = {
 
   async getProfileTemporary() {
     try {
-      const profile = await SecureStore.getItemAsync(PROFILE_TEMP);
+      const profile = await SecureStore.getItemAsync(PROFILE);
 
       return {
         profile: profile ? JSON.parse(profile) : null,

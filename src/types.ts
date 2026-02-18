@@ -125,5 +125,6 @@ export type ProfileType = {
   firstName?: string,
   lastName?: string,
   token?: string,
-  timestamp?: number
+  timestamp?: number,
+  pin?: string
 }
