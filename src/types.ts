@@ -118,3 +118,12 @@ export type InputValueType = {
   value: string,
   isValid?: boolean,
 }
+
+export type ProfileType = {
+  id?: string,
+  phone: string
+  firstName?: string,
+  lastName?: string,
+  token?: string,
+  timestamp?: number
+}
