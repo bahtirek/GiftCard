@@ -8,7 +8,7 @@ import { useCartStore } from '@/stores/cart.store';
 import { text } from '@/styles/styles';
 import CartNavigation from './Cart.navigation';
 import HomeHeader from '@/components/home/HomeHeader';
-import ProfileNavigation from './Profile.navigation';
+import AccountNavigation from './Account.navigation';
 
 
 const Tabs = createBottomTabNavigator();
@@ -63,9 +63,9 @@ const MainTabsView = () => {
         <ShoppingBagIcon color={color} />
       )
     }}/>
-    <Tabs.Screen name='ProfileNavigation' component={ProfileNavigation} options={{
+    <Tabs.Screen name='AccountNavigation' component={AccountNavigation} options={{
       headerShown: false,
-      tabBarLabel: 'Profile',
+      tabBarLabel: 'Account',
       tabBarShowLabel: false,
       tabBarIcon: ({color}) => (
         <ExpoIcons name="user" size={22} color={color} />

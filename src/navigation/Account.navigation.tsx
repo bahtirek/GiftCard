@@ -1,10 +1,10 @@
 import { Colors } from '@/styles/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ProfileScreen from '@/screens/profile/Profile.screen';
-import AccountScreen from '@/screens/profile/account/Account.screen';
-import OrdersScreen from '@/screens/profile/orders/Orders.screen';
-import RedeemScreen from '@/screens/profile/redeem/Redeem.screen';
-import DashboardScreen from '@/screens/profile/dashboard/Dashboard.screen';
+import ProfileScreen from '@/screens/user/profile/Profile.screen';
+import OrdersScreen from '@/screens/user/orders/Orders.screen';
+import RedeemScreen from '@/screens/user/redeem/Redeem.screen';
+import DashboardScreen from '@/screens/user/dashboard/Dashboard.screen';
+import AccountScreen from '@/screens/user/Account.screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,10 +17,11 @@ const ProfileNavigation = () => {
         color: Colors.primary,
       }
     }}>
-      <Stack.Screen name='ProfileScreen' component={ProfileScreen} options={{
-        title: 'Profile',
+      <Stack.Screen name='AccountScreen' component={AccountScreen} options={{
+        title: 'My Account',
       }} />
-      <Stack.Screen name='AccountScreen' component={ AccountScreen } options={{
+      <Stack.Screen name='ProfileScreen' component={ ProfileScreen } options={{
+        title: 'Profile',
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='OrdersScreen' component={ OrdersScreen } options={{

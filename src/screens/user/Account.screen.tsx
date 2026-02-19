@@ -3,11 +3,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const ProfileScreen = () => {
+const AccountScreen = () => {
   const navigation = useNavigation();
 
   const profileMenuItems = [
-    {id: 1, label: "Account", path: 'AccountScreen'},
+    {id: 1, label: "Profile", path: 'ProfileScreen'},
     {id: 2, label: "Orders", path: 'OrdersScreen'},
     {id: 3, label: "Redeem", path: 'RedeemScreen'},
     {id: 4, label: "Dashboard", path: 'DashboardScreen'},
@@ -28,7 +28,7 @@ const ProfileScreen = () => {
   )
 }
 
-export default ProfileScreen
+export default AccountScreen
 
 const styles = StyleSheet.create({
   container: {
