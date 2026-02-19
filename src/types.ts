@@ -120,11 +120,12 @@ export type InputValueType = {
 }
 
 export type ProfileType = {
+  isRegistered: boolean
   id?: string,
-  phone: string
+  phone?: string
   firstName?: string,
   lastName?: string,
   token?: string,
   timestamp?: number,
-  pin?: string
+  pin?: string,
 }

@@ -6,7 +6,7 @@ const PROFILE = 'profile_info';
 const PROFILE_TEMP = 'profile_info_temp';
 
 export const profileStorage = {
-  async saveProfile({ phone, firstName, lastName, token }: ProfileType) {
+/*   async saveProfile({ phone, firstName, lastName, token }: ProfileType) {
     try {
       await SecureStore.setItemAsync(
         PROFILE,
@@ -32,10 +32,10 @@ export const profileStorage = {
       console.log('Secure read error:', error);
       return null;
     }
-  },
+  }, */
 
 
-  async saveProfileTemporary(profileData: ProfileType) {
+  async saveProfile(profileData: ProfileType) {
     try {
       await SecureStore.setItemAsync(
         PROFILE,
@@ -48,7 +48,7 @@ export const profileStorage = {
     }
   },
 
-  async getProfileTemporary() {
+  async getProfile() {
     try {
       const profile = await SecureStore.getItemAsync(PROFILE);
 

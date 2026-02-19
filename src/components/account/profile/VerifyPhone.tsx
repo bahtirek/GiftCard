@@ -7,6 +7,7 @@ import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { profileStorage } from '@/services/profile.storage'
 import { submitPhone } from '@/api/profile/verify-phone.api'
+import { useProfileStore } from '@/stores/profile.store'
 
 type VerifyPhoneProp = {
   phoneIsSubmitted: () => void
@@ -14,7 +15,7 @@ type VerifyPhoneProp = {
 
 const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
   const [isPhoneInputTouched, setIsPhoneInputTouched] = useState(false);
-  const [timestamp, setTimestamp] = useState(0)
+  const setProfile = useProfileStore(state => state.setProfile)
 
   const [phone, setPhone] = useState<InputValueType>({ value: '', isValid: false });
 
@@ -34,35 +35,39 @@ const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
     (val: string) => validateLength(val, 12) || 'Wrong phone number'
   ]
 
-  const onSubmitButtonClick = () => {
+  const onSubmitButtonClick = async () => {
     isFormCompleted();
     if(!isPhoneInputTouched && phone.value) {
       setIsPhoneInputTouched(true);
     }
-    if(phone.isValid) {
-      savePhoneToDB()
-    }
+    if(!phone.isValid) return
+    const profileData = await savePhoneToDB();
+    if (!profileData) return
+    await savePhoneToStorage(profileData)
+    setProfile(profileData)
+    phoneIsSubmitted()
   }
 
   const savePhoneToDB = async() => {
     const timestamp = Date.now();
-    setTimestamp(timestamp);
+
     const profileData: ProfileType = {
+      isRegistered: false,
       phone: phone.value,
       timestamp: timestamp
     }
     try {
       const result = await submitPhone(profileData);
       console.log("Created:", result);
-      savePhoneToStorage(profileData)
+      return profileData
     } catch (error) {
       console.error("Error:", error);
+      return false
     }
   }
 
   const savePhoneToStorage = async(profileData: ProfileType) => {
-    await profileStorage.saveProfileTemporary(profileData);
-    phoneIsSubmitted()
+    return profileStorage.saveProfile(profileData);
   }
 
   return (
