@@ -1,10 +1,10 @@
 import { Colors } from '@/styles/constants';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ProfileScreen from '@/screens/user/profile/Profile.screen';
-import OrdersScreen from '@/screens/user/orders/Orders.screen';
-import RedeemScreen from '@/screens/user/redeem/Redeem.screen';
-import DashboardScreen from '@/screens/user/dashboard/Dashboard.screen';
-import AccountScreen from '@/screens/user/Account.screen';
+import ProfileScreen from '@/screens/account/profile/Profile.screen';
+import OrdersScreen from '@/screens/account/orders/Orders.screen';
+import RedeemScreen from '@/screens/account/redeem/Redeem.screen';
+import DashboardScreen from '@/screens/account/dashboard/Dashboard.screen';
+import AccountScreen from '@/screens/account/Account.screen';
 
 const Stack = createNativeStackNavigator();
 
