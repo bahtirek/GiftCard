@@ -41,8 +41,6 @@ export const profileStorage = {
         PROFILE,
         JSON.stringify(profileData)
       );
-      console.log('Secure save success:');
-
     } catch (error) {
       console.log('Secure save error:', error);
     }

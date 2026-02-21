@@ -30,11 +30,15 @@ export default function App() {
   
   const getProfileFromStorage = async() => {
     const profile = await profileStorage.getProfile();
-    console.log(profile);
+    //clearProfileFromStorage()
     
     if(profile !== null && profile.profile !== null) {
       setProfile(profile.profile)
     } 
+  }
+
+  const clearProfileFromStorage = async() => {
+    setProfile({isRegistered: false, phone: '', timestamp: 0})
     await profileStorage.logout()
   }
   

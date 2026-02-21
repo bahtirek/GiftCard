@@ -25,7 +25,6 @@ const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
   const isFormCompleted = () => {
 
     if (!phone.value) {
-      console.log('Missing data', "Please provide recepient details")
       return Alert.alert('Missing data', "Please provide recepient details")
     }
   }

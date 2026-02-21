@@ -12,8 +12,6 @@ export const useProfileStore = create<ProfileStoreType>((set, get) => ({
   profile: {isRegistered: false},
 
   setProfile: (profile) => {
-    console.log('store', profile);
-    
     set({ profile: profile });
   },
 

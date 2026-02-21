@@ -6,14 +6,17 @@ import VerifyPhone from './VerifyPhone'
 import { commonStyles, flex } from '@/styles/styles'
 import { useIsFocused } from "@react-navigation/native";
 
-const ProfileRegisteration = () => {
+type ProfileRegisterationProp = {
+  onProfileCoifirmed: () => void
+}
+
+const ProfileRegisteration = ({onProfileCoifirmed}: ProfileRegisterationProp) => {
   const isFocused = useIsFocused();
   const [isPhoneSubmitted, setIsPhoneSubmitted] = useState(false)
   const getProfile = useProfileStore(state => state.getProfile)
 
   const checkIfPhoneIsSubmitted = () => {
     const profile = getProfile()
-    console.log('teim', getProfile());
     
     if(profile.timestamp && verifyTime(profile.timestamp)) {
       setIsPhoneSubmitted(true);
@@ -30,19 +33,14 @@ const ProfileRegisteration = () => {
 
   const verifyTime = (timestamp: number) => {
     const now = Date.now();
-    const diffInSeconds = Math.abs(now - timestamp) / 1000;
-    console.log(now - timestamp);
-    console.log(timestamp);
-    console.log(now);
-    console.log(diffInSeconds < 60);
-    
+    const diffInSeconds = Math.abs(now - timestamp) / 1000;   
     return diffInSeconds < 60;
   }
 
   return (
     <View style={[flex.flex]}>
       {!isPhoneSubmitted && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} />}
-      {isPhoneSubmitted && <VerifyPin />}
+      {isPhoneSubmitted && <VerifyPin onProfileCoifirmed={onProfileCoifirmed} />}
     </View>
   )
 }

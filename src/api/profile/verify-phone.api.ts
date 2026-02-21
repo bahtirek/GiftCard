@@ -8,7 +8,7 @@ type ApiResponse = {
 
 const BASE_URL = "http://localhost:3000/profile";
 export const submitPhone = async (profileData: ProfileType) => {
-  profileData.pin = '1234'
+  profileData.pin = '123456'
   
   try {
     const response = await fetch(BASE_URL, {
@@ -30,18 +30,32 @@ export const submitPhone = async (profileData: ProfileType) => {
   }
 }
 
-export const fetchTenItems = async (limit = 20, city='Tashkent') => {
-/*   android
+export const fetchProfileByPhone = async (phone: string) => {
   const res = await fetch(
-    `http://10.0.2.2:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
-  ); */
-  const res = await fetch(
-    `http://localhost:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
+    `${BASE_URL}?phone=${phone}`
   );
-
-  const data: GiftCardType[] = await res.json();
-  console.log('data', data);
+  const data: ProfileType[] = await res.json();
+  const profile = data[0]
   
+  return {profile};
+}
 
-  return {items: data};
+export const updateProfile = async (profileData: ProfileType) => {  
+  const response = await fetch(`${BASE_URL}/${profileData.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(profileData)
+  });
+
+  return response.json();
 };
+
+/* export const updateRestaurantPatch = async (id, data) => {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+}; */
