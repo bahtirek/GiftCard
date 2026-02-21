@@ -5,7 +5,7 @@ import { InputValueType, ProfileType } from '@/types'
 import { mt, pb, pr, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
-import { fetchProfileByPhone, updateProfile } from '@/api/profile/verify-phone.api'
+import { fetchProfileByPhone, updateProfile } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 import { profileStorage } from '@/services/profile.storage'
 

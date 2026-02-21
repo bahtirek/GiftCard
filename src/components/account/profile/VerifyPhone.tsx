@@ -6,7 +6,7 @@ import { mt, pb, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { profileStorage } from '@/services/profile.storage'
-import { submitPhone } from '@/api/profile/verify-phone.api'
+import { submitPhone } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 
 type VerifyPhoneProp = {
