@@ -21,7 +21,7 @@ type CartItemPropType = {
 
 const CartItem = ({ cartItem }: CartItemPropType) => {
   const {amount, phone, email, giftCard, note, orderedDate} = cartItem;
-  const {label, thumbnail} = giftCard!;
+  const {name, image} = giftCard!;
   const navigation = useNavigation<NavigationProp>();
 
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
@@ -49,13 +49,13 @@ const CartItem = ({ cartItem }: CartItemPropType) => {
           <View style={[styles.imageTextWrapper, mb.md]}>
             <View style={styles.imageContainer}>
               <Image
-                source={{ uri: thumbnail }}
+                source={{ uri: image }}
                 style={styles.image}
                 resizeMode='cover'
               />
             </View>
             <View style={[pl.md]}>
-              <Text style={[text.lg, text.primary]} numberOfLines={1}>{label}</Text>
+              <Text style={[text.lg, text.primary]} numberOfLines={1}>{name}</Text>
               <View style={[styles.valueRow]}>
                 <Text style={[text.md, text.grey]}>Value:</Text>
                 <Text style={[text.md, text.grey]}>{amount}</Text>

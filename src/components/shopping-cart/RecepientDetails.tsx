@@ -9,7 +9,7 @@ type RecepientDetailsProps = {
 
 const RecepientDetails = ({ label, description }: RecepientDetailsProps) => {
   return (
-    <View style={[flex.alignStart, pt.sm, flex.row]}>
+    <View style={[flex.alignStart, pt.sm, flex.row, flex.flexGrow]}>
       <Text style={[text.sm, text.grey, styles.label]}>{label}</Text>
       <Text style={[text.sm, text.grey, styles.bigText]}>{description}</Text>
     </View>
