@@ -53,13 +53,12 @@ const VerifyPin = ({onProfileCoifirmed}: VerifyPinProp) => {
       if(profileData.profile.pin == pin.value) {
         const updatedProfile: ProfileType = {...profileData.profile, isRegistered: true, timestamp: undefined}
         await updateProfile(updatedProfile);
-        updateProfileStore(updatedProfile);123456
+        updateProfileStore(updatedProfile);
         profileStorage.saveProfile(updatedProfile);
         onProfileCoifirmed();
       }
     } else {
-      console.log('something happened try later');
-      
+      return Alert.alert('Sorry!', "Something went wrong while verifying your pin, please try again later")
     }
   }
   return (

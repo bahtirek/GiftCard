@@ -4,7 +4,9 @@
       "isRegistered": true,
       "phone": "(45)454-5454",
       "pin": "123456",
-      "id": 5
+      "id": 5,
+      "firstName": "Jos",
+      "lastName": "Ben"
     }
   ],
   "restaurants": [

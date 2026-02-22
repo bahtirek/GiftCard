@@ -5,6 +5,7 @@ import VerifyPin from './VerifyPin'
 import VerifyPhone from './VerifyPhone'
 import { commonStyles, flex } from '@/styles/styles'
 import { useIsFocused } from "@react-navigation/native";
+import ProfileName from './ProfileName'
 
 type ProfileRegisterationProp = {
   onProfileCoifirmed: () => void
@@ -12,14 +13,20 @@ type ProfileRegisterationProp = {
 
 const ProfileRegisteration = ({onProfileCoifirmed}: ProfileRegisterationProp) => {
   const isFocused = useIsFocused();
-  const [isPhoneSubmitted, setIsPhoneSubmitted] = useState(false)
+  const [displayPhoneVerify, setIsDisplayPhoneVerify] = useState(false);
+  const [displayProfileName, setDisplayProfileName] = useState(false);
+  const [displayPinVerify, setDisplayPinVerify] = useState(false);
+
   const getProfile = useProfileStore(state => state.getProfile)
 
   const checkIfPhoneIsSubmitted = () => {
     const profile = getProfile()
-    
-    if(profile.timestamp && verifyTime(profile.timestamp)) {
-      setIsPhoneSubmitted(true);
+    if(profile.isRegistered && !profile.nameUpdatedSkiped) {
+      setDisplayProfileName(true);
+    } else if(profile.timestamp && verifyTime(profile.timestamp)){
+      setIsDisplayPhoneVerify(false);
+    } else {
+      setDisplayPinVerify(true);
     }
   }
 
@@ -28,7 +35,11 @@ const ProfileRegisteration = ({onProfileCoifirmed}: ProfileRegisterationProp) =>
   }, [isFocused]);
   
   const phoneIsSubmitted = () => {
-    setIsPhoneSubmitted(true);
+    setDisplayPinVerify(true);
+  }
+
+  const displayNameOnProfileConfirmed = () => {
+    setDisplayProfileName(true);
   }
 
   const verifyTime = (timestamp: number) => {
@@ -39,8 +50,9 @@ const ProfileRegisteration = ({onProfileCoifirmed}: ProfileRegisterationProp) =>
 
   return (
     <View style={[flex.flex]}>
-      {!isPhoneSubmitted && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} />}
-      {isPhoneSubmitted && <VerifyPin onProfileCoifirmed={onProfileCoifirmed} />}
+      {displayPhoneVerify && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} />}
+      {displayPinVerify && <VerifyPin onProfileCoifirmed={displayNameOnProfileConfirmed} />}
+      {displayProfileName && <ProfileName onSkipOrUpdate={onProfileCoifirmed} />}
     </View>
   )
 }

@@ -6,14 +6,19 @@ import ProfileDetails from '@/components/account/profile/ProfileDetails'
 import { useIsFocused } from '@react-navigation/native'
 
 const ProfileScreen = () => {
-    const isFocused = useIsFocused();
-    const [isProfileConfirmed, setIsProfileConfirmed] = useState(false)
-    const getProfile = useProfileStore(state => state.getProfile)
+  const isFocused = useIsFocused();
+  const [isProfileConfirmed, setIsProfileConfirmed] = useState(false)
+  const getProfile = useProfileStore(state => state.getProfile)
 
-  
-    useEffect(() => {  
-      setIsProfileConfirmed(getProfile().isRegistered);
-    }, [isFocused]);
+  useEffect(() => {
+    const profile = getProfile();
+    
+    if(profile.isRegistered && (profile.firstName || profile.lastName)) {
+      setIsProfileConfirmed(true);
+    } else {
+      setIsProfileConfirmed(false);
+    }
+  }, [isFocused]);
 
   const onProfileCoifirmed = () => {
     setIsProfileConfirmed(getProfile().isRegistered);
@@ -23,7 +28,6 @@ const ProfileScreen = () => {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {!isProfileConfirmed && <ProfileRegisteration onProfileCoifirmed={onProfileCoifirmed} />}
       {isProfileConfirmed && <ProfileDetails />}
-      
     </ScrollView>
   )
 }
