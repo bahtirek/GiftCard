@@ -8,6 +8,8 @@ import { useIsFocused } from '@react-navigation/native'
 const ProfileScreen = () => {
   const isFocused = useIsFocused();
   const [isProfileConfirmed, setIsProfileConfirmed] = useState(false)
+  const [isProfileOnEdit, setIsProfileOnEdit] = useState(false)
+  const [editProfile, setEditProfile] = useState('');
   const getProfile = useProfileStore(state => state.getProfile)
 
   useEffect(() => {
@@ -22,12 +24,19 @@ const ProfileScreen = () => {
 
   const onProfileCoifirmed = () => {
     setIsProfileConfirmed(getProfile().isRegistered);
+    setIsProfileOnEdit(false);
+    setEditProfile('');
+  }
+
+  const onProfileEdit = (field: string) => {
+    setEditProfile(field);
+    setIsProfileOnEdit(true);
   }
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      {!isProfileConfirmed && <ProfileRegisteration onProfileCoifirmed={onProfileCoifirmed} />}
-      {isProfileConfirmed && <ProfileDetails />}
+      {(!isProfileConfirmed || isProfileOnEdit) && <ProfileRegisteration onProfileCoifirmed={onProfileCoifirmed} editProfile={editProfile} />}
+      {(isProfileConfirmed && !isProfileOnEdit) && <ProfileDetails onProfileEdit={onProfileEdit} />}
     </ScrollView>
   )
 }

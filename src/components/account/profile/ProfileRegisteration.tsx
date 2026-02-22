@@ -8,10 +8,11 @@ import { useIsFocused } from "@react-navigation/native";
 import ProfileName from './ProfileName'
 
 type ProfileRegisterationProp = {
-  onProfileCoifirmed: () => void
+  onProfileCoifirmed: () => void,
+  editProfile: string
 }
 
-const ProfileRegisteration = ({onProfileCoifirmed}: ProfileRegisterationProp) => {
+const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegisterationProp) => {
   const isFocused = useIsFocused();
   const [displayPhoneVerify, setIsDisplayPhoneVerify] = useState(false);
   const [displayProfileName, setDisplayProfileName] = useState(false);
@@ -30,10 +31,26 @@ const ProfileRegisteration = ({onProfileCoifirmed}: ProfileRegisterationProp) =>
     }
   }
 
-  useEffect(() => {  
-    checkIfPhoneIsSubmitted()
+  useEffect(() => {
+    if(editProfile) {
+      setProfileToEdit();
+    } else {
+      checkIfPhoneIsSubmitted()
+    }
   }, [isFocused]);
-  
+
+  const setProfileToEdit = () => {
+    if(editProfile === 'name') {
+      setDisplayProfileName(true);
+      setIsDisplayPhoneVerify(false);
+      setDisplayPinVerify(false);
+    } else if(editProfile === 'phone') {
+      setIsDisplayPhoneVerify(true);
+      setDisplayPinVerify(false);
+      setDisplayProfileName(false);
+    }
+  }
+
   const phoneIsSubmitted = () => {
     setDisplayPinVerify(true);
   }
