@@ -23,9 +23,12 @@ const ProfileScreen = () => {
   }, [isFocused]);
 
   const onProfileCoifirmed = () => {
-    setIsProfileConfirmed(getProfile().isRegistered);
-    setIsProfileOnEdit(false);
-    setEditProfile('');
+    if(isProfileOnEdit) {
+      setIsProfileOnEdit(false);
+      setEditProfile('');
+    } else {
+      setIsProfileConfirmed(getProfile().isRegistered);
+    }
   }
 
   const onProfileEdit = (field: string) => {

@@ -17,6 +17,7 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
   const [displayPhoneVerify, setIsDisplayPhoneVerify] = useState(false);
   const [displayProfileName, setDisplayProfileName] = useState(false);
   const [displayPinVerify, setDisplayPinVerify] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const getProfile = useProfileStore(state => state.getProfile)
 
@@ -34,6 +35,7 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
   useEffect(() => {
     if(editProfile) {
       setProfileToEdit();
+      setIsEditing(true);
     } else {
       checkIfPhoneIsSubmitted()
     }
@@ -67,9 +69,9 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
 
   return (
     <View style={[flex.flex]}>
-      {displayPhoneVerify && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} />}
+      {displayPhoneVerify && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} onSkipOrUpdate={onProfileCoifirmed} isEditing={isEditing} />}
       {displayPinVerify && <VerifyPin onProfileCoifirmed={displayNameOnProfileConfirmed} />}
-      {displayProfileName && <ProfileName onSkipOrUpdate={onProfileCoifirmed} />}
+      {displayProfileName && <ProfileName onSkipOrUpdate={onProfileCoifirmed} isEditing={isEditing} />}
     </View>
   )
 }

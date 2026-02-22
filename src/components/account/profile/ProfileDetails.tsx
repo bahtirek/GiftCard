@@ -17,7 +17,6 @@ const ProfileDetails = ({onProfileEdit}: ProfileDetailsProps) => {
 
   useEffect(() => {
     const profile = getProfile();
-    console.log('profile', profile);
     
     setProfile(profile);
   }, [isFocused]);

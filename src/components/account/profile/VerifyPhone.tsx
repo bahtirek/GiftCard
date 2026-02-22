@@ -1,5 +1,5 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomInput from '@/components/UI/forms/CustomInput'
 import { InputValueType, ProfileType } from '@/types'
 import { mt, pb, text } from '@/styles/styles'
@@ -8,22 +8,38 @@ import CustomButton from '@/components/UI/buttons/CustomButton'
 import { profileStorage } from '@/services/profile.storage'
 import { submitPhone } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
+import { useIsFocused } from '@react-navigation/native'
 
 type VerifyPhoneProp = {
-  phoneIsSubmitted: () => void
+  phoneIsSubmitted: () => void,
+  onSkipOrUpdate: () => void,
+  isEditing?: boolean
 }
 
-const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
+const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneProp) => {
+  const isFocused = useIsFocused();
   const [isPhoneInputTouched, setIsPhoneInputTouched] = useState(false);
-  const setProfile = useProfileStore(state => state.setProfile)
+  const [initialValue, setInitialValue] = useState('');
+  const setProfile = useProfileStore(state => state.setProfile);
+  const getProfile = useProfileStore(state => state.getProfile);
 
   const [phone, setPhone] = useState<InputValueType>({ value: '', isValid: false });
 
   const handlePhoneInput = (phone: InputValueType) => {
     setPhone(phone)
   }
-  const isFormCompleted = () => {
 
+  useEffect(() => {
+    if(isEditing){
+      const profileData = getProfile();
+      
+      if(profileData?.phone) {
+        setInitialValue(profileData.phone);
+      }
+    }
+  }, [isFocused])
+
+  const isFormCompleted = () => {
     if (!phone.value) {
       return Alert.alert('Missing data', "Please provide recepient details")
     }
@@ -56,8 +72,7 @@ const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
       timestamp: timestamp
     }
     try {
-      const result = await submitPhone(profileData);
-      console.log("Created:", result);
+      await submitPhone(profileData);
       return profileData
     } catch (error) {
       console.error("Error:", error);
@@ -67,6 +82,10 @@ const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
 
   const savePhoneToStorage = async(profileData: ProfileType) => {
     return profileStorage.saveProfile(profileData);
+  }
+
+  const onCancelButtonClick = () => {
+    onSkipOrUpdate();
   }
 
   return (
@@ -81,10 +100,12 @@ const VerifyPhone = ({phoneIsSubmitted}: VerifyPhoneProp) => {
           keyboardType='number-pad'
           rules={phoneRules}
           isTouched={isPhoneInputTouched}
+          presetValue={initialValue}
         />
         </View>
         <View style={{ marginTop: 'auto', paddingTop: 38, paddingBottom: 8 }}>
           <CustomButton label={'Submit'} handlePress={onSubmitButtonClick} />
+          {isEditing && <CustomButton label={'Cancel'} handlePress={onCancelButtonClick} containerStyles={styles.skipButton} secondary />}
         </View>
     </View>
   )
@@ -107,5 +128,9 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 16,
+  },
+  skipButton: {
+    marginTop: 16,
+    width: '100%',
   },
 })

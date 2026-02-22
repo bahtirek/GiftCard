@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomInput from '@/components/UI/forms/CustomInput'
 import { mt, pb, text } from '@/styles/styles'
 import { InputValueType } from '@/types'
@@ -7,18 +7,36 @@ import CustomButton from '@/components/UI/buttons/CustomButton'
 import { useProfileStore } from '@/stores/profile.store'
 import { updateProfile } from '@/api/profile/verify-profile.api'
 import { profileStorage } from '@/services/profile.storage'
+import { useIsFocused } from '@react-navigation/native'
 
 type ProfileNameProp = {
-  onSkipOrUpdate: () => void
+  onSkipOrUpdate: () => void,
+  isEditing?: boolean
 }
 
-const ProfileName = ({onSkipOrUpdate}: ProfileNameProp) => {
+const ProfileName = ({onSkipOrUpdate, isEditing}: ProfileNameProp) => {
   const getProfile = useProfileStore(state => state.getProfile);
   const updateProfileStore = useProfileStore(state => state.updateProfile);
   const [isFirstNameTouched, setIsFirstNameTouched] = useState(false);
   const [isLastNameTouched, setIsLastNameTouched] = useState(false);
   const [firstName, setFirstName] = useState<InputValueType>({ value: '', isValid: false });
   const [lastName, setLastName] = useState<InputValueType>({ value: '', isValid: false });
+  const [initialValueFirstName, setInitialValueFirstName] = useState('');
+  const [initialValueLastName, setInitialValueLastName] = useState('');
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if(isEditing){
+      const profileData = getProfile();
+      
+      if(profileData?.firstName) {
+        setInitialValueFirstName(profileData.firstName);
+      }
+      if(profileData?.lastName) {
+        setInitialValueLastName(profileData.lastName);
+      }
+    }
+  }, [isFocused])
 
   const handleFirstNameInput = (firstName: InputValueType) => {
     setFirstName(firstName);
@@ -60,6 +78,10 @@ const ProfileName = ({onSkipOrUpdate}: ProfileNameProp) => {
     updateProfileStore({...profile, nameUpdatedSkiped: true});
     onSkipOrUpdate();
   }
+  
+  const onCancelButtonClick = () => {
+    onSkipOrUpdate();
+  }
 
   return (
     <View style={styles.container}>
@@ -73,6 +95,7 @@ const ProfileName = ({onSkipOrUpdate}: ProfileNameProp) => {
             rules={nameRules}
             maxLength={30}
             isTouched={isFirstNameTouched}
+            presetValue={initialValueFirstName}
           />
         </View>
         <View style={{marginBottom: 24, marginTop: 4}}>
@@ -82,13 +105,15 @@ const ProfileName = ({onSkipOrUpdate}: ProfileNameProp) => {
             mask='maskName'
             rules={nameRules}
             maxLength={30}
-            isTouched={isFirstNameTouched}
+            isTouched={isLastNameTouched}
+            presetValue={initialValueLastName}
           />
         </View>
         </View>
         <View style={{ marginTop: 'auto', paddingTop: 38, paddingBottom: 8 }}>
           <CustomButton label={'Submit'} handlePress={onSubmitButtonClick} />
-          <CustomButton label={'Skip'} handlePress={onSkipButtonClick} containerStyles={styles.skipButton} secondary />
+          {!isEditing && <CustomButton label={'Skip'} handlePress={onSkipButtonClick} containerStyles={styles.skipButton} secondary />}
+          {isEditing && <CustomButton label={'Cancel'} handlePress={onCancelButtonClick} containerStyles={styles.skipButton} secondary />}
         </View>
     </View>
   )
