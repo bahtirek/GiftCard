@@ -65,6 +65,10 @@ const ProfileName = ({onSkipOrUpdate, isEditing}: ProfileNameProp) => {
   
   const saveName = async() => {
     const profile = getProfile();
+    if(firstName.value === profile.firstName && lastName.value === profile.lastName) {
+      onSkipOrUpdate();
+      return;
+    }
     if(firstName.value) profile.firstName = firstName.value.trim();
     if(lastName.value) profile.lastName = lastName.value.trim();
     await updateProfile(profile);

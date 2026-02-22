@@ -43,14 +43,13 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
 
   const setProfileToEdit = () => {
     if(editProfile === 'name') {
-      setDisplayProfileName(true);
       setIsDisplayPhoneVerify(false);
-      setDisplayPinVerify(false);
+      setDisplayProfileName(true);
     } else if(editProfile === 'phone') {
       setIsDisplayPhoneVerify(true);
-      setDisplayPinVerify(false);
       setDisplayProfileName(false);
     }
+    setDisplayPinVerify(false);
   }
 
   const phoneIsSubmitted = () => {
