@@ -4,6 +4,7 @@ import { useProfileStore } from '@/stores/profile.store'
 import ProfileRegisteration from '@/components/account/profile/ProfileRegisteration'
 import ProfileDetails from '@/components/account/profile/ProfileDetails'
 import { useIsFocused } from '@react-navigation/native'
+import { isPinNotExpired } from '@/utils/utils'
 
 const ProfileScreen = () => {
   const isFocused = useIsFocused();
@@ -11,16 +12,26 @@ const ProfileScreen = () => {
   const [isProfileOnEdit, setIsProfileOnEdit] = useState(false)
   const [editProfile, setEditProfile] = useState('');
   const getProfile = useProfileStore(state => state.getProfile)
+  const getTempProfile = useProfileStore(state => state.getTempProfile)
 
   useEffect(() => {
-    const profile = getProfile();
-    
-    if(profile.isRegistered && (profile.firstName || profile.lastName)) {
-      setIsProfileConfirmed(true);
-    } else {
-      setIsProfileConfirmed(false);
-    }
+    toggleComponents();
   }, [isFocused]);
+
+  const toggleComponents = () => {
+    const profile = getProfile();
+
+    /* If profile is not registered or profile is registered and has temporary phone show profile registration */
+    if(!profile.isRegistered || profile.isRegistered && profile.tempPhone) {
+      setIsProfileConfirmed(false);
+      return;
+    }
+
+    /* If profile is registered and (firstName or lastName) is not empty or nameUpdatedSkipped is true, show profile details */
+    if(profile.isRegistered && (profile.nameUpdatedSkiped || (profile.firstName || profile.lastName))) {
+      setIsProfileConfirmed(true);
+    }
+  }
 
   const onProfileCoifirmed = () => {
     if(isProfileOnEdit) {

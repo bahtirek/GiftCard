@@ -6,6 +6,7 @@ import VerifyPhone from './VerifyPhone'
 import { commonStyles, flex } from '@/styles/styles'
 import { useIsFocused } from "@react-navigation/native";
 import ProfileName from './ProfileName'
+import { isPinNotExpired } from '@/utils/utils'
 
 type ProfileRegisterationProp = {
   onProfileCoifirmed: () => void,
@@ -14,7 +15,7 @@ type ProfileRegisterationProp = {
 
 const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegisterationProp) => {
   const isFocused = useIsFocused();
-  const [displayPhoneVerify, setIsDisplayPhoneVerify] = useState(false);
+  const [displayPhoneVerify, setDisplayPhoneVerify] = useState(false);
   const [displayProfileName, setDisplayProfileName] = useState(false);
   const [displayPinVerify, setDisplayPinVerify] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -22,13 +23,28 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
   const getProfile = useProfileStore(state => state.getProfile)
 
   const checkIfPhoneIsSubmitted = () => {
-    const profile = getProfile()
-    if(profile.isRegistered && !profile.nameUpdatedSkiped) {
-      setDisplayProfileName(true);
-    } else if(profile.timestamp && verifyTime(profile.timestamp)){
-      setIsDisplayPhoneVerify(false);
+    const profile = getProfile();
+    if(profile.isRegistered ) {
+      
+      if(profile.tempPhone && profile.timestamp && isPinNotExpired(profile.timestamp)) {
+        setDisplayPinVerify(true);
+        setDisplayPhoneVerify(false);
+        setDisplayProfileName(false);
+      } else if (!profile.nameUpdatedSkiped) {
+        setDisplayPinVerify(false);
+        setDisplayPhoneVerify(false);
+        setDisplayProfileName(true);
+      }
     } else {
-      setDisplayPinVerify(true);
+      if(profile.timestamp && isPinNotExpired(profile.timestamp)) {
+        setDisplayPinVerify(true);
+        setDisplayPhoneVerify(false);
+      } else {
+        setDisplayPinVerify(false);
+        setDisplayPhoneVerify(true);  
+      }
+      setDisplayProfileName(false);
+      return
     }
   }
 
@@ -43,10 +59,10 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
 
   const setProfileToEdit = () => {
     if(editProfile === 'name') {
-      setIsDisplayPhoneVerify(false);
+      setDisplayPhoneVerify(false);
       setDisplayProfileName(true);
     } else if(editProfile === 'phone') {
-      setIsDisplayPhoneVerify(true);
+      setDisplayPhoneVerify(true);
       setDisplayProfileName(false);
     }
     setDisplayPinVerify(false);
@@ -54,18 +70,17 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
 
   const phoneIsSubmitted = () => {
     setDisplayPinVerify(true);
+    setDisplayPhoneVerify(false);
   }
 
   const displayNameOnProfileConfirmed = () => {
-    setDisplayProfileName(true);
+    if(!isEditing) {
+      setDisplayProfileName(true);
+      setDisplayPinVerify(false);
+      //onProfileCoifirmed();
+    }
   }
-
-  const verifyTime = (timestamp: number) => {
-    const now = Date.now();
-    const diffInSeconds = Math.abs(now - timestamp) / 1000;   
-    return diffInSeconds < 60;
-  }
-
+  
   return (
     <View style={[flex.flex]}>
       {displayPhoneVerify && <VerifyPhone phoneIsSubmitted={phoneIsSubmitted} onSkipOrUpdate={onProfileCoifirmed} isEditing={isEditing} />}

@@ -36,6 +36,7 @@ export const profileStorage = {
 
 
   async saveProfile(profileData: ProfileType) {
+    
     try {
       await SecureStore.setItemAsync(
         PROFILE,
@@ -58,8 +59,6 @@ export const profileStorage = {
       return null;
     }
   },
-
-
 
   async logout() {
     await SecureStore.deleteItemAsync(PROFILE);

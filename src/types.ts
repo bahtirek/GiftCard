@@ -121,4 +121,5 @@ export type ProfileType = {
   timestamp?: number,
   pin?: string,
   nameUpdatedSkiped?: boolean,
+  tempPhone?: string
 }

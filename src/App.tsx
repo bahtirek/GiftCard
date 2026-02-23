@@ -31,7 +31,6 @@ export default function App() {
   const getProfileFromStorage = async() => {
     const profile = await profileStorage.getProfile();
     //clearProfileFromStorage()
-    
     if(profile !== null && profile.profile !== null) {
       setProfile(profile.profile)
     } 

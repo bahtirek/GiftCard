@@ -7,7 +7,8 @@ type ApiResponse = {
 };
 
 const BASE_URL = "http://localhost:3000/profile";
-export const submitPhone = async (profileData: ProfileType) => {
+
+export const postProfile = async (profileData: ProfileType) => {
   profileData.pin = '123456'
   
   try {
@@ -29,6 +30,20 @@ export const submitPhone = async (profileData: ProfileType) => {
     throw error;
   }
 }
+
+export const verifyPinByPhone = async (phone: string) => {
+  const res = await fetch(
+    `${BASE_URL}?tempPhone=${phone}`
+  );
+  const data: ProfileType[] = await res.json();
+  const profile = data[0]
+  
+  return {profile};
+}
+
+
+
+
 
 export const fetchProfileByPhone = async (phone: string) => {
   const res = await fetch(

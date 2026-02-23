@@ -5,7 +5,7 @@ import { InputValueType, ProfileType } from '@/types'
 import { mt, pb, pr, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
-import { fetchProfileByPhone, updateProfile } from '@/api/profile/verify-profile.api'
+import { fetchProfileByPhone, updateProfile, verifyPinByPhone } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 import { profileStorage } from '@/services/profile.storage'
 
@@ -46,21 +46,23 @@ const VerifyPin = ({onProfileCoifirmed}: VerifyPinProp) => {
 
   const verifyPin = async() => {
     const profile = getProfile();
-    if(!profile || !profile.phone) return;
-    const profileData = await fetchProfileByPhone(profile.phone);
-
+    if(!profile || !profile.tempPhone) return;
+    const profileData = await verifyPinByPhone(profile.tempPhone);
     if(profileData && profileData.profile.pin) {
       if(profileData.profile.pin == pin.value) {
-        const updatedProfile: ProfileType = {...profileData.profile, isRegistered: true, timestamp: undefined}
+        const updatedProfile: ProfileType = {...profileData.profile, phone: profileData.profile.tempPhone, isRegistered: true, timestamp: undefined, tempPhone: undefined}
         await updateProfile(updatedProfile);
         updateProfileStore(updatedProfile);
         profileStorage.saveProfile(updatedProfile);
         onProfileCoifirmed();
+      } else {
+        return Alert.alert('Wrong pin!', "The pin you entered is incorrect, please try again")
       }
     } else {
       return Alert.alert('Sorry!', "Something went wrong while verifying your pin, please try again later")
     }
   }
+
   return (
     <View style={styles.container}>
         <View style={styles.inputContainer}>
