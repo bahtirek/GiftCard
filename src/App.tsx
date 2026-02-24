@@ -7,6 +7,9 @@ import MainTabsView from './navigation/MainTabs.navigation';
 import PaymentNavigation from './navigation/Checkout.navigation';
 import { Colors } from './styles/constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { profileStorage } from '@/services/profile.storage';
+import { useEffect, useState } from 'react';
+import { useProfileStore } from './stores/profile.store';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,6 +23,24 @@ const queryClient = new QueryClient({
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const setProfile = useProfileStore(state => state.setProfile)
+  useEffect(() => {
+    getProfileFromStorage()
+  }, [])
+  
+  const getProfileFromStorage = async() => {
+    const profile = await profileStorage.getProfile();
+    //clearProfileFromStorage()
+    if(profile !== null && profile.profile !== null) {
+      setProfile(profile.profile)
+    } 
+  }
+
+  const clearProfileFromStorage = async() => {
+    setProfile({isRegistered: false, phone: '', timestamp: 0})
+    await profileStorage.logout()
+  }
+  
   return (
     <QueryClientProvider client={queryClient}>
       <StatusBar style="auto" />

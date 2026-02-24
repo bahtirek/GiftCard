@@ -1,13 +1,5 @@
 import { TextInput, TextInputProps } from "react-native"
 
-export type CustomButtonType = {
-  label: string, 
-  containerStyles?: string,
-  handlePress?: any,
-  textStyles?: string, 
-  isLoading?: boolean 
-}
-
 export type ListItemType = {
   label: string, 
   containerStyles?: string,
@@ -117,4 +109,17 @@ export type AccountType = {
 export type InputValueType = {
   value: string,
   isValid?: boolean,
+}
+
+export type ProfileType = {
+  isRegistered: boolean
+  id?: string,
+  phone?: string
+  firstName?: string,
+  lastName?: string,
+  token?: string,
+  timestamp?: number,
+  pin?: string,
+  nameUpdatedSkiped?: boolean,
+  tempPhone?: string
 }

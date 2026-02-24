@@ -37,6 +37,9 @@ export const flex = StyleSheet.create({
   flex: {
     flex: 1,
   },
+  flexGrow: {
+    flexGrow: 1,
+  },
   row: {
     flexDirection: 'row',
   },

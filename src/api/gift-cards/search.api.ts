@@ -74,7 +74,7 @@ export const fetchAllItems = async (page: number) => {
   );
 
   const data = await res.json();
-  console.log('data', data);
+  //console.log('data', data);
   
 
   const hasNextPage =
@@ -97,7 +97,7 @@ export const fetchTenItems = async (limit = 20, city='Tashkent') => {
   );
 
   const data: GiftCardType[] = await res.json();
-  console.log('data', data);
+  //console.log('data', data);
   
 
   return {items: data};
