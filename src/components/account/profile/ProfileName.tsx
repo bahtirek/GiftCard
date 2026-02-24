@@ -25,7 +25,7 @@ const ProfileName = ({onSkipOrUpdate, isEditing}: ProfileNameProp) => {
   const [initialValueLastName, setInitialValueLastName] = useState('');
   const isFocused = useIsFocused();
 
-  useEffect(() => {
+  useEffect(() => {    
     if(isEditing){
       const profileData = getProfile();
       

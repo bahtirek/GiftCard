@@ -1,4 +1,4 @@
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import CustomInput from '@/components/UI/forms/CustomInput'
 import { InputValueType, ProfileType } from '@/types'
@@ -6,7 +6,7 @@ import { mt, pb, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { profileStorage } from '@/services/profile.storage'
-import { postProfile } from '@/api/profile/verify-profile.api'
+import { postProfile, updateProfile } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 import { useIsFocused } from '@react-navigation/native'
 
@@ -59,6 +59,7 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
     if(isEditing && phone.value === initialValue) {
       onCancelButtonClick();
     }
+
     const profileData = await savePhoneToDB();
     if (!profileData) return
     await savePhoneToStorage(profileData)
@@ -68,16 +69,17 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
 
   const savePhoneToDB = async() => {
     const timestamp = Date.now();
-
-    const profileData: ProfileType = {
-      isRegistered: false,
-      tempPhone: phone.value,
-      timestamp: timestamp
-    }
-    
+    const profile = getProfile();
+    profile.isRegistered = false
+    profile.tempPhone = phone.value
+    profile.timestamp = timestamp
     try {
-      await postProfile(profileData);
-      return profileData
+      if(isEditing) {
+        await updateProfile(profile);
+      } else {
+        await postProfile(profile);
+      }
+      return profile
     } catch (error) {
       console.error("Error:", error);
       return false

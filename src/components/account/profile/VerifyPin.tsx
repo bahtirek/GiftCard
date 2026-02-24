@@ -1,11 +1,11 @@
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import CustomInput from '@/components/UI/forms/CustomInput'
 import { InputValueType, ProfileType } from '@/types'
 import { mt, pb, pr, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
-import { fetchProfileByPhone, updateProfile, verifyPinByPhone } from '@/api/profile/verify-profile.api'
+import { updateProfile, verifyPinByPhone } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 import { profileStorage } from '@/services/profile.storage'
 
@@ -48,6 +48,7 @@ const VerifyPin = ({onProfileCoifirmed}: VerifyPinProp) => {
     const profile = getProfile();
     if(!profile || !profile.tempPhone) return;
     const profileData = await verifyPinByPhone(profile.tempPhone);
+    
     if(profileData && profileData.profile.pin) {
       if(profileData.profile.pin == pin.value) {
         const updatedProfile: ProfileType = {...profileData.profile, phone: profileData.profile.tempPhone, isRegistered: true, timestamp: undefined, tempPhone: undefined}

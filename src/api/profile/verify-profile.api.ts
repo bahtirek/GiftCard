@@ -9,7 +9,7 @@ type ApiResponse = {
 const BASE_URL = "http://localhost:3000/profile";
 
 export const postProfile = async (profileData: ProfileType) => {
-  profileData.pin = '123456'
+  profileData.pin = '123456'  
   
   try {
     const response = await fetch(BASE_URL, {

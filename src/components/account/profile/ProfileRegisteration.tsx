@@ -78,6 +78,8 @@ const ProfileRegisteration = ({onProfileCoifirmed, editProfile}: ProfileRegister
       setDisplayProfileName(true);
       setDisplayPinVerify(false);
       //onProfileCoifirmed();
+    } else {
+      onProfileCoifirmed();
     }
   }
   

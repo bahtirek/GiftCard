@@ -1,10 +1,9 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useProfileStore } from '@/stores/profile.store'
 import ProfileRegisteration from '@/components/account/profile/ProfileRegisteration'
 import ProfileDetails from '@/components/account/profile/ProfileDetails'
 import { useIsFocused } from '@react-navigation/native'
-import { isPinNotExpired } from '@/utils/utils'
 
 const ProfileScreen = () => {
   const isFocused = useIsFocused();
@@ -12,7 +11,6 @@ const ProfileScreen = () => {
   const [isProfileOnEdit, setIsProfileOnEdit] = useState(false)
   const [editProfile, setEditProfile] = useState('');
   const getProfile = useProfileStore(state => state.getProfile)
-  const getTempProfile = useProfileStore(state => state.getTempProfile)
 
   useEffect(() => {
     toggleComponents();
