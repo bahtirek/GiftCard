@@ -15,6 +15,11 @@ export type GiftCardsStackParamList = {
   Purchase: undefined
 };
 
+export type OrdersStackParamList = {
+  AllOrders: { search: string };
+  OrderDetails: { orderId: string };
+};
+
 // Define the parameters for the main stack navigator
 export type RootStackParamList = {
   MainTabsView: NavigatorScreenParams<MainTabParamList>;
@@ -22,15 +27,25 @@ export type RootStackParamList = {
   Settings: undefined;
   Payment: undefined;
   GiftCardsNavigation: NavigatorScreenParams<GiftCardsStackParamList>;
+  AccountNavigation: NavigatorScreenParams<AccountStackParamList>;
+};
+
+export type AccountStackParamList = {
+  ProfileScreen: undefined;
+  OrdersScreen: undefined;
+  OrderDetailsScreen: { orderId: string };
+  DashboardScreen: undefined;
+  AccountScreen: undefined;
+  RedeemScreen: undefined;
 };
 
 // Define the props for screens in the main stack navigator
-export type RootStackScreenProps<T extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, T>;
+/* export type RootStackScreenProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>; */
 
 // Define the props for screens in the main tab navigator
-export type MainTabScreenProps<T extends keyof MainTabParamList> =
-  BottomTabScreenProps<MainTabParamList, T>;
+/* export type MainTabScreenProps<T extends keyof MainTabParamList> =
+  BottomTabScreenProps<MainTabParamList, T>; */
 
 // Define the parameters for the main tab navigator
 export type MainTabParamList = {

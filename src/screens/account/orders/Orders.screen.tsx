@@ -2,12 +2,16 @@ import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'r
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { flex } from '@/styles/styles'
 import CartItemShort from '@/components/shopping-cart/CartItemShort'
-import { useIsFocused } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { useOrdersQuery } from '@/api/orders/orders.query'
 import { CartItemType } from '@/types'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamList } from '@/navigation/navigation-types'
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'AccountNavigation'>;
 
 const OrdersScreen = () => {
-  const isFocused = useIsFocused();
+  const navigation = useNavigation<NavigationProp>();
   const {
     data,
     isLoading,
@@ -20,6 +24,13 @@ const OrdersScreen = () => {
 
   const orders: CartItemType[] = data?.pages.flatMap((page) => page.items) ?? [];
 
+  const onPressOrder = (orderId: string) => {
+    navigation.navigate('AccountNavigation', {
+      screen: 'OrderDetailsScreen',
+      params: { orderId }
+    });
+  }
+
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <View style={[flex.flex]}>
@@ -29,7 +40,8 @@ const OrdersScreen = () => {
           keyExtractor={(item) => item.id!}
           renderItem={({ item }) => (
             <>
-            <CartItemShort cartItem={item} key={item.id} />
+            <CartItemShort cartItem={item} key={item.id} onPress={onPressOrder} isDisabled={false} />
+            {/* <CartItemShort cartItem={item} key={item.id} onPress={onPressOrder.bind(null, item.id!)} isDisabled={false} /> */}
             </>
           )}
           onEndReached={() => {

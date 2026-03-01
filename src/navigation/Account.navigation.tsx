@@ -5,8 +5,10 @@ import OrdersScreen from '@/screens/account/orders/Orders.screen';
 import RedeemScreen from '@/screens/account/redeem/Redeem.screen';
 import DashboardScreen from '@/screens/account/dashboard/Dashboard.screen';
 import AccountScreen from '@/screens/account/Account.screen';
+import OrderDetailsScreen from '@/screens/account/orders/OrderDetails.screen';
+import { AccountStackParamList } from './navigation-types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AccountStackParamList>();
 
 const ProfileNavigation = () => {
   return (
@@ -26,6 +28,10 @@ const ProfileNavigation = () => {
       }} />
       <Stack.Screen name='OrdersScreen' component={ OrdersScreen } options={{
         title: 'My Orders',
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='OrderDetailsScreen' component={ OrderDetailsScreen } options={{
+        title: 'Order Details',
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='RedeemScreen' component={ RedeemScreen } options={{

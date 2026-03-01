@@ -5,22 +5,17 @@ export type Item = {
   name: string;
 };
 
-type ApiResponse = {
-  items: Item[];
-  nextPage: number | null;
-};
-
 const API_URL = 'http://localhost:3000/orders';
 
-export const fetchOrders = async () => {
+export const fetchOrderById = async (orderId: string) => {
   const res = await fetch(
-    `${API_URL}`
+    `${API_URL}?id=${orderId}`
   );
 
   const data = await res.json();
 
   return {
-    data
+    data: data[0]
   };
 };
 

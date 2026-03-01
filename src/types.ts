@@ -94,6 +94,7 @@ export type CartItemType = {
   otherAmount?: string,
   orderDate?: string,
   name?: string,
+  image?: string,
 }
 
 export type PaymentType = {
