@@ -9,6 +9,7 @@ import { useCartStore } from '@/stores/cart.store';
 import { usePaymentStore } from '@/stores/payment.store';
 import { flex, pa, pb, pt, px, text } from '@/styles/styles';
 import { useNavigation } from '@react-navigation/native';
+import { postOrder } from '@/api/orders/orders.api';
 
 
 const SubmitOrder = () => {
@@ -48,27 +49,26 @@ const SubmitOrder = () => {
     setMaskedCreditCard(`${remaining}${lastFour}`)
   }
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setShowModal(true);
-    setTimeout(() => {
-      /* if (Math.floor(Math.random() * 10) > 8) {
-        Alert.alert('Something went wrong!', 'Please try later', [
-          {text: 'OK', onPress: () => {
-            navigation.navigate('basket' as never)}},
-        ]);
-        router.replace('/basket')
-      } else {
-        navigation.navigate('ConfirmationScreen' as never);
-    } */
+
+    try {
+      await postOrder(items);
       deleteAllItemsFromCart();
       removePaymentDetails();
-      setShowModal(false)
       navigation.navigate('ConfirmationScreen' as never);
-    }, 1000)
+    } catch (error) {
+      console.error('Error submitting order:', error);
+      Alert.alert('Something went wrong!', 'Please try later', [
+        { text: 'OK', onPress: () => navigation.navigate('basket' as never) },
+      ]);
+    } finally {
+      setShowModal(false);
+    }
   }
 
-  const submitOrder = () => {
-    console.log('Order submitted');
+  const submitOrder = async () => {
+    await postOrder(items);
   }
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
@@ -83,7 +83,6 @@ const SubmitOrder = () => {
             <CartItemShort cartItem={item} key={item.id} />
           )}
           keyboardDismissMode='on-drag'
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
           ListFooterComponent={
             <View style={[pa.md]}>
               <View style={styles.totalRow}>
@@ -142,6 +141,7 @@ const styles = StyleSheet.create({
   totalRow: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    paddingTop: 16,
   },
   totalLabel: {
     paddingRight: 16,
