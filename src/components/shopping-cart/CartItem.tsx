@@ -20,8 +20,7 @@ type CartItemPropType = {
 }
 
 const CartItem = ({ cartItem }: CartItemPropType) => {
-  const {amount, phone, email, giftCard, note, orderedDate} = cartItem;
-  const {name, image} = giftCard!;
+  const {amount, phone, email, giftCard, note, orderDate, name, image} = cartItem;
   const navigation = useNavigation<NavigationProp>();
 
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
@@ -78,13 +77,13 @@ const CartItem = ({ cartItem }: CartItemPropType) => {
           </View>
         </View>
         {
-          !!orderedDate &&
+          !!orderDate &&
           <View style={[mt.xl]}>
-            <RecipientDetails label="Ordered on" description={orderedDate} />
+            <RecipientDetails label="Ordered on" description={orderDate} />
           </View>
         }
         {
-          !(!!orderedDate) &&
+          !(!!orderDate) &&
           <View style={[mt.xl, mb.lg, flex.row, flex.justifyEnd]}>
             <View style={[mr.xl]}>
               <IconButton icon={"edit"} onPress={editCartItem} />

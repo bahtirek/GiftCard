@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsScreen from './screens/settings/SettingsScreen';
@@ -22,6 +22,14 @@ const queryClient = new QueryClient({
 
 const Stack = createNativeStackNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'rgb(255, 255, 255)'
+  },
+};
+
 export default function App() {
   const setProfile = useProfileStore(state => state.setProfile)
   useEffect(() => {
@@ -44,7 +52,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <StatusBar style="auto" />
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
         <Stack.Navigator>
           <Stack.Screen name='MainTabsView' component={MainTabsView} options={{headerShown: false}} />
           <Stack.Screen name='GiftCardDetails' component={ GiftCardDetailsScreen } options={{

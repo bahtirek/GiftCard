@@ -38,6 +38,7 @@ const CardDetailsScreen = () => {
               <View style={styles.content}>
                 <Text style={[text.grey]}>{giftCard?.description}</Text>
                 <Text style={[text.grey]}>{giftCard?.address?.line_one}</Text>
+                <Text style={[text.grey]}>{giftCard?.address?.city}</Text>
                 <Text style={[text.grey]}>{giftCard?.website}</Text>
                 <Text style={[text.grey]}>{giftCard?.phone}</Text>
               </View>

@@ -89,9 +89,12 @@ export type CartItemType = {
   email?: string,
   phone?: string,
   note?: string,
+  giftCardId?: number,
   giftCard?: GiftCardType
   otherAmount?: string,
-  orderedDate?: string
+  orderDate?: string,
+  name?: string,
+  image?: string,
 }
 
 export type PaymentType = {

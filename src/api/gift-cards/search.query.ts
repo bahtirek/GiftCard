@@ -9,18 +9,18 @@ type FetchItemsResult = {
 
 type searchQueryType = {
   query: string,
+  city: string
 }
 
-export const useSearchQuery = ({query}: searchQueryType  ) => {
-  console.log('query', query);
+export const useSearchQuery = ({query, city}: searchQueryType  ) => {
   return useInfiniteQuery({
-    queryKey: ['items', query],
+    queryKey: ['items', query, city],
     queryFn: ({ pageParam = 1 }) => {
       if(query == '%%%') {
         
-        return fetchAllItems(pageParam)
+        return fetchAllItems(pageParam, city)
       } else {
-        return fetchItems(query, pageParam)
+        return fetchItems(query, pageParam, city)
       }
     },
     getNextPageParam: (lastPage: FetchItemsResult) => lastPage.nextPage,

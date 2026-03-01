@@ -95,7 +95,7 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit }: Pur
     ) {
       const id = cartItemToEdit?.id ? cartItemToEdit.id : '';
 
-      addItem({id: id, quantity: quantity, amount: amount, giftCard: giftCard!, email: email.value, phone: phone.value, note: note.value, otherAmount: otherAmount.value});
+      addItem({id: id, quantity: quantity, amount: amount, name: giftCard!.name, image: giftCard!.image, giftCard: giftCard!, email: email.value, phone: phone.value, note: note.value, otherAmount: otherAmount.value});
       addItemToEdit({});
       resetForm();
       handleButtonPress();

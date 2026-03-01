@@ -46,18 +46,13 @@ type ApiResponse = {
   };
 }; */
 
-export const fetchItems = async (query: string, page: number) => {
-  console.log(query);
-  
-  
+export const fetchItems = async (query: string, page: number, city: string) => {
   const res = await fetch(
-    `http://localhost:3000/restaurants?name_like=${query}&_page=${page}&_limit=20`
+    `http://localhost:3000/restaurants?name_like=${query}&_page=${page}&_limit=20&address.city=${city}`
   );
 
   const data = await res.json();
-  console.log('data', data);
   
-
   const hasNextPage =
     res.headers.get('x-total-count') !== null &&
     page * 20 < Number(res.headers.get('x-total-count'));
@@ -68,14 +63,12 @@ export const fetchItems = async (query: string, page: number) => {
   };
 };
 
-export const fetchAllItems = async (page: number) => {
+export const fetchAllItems = async (page: number, city: string) => {
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=${page}&_limit=20`
+    `http://localhost:3000/restaurants?_page=${page}&_limit=20&address.city=${city}`
   );
 
   const data = await res.json();
-  //console.log('data', data);
-  
 
   const hasNextPage =
     res.headers.get('x-total-count') !== null &&

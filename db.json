@@ -1,82 +1,85 @@
 {
-  "profileNotVerified": [],
+  "orders": [
+    {
+      "id": "f7dc37bc-8145-4925-bfd0-d71ec7458d70",
+      "quantity": 1,
+      "amount": "300 000",
+      "email": "",
+      "phone": "(56)474-5674",
+      "note": "",
+      "otherAmount": "",
+      "name": "Andijan Hearth House",
+      "image": "https://picsum.photos/seed/restaurant5/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 5
+    },
+    {
+      "id": "5d106b06-69b6-4fc9-bf0c-080f6485f891",
+      "quantity": 1,
+      "amount": "300 000",
+      "email": "Test@test.com",
+      "phone": "(09)809-8098",
+      "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "otherAmount": "",
+      "name": "Registan Terrace House",
+      "image": "https://picsum.photos/seed/restaurant2/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 2
+    },
+    {
+      "id": "cdbcd1d2-91ef-4d73-bc35-85aaf930c7c5",
+      "quantity": 1,
+      "amount": "1 000 000",
+      "email": "Tralivali@test.com",
+      "phone": "(87)698-9678",
+      "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "otherAmount": "1 000 000",
+      "name": "Namangan Garden House",
+      "image": "https://picsum.photos/seed/restaurant6/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 6
+    },
+    {
+      "id": "4f51c15d-6247-4ac3-9c83-334cc11b54d4",
+      "quantity": 1,
+      "amount": "300 000",
+      "email": "",
+      "phone": "(65)785-6785",
+      "note": "",
+      "otherAmount": "",
+      "name": "Golden Kebab House",
+      "image": "https://picsum.photos/seed/restaurant8/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 8
+    },
+    {
+      "id": "73f9c6fe-499f-495f-9a1e-b02c14d9d6bb",
+      "quantity": 1,
+      "amount": "300 000",
+      "email": "Test@test.com",
+      "phone": "",
+      "note": "",
+      "otherAmount": "",
+      "name": "Caravan Dining House",
+      "image": "https://picsum.photos/seed/restaurant10/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 10
+    },
+    {
+      "id": "f53c4749-084a-46f8-95df-dbb5a51a608d",
+      "quantity": 1,
+      "amount": "300 000",
+      "email": "",
+      "phone": "(35)645-6345",
+      "note": "",
+      "otherAmount": "",
+      "name": "Silk Road Bites House",
+      "image": "https://picsum.photos/seed/restaurant3/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 3
+    }
+  ],
   "profile": [
-    {
-      "isRegistered": true,
-      "phone": "(45)454-5454",
-      "pin": "123456",
-      "id": 5,
-      "firstName": "Jos Updated",
-      "lastName": "Ben"
-    },
-    {
-      "isRegistered": false,
-      "phone": "(45)454-5454",
-      "timestamp": 1771788132062,
-      "pin": "123456",
-      "id": 6
-    },
-    {
-      "isRegistered": false,
-      "phone": "(45)454-5455",
-      "timestamp": 1771788141055,
-      "pin": "123456",
-      "id": 7
-    },
-    {
-      "isRegistered": true,
-      "phone": "(45)454-5458",
-      "pin": "123456",
-      "id": 8
-    },
-    {
-      "isRegistered": true,
-      "phone": "(45)454-5459",
-      "pin": "123456",
-      "id": 9
-    },
-    {
-      "isRegistered": false,
-      "phone": "(45)454-5460",
-      "timestamp": 1771789159099,
-      "pin": "123456",
-      "id": 10
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(22)222-2222",
-      "timestamp": 1771796579668,
-      "pin": "123456",
-      "id": 11
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(12)312-3123",
-      "timestamp": 1771818734805,
-      "pin": "123456",
-      "id": 12
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(12)312-3123",
-      "timestamp": 1771818935806,
-      "pin": "123456",
-      "id": 13
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(56)785-6785",
-      "timestamp": 1771819042956,
-      "pin": "123456",
-      "id": 14
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(12)312-3123",
-      "timestamp": 1771819078226,
-      "pin": "123456",
-      "id": 15
-    },
     {
       "isRegistered": true,
       "pin": "123456",
@@ -85,103 +88,6 @@
       "firstName": "Sdfgsdfg",
       "lastName": "Sdfgsdfgs",
       "nameUpdatedSkiped": true
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(43)563-4563",
-      "timestamp": 1771819283523,
-      "pin": "123456",
-      "id": 17
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(46)745-6745",
-      "timestamp": 1771819327024,
-      "pin": "123456",
-      "id": 18
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(46)345-6345",
-      "timestamp": 1771819420343,
-      "pin": "123456",
-      "id": 19
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(42)341-2341",
-      "timestamp": 1771819628458,
-      "pin": "123456",
-      "id": 20
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 21
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 22,
-      "phone": "(12)121-2121",
-      "firstName": "Jos",
-      "lastName": "Ben"
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 23,
-      "phone": "(12)123-2222",
-      "firstName": "Upd",
-      "lastName": "Werddd"
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 24,
-      "phone": "(12)123-2223"
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 25,
-      "phone": "(12)123-2225"
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 26,
-      "phone": "(78)567-8567",
-      "firstName": "Hjgjhgf",
-      "lastName": "Fgjhfjgh"
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 27,
-      "phone": "(78)567-8566",
-      "firstName": "Fgh",
-      "lastName": "Fgh"
-    },
-    {
-      "isRegistered": true,
-      "pin": "123456",
-      "id": 28,
-      "phone": "(78)567-8577"
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(78)567-8577",
-      "timestamp": 1771861237829,
-      "pin": "123456",
-      "id": 29
-    },
-    {
-      "isRegistered": false,
-      "tempPhone": "(45)674-5674",
-      "timestamp": 1771899501243,
-      "pin": "123456",
-      "id": 30
     }
   ],
   "restaurants": [
@@ -197,7 +103,7 @@
       "address": {
         "line_one": "77 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100000"
       },
       "priceSet": [
@@ -377,7 +283,7 @@
       "address": {
         "line_one": "38 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100006"
       },
       "priceSet": [
@@ -557,7 +463,7 @@
       "address": {
         "line_one": "25 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100012"
       },
       "priceSet": [
@@ -737,7 +643,7 @@
       "address": {
         "line_one": "9 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100018"
       },
       "priceSet": [
@@ -917,7 +823,7 @@
       "address": {
         "line_one": "94 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100024"
       },
       "priceSet": [
@@ -1097,7 +1003,7 @@
       "address": {
         "line_one": "19 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100030"
       },
       "priceSet": [
@@ -1277,7 +1183,7 @@
       "address": {
         "line_one": "56 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100036"
       },
       "priceSet": [
@@ -1457,7 +1363,7 @@
       "address": {
         "line_one": "96 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100042"
       },
       "priceSet": [
@@ -1637,7 +1543,7 @@
       "address": {
         "line_one": "18 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100048"
       },
       "priceSet": [
@@ -1817,7 +1723,7 @@
       "address": {
         "line_one": "70 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100054"
       },
       "priceSet": [
@@ -1997,7 +1903,7 @@
       "address": {
         "line_one": "68 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100060"
       },
       "priceSet": [
@@ -2177,7 +2083,7 @@
       "address": {
         "line_one": "6 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100066"
       },
       "priceSet": [
@@ -2357,7 +2263,7 @@
       "address": {
         "line_one": "62 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100072"
       },
       "priceSet": [
@@ -2537,7 +2443,7 @@
       "address": {
         "line_one": "91 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100078"
       },
       "priceSet": [
@@ -2717,7 +2623,7 @@
       "address": {
         "line_one": "60 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100084"
       },
       "priceSet": [
@@ -2897,7 +2803,7 @@
       "address": {
         "line_one": "66 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100090"
       },
       "priceSet": [
@@ -3077,7 +2983,7 @@
       "address": {
         "line_one": "76 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100096"
       },
       "priceSet": [
