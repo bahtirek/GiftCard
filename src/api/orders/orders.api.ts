@@ -18,27 +18,22 @@ export const fetchOrders = async () => {
   );
 
   const data = await res.json();
-  console.log('data', data);
 
-    
   return {
     data
   };
 };
+
 export const fetchAllOrders = async (page: number) => {
   const res = await fetch(
     `${API_URL}?_page=${page}&_limit=20`
   );
 
   const data = await res.json();
-  console.log('data', data);
   
-
   const hasNextPage =
     res.headers.get('x-total-count') !== null &&
     page * 20 < Number(res.headers.get('x-total-count'));
-
-    console.log('hasNextPage', data, hasNextPage);
     
   return {
     items: data,
@@ -47,8 +42,6 @@ export const fetchAllOrders = async (page: number) => {
 };
 
 export const postOrder = async (orderData: CartItemType[]) => {
-  console.log('Posting order data:', orderData);
-  
   try {
     const requests = orderData.map((item) => {
       const today = new Date();
@@ -72,29 +65,6 @@ export const postOrder = async (orderData: CartItemType[]) => {
     await Promise.all(requests);
 
     return { success: true };
-  } catch (error) {
-    console.error("API Error:", error);
-    throw error;
-  }
-};
-export const postOrder2 = async (orderData: CartItemType[]) => {
-  console.log('Posting order data:', orderData);
-  
-  try {
-    const response = await fetch(`${API_URL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(orderData)
-    });
-console.log('response', response);
-
-    if (!response.ok) {
-      throw new Error("Failed to create order");
-    }
-
-    return await response.json();
   } catch (error) {
     console.error("API Error:", error);
     throw error;
