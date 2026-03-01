@@ -8,17 +8,19 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GiftCardsStackParamList } from '@/navigation/navigation-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GiftCardList from '@/components/GiftCard/GiftCardList';
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchStore } from '@/stores/search.store'
 import { GiftCardType } from '@/types'
 import { useSearchQuery } from '@/api/gift-cards/search.query'
+import { useLocationStore } from '@/stores/location.store'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 
 const AllCardsScreen = ({ route }: Props) => {
   const isFocused = useIsFocused();
   const { searchQuery, setSearchQuery } = useSearchStore();
+  const { location } = useLocationStore();
   const [ query, setQuery ] = useState('')
+  const [ city, setCity ] = useState('')
   const { search } = route.params || {};
   const [showSearchInput, setShowSearchInput] = useState(false);
   const navigation = useNavigation();
@@ -31,7 +33,7 @@ const AllCardsScreen = ({ route }: Props) => {
     refetch,
     isFetchingNextPage,
     isRefetching,
-  } = useSearchQuery({query});
+  } = useSearchQuery({query, city});
 
   const items: GiftCardType[] = data?.pages.flatMap((page) => page.items) ?? [];
 
@@ -40,7 +42,7 @@ const AllCardsScreen = ({ route }: Props) => {
   }
   
   useEffect(() => {
-    if(isFocused) {
+    if(isFocused) {      
       if(searchQuery) {
         setQuery(searchQuery)
       } else {
@@ -48,6 +50,12 @@ const AllCardsScreen = ({ route }: Props) => {
       }
     }
   }, [searchQuery, isFocused])
+  
+  useEffect(() => {
+    if(location.name) {      
+      setCity(location.name);
+    }
+  }, [location])
 
   useLayoutEffect(() => {
     navigation.setOptions({

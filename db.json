@@ -64,6 +64,19 @@
       "image": "https://picsum.photos/seed/restaurant10/400/300",
       "orderDate": "28.02.2026",
       "giftCardId": 10
+    },
+    {
+      "id": "f53c4749-084a-46f8-95df-dbb5a51a608d",
+      "quantity": 1,
+      "amount": "300 000",
+      "email": "",
+      "phone": "(35)645-6345",
+      "note": "",
+      "otherAmount": "",
+      "name": "Silk Road Bites House",
+      "image": "https://picsum.photos/seed/restaurant3/400/300",
+      "orderDate": "28.02.2026",
+      "giftCardId": 3
     }
   ],
   "profile": [
@@ -90,7 +103,7 @@
       "address": {
         "line_one": "77 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100000"
       },
       "priceSet": [
@@ -270,7 +283,7 @@
       "address": {
         "line_one": "38 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100006"
       },
       "priceSet": [
@@ -450,7 +463,7 @@
       "address": {
         "line_one": "25 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100012"
       },
       "priceSet": [
@@ -630,7 +643,7 @@
       "address": {
         "line_one": "9 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100018"
       },
       "priceSet": [
@@ -810,7 +823,7 @@
       "address": {
         "line_one": "94 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100024"
       },
       "priceSet": [
@@ -990,7 +1003,7 @@
       "address": {
         "line_one": "19 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100030"
       },
       "priceSet": [
@@ -1170,7 +1183,7 @@
       "address": {
         "line_one": "56 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100036"
       },
       "priceSet": [
@@ -1350,7 +1363,7 @@
       "address": {
         "line_one": "96 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100042"
       },
       "priceSet": [
@@ -1530,7 +1543,7 @@
       "address": {
         "line_one": "18 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100048"
       },
       "priceSet": [
@@ -1710,7 +1723,7 @@
       "address": {
         "line_one": "70 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100054"
       },
       "priceSet": [
@@ -1890,7 +1903,7 @@
       "address": {
         "line_one": "68 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100060"
       },
       "priceSet": [
@@ -2070,7 +2083,7 @@
       "address": {
         "line_one": "6 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100066"
       },
       "priceSet": [
@@ -2250,7 +2263,7 @@
       "address": {
         "line_one": "62 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100072"
       },
       "priceSet": [
@@ -2430,7 +2443,7 @@
       "address": {
         "line_one": "91 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100078"
       },
       "priceSet": [
@@ -2610,7 +2623,7 @@
       "address": {
         "line_one": "60 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100084"
       },
       "priceSet": [
@@ -2790,7 +2803,7 @@
       "address": {
         "line_one": "66 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100090"
       },
       "priceSet": [
@@ -2970,7 +2983,7 @@
       "address": {
         "line_one": "76 Main Street",
         "line_two": "Near City Center",
-        "city": "Tashkent",
+        "city": "Toshkent",
         "zip": "100096"
       },
       "priceSet": [

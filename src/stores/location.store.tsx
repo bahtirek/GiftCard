@@ -6,6 +6,7 @@ type LocationStoreType = {
   location: LocationType;
   locations: LocationType[];
   updateLocation: (id: string) => void;
+  getLocation: (id: string) => void;
 }
 
 export const useLocationStore = create<LocationStoreType>((set, get) => ({
@@ -20,6 +21,10 @@ export const useLocationStore = create<LocationStoreType>((set, get) => ({
 
   getLocations: (): LocationType[] => {
     return get().locations;
+  },
+
+  getLocation: (): LocationType => {
+    return get().location;
   }
 
 }));
