@@ -1,21 +1,17 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchItems, fetchAllItems } from '@/api/gift-cards/search.api';
 import { CartItemType } from '@/types';
+import { fetchAllOrders } from './orders.api';
 
 type FetchItemsResult = {
   items: CartItemType[],
   nextPage?: number | null
 };
 
-type searchQueryType = {
-  query: string,
-}
-
 export const useOrdersQuery = () => {
   return useInfiniteQuery({
     queryKey: ['orders'],
     queryFn: ({ pageParam = 1 }) => {
-      return fetchAllItems(pageParam)
+      return fetchAllOrders(pageParam)
     },
     getNextPageParam: (lastPage: FetchItemsResult) => lastPage.nextPage,
     enabled: true,
