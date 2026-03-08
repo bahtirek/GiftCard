@@ -10,6 +10,7 @@ import { usePaymentStore } from '@/stores/payment.store';
 import { flex, pa, pb, pt, px, text } from '@/styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { postOrder } from '@/api/orders/orders.api';
+import { getDate } from '@/utils/utils';
 
 
 const SubmitOrder = () => {
@@ -51,9 +52,10 @@ const SubmitOrder = () => {
 
   const onSubmit = async () => {
     setShowModal(true);
+    const dateNow = getDate();
 
     try {
-      await postOrder(items);
+      await postOrder(items, dateNow);
       deleteAllItemsFromCart();
       removePaymentDetails();
       navigation.navigate('ConfirmationScreen' as never);
@@ -67,9 +69,6 @@ const SubmitOrder = () => {
     }
   }
 
-  const submitOrder = async () => {
-    await postOrder(items);
-  }
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <View style={[flex.flex]}>

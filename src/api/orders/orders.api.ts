@@ -37,10 +37,9 @@ export const fetchAllOrders = async (page: number) => {
   };
 };
 
-export const postOrder = async (orderData: CartItemType[]) => {
+export const postOrder = async (orderData: CartItemType[], dateNow: string) => {
   try {
     const requests = orderData.map((item) => {
-      const dateNow = getDate();
       item.orderDate = dateNow;
       const { giftCard, ...itemWithoutGiftCard } = item;
       itemWithoutGiftCard.giftCardId = giftCard?.id;
