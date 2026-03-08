@@ -20,11 +20,12 @@ const QRCodeScanner = ({onScan}: any) => {
   const handleBarCodeScanned = ({ type, data }: any) => {
     onScan(data)
   };
-
+  
   const toggleTorch = () => {
+    handleBarCodeScanned({type:'qr', data: 'cdbcd1d2-91ef-4d73-bc35-85aaf930c7c5'})
     setTorchOn(!torchOn);
   };
-
+  
   const scanAgain = () => {
     setScanned(false)
   }

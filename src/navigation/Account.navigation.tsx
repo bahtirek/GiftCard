@@ -35,6 +35,7 @@ const ProfileNavigation = () => {
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='RedeemScreen' component={ RedeemScreen } options={{
+        title: 'Redeem',
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='DashboardScreen' component={ DashboardScreen } options={{

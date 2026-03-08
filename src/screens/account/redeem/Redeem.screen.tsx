@@ -1,40 +1,48 @@
+import { fetchOrderById } from '@/api/orders/orders.api';
 import QRCodeScanner from '@/components/account/redeem/QrCodeScanner';
 import Redeem from '@/components/account/redeem/Redeem';
 import Refund from '@/components/account/redeem/Refund';
 import CustomButton from '@/components/UI/buttons/CustomButton';
+import SpinnerModal from '@/components/UI/modals/SpinnerModal';
+import { flex, mt } from '@/styles/styles';
+import { CartItemType } from '@/types';
+import { useFocusEffect } from '@react-navigation/native';
 import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, Modal, ActivityIndicator, Text } from 'react-native';
 
 
 const RedeemScreen = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [showScanner, setShowScanner] = useState(true);
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showRedeemer, setShowRedeemer] = useState(false);
   const [showRefund, setShowRefund] = useState(false);
   const [lastTransactionDetails, setLastTransactionDetails] = useState({amount: '100 000', date: '15 February 2025', redeemer: 'John Doe'})
+  const [order, setOrder] = useState<CartItemType>({});
 
-/*   useFocusEffect(
+  useFocusEffect(
     useCallback(() => {
       setShowError(false);
       setShowRedeemer(false);
-      setShowModal(false);
+      setShowSpinner(false);
       setShowScanner(true);
       setShowRefund(false);
     }, [])
-  ); */
+  );
 
-  const handleScan = (data: string) => {
-    console.log("data", data);
-    setShowModal(true);
-    setTimeout(() => {
-      setShowModal(false);
-      setShowScanner(false)
-      const result = 'error'
-      if (result == 'error') {
-        setShowError(true)
+  const handleScan = async (data: string) => {
+    setShowSpinner(true);
+    if(data) {
+      setShowScanner(false);
+      setShowSpinner(false);
+      const orderData = await fetchOrderById(data)
+      if(orderData.data.id) {
+        setOrder(orderData.data);
+        setShowRedeemer(true)
       }
-    }, 2000);
+    } else {
+      setShowError(true)
+    }
   }
 
   const handleRescan = () => {
@@ -57,8 +65,12 @@ const RedeemScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-     {/*  <Stack.Screen options={{title: 'Redeem', headerTitleStyle: { color: '#FF4416' }, headerTintColor: '#FF4416'}} /> */}
+    <View style={[styles.container]}>
+      {/* <View style={[styles.fullWhiteContainer, flex.flex]}>
+        <View style={[mt.auto]}>
+          <CustomButton label="Scan again" handlePress={handleRescan} />
+        </View>
+      </View> */}
       {
         showScanner && 
         <QRCodeScanner onScan={handleScan}></QRCodeScanner>
@@ -73,23 +85,13 @@ const RedeemScreen = () => {
       }
       {
         showRedeemer &&
-        <Redeem balance={'1000000'} token={'token'} amount={'1000000'} onRedeemedCompleted={handleRescan} onRefund={onRefund} />
+        <Redeem order={order} onRedeemedCompleted={handleRescan} onRefund={onRefund} />
       }
       {
         showRefund &&
         <Refund lastTransactionDetails={lastTransactionDetails} onRefundCompleted={onRefundCompleted} />
       }
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={showModal}
-      >
-        <View style={styles.fullScreenOverlay}>
-        <View>
-          <ActivityIndicator size={'large'} color={"#FF4416"} />
-        </View>
-        </View>
-      </Modal>
+      <SpinnerModal toggleModal={showSpinner} />
     </View>
   );
 };
@@ -118,7 +120,8 @@ fullScreenOverlay: {
 fullWhiteContainer: {
   width: '100%',
   height: '100%',
-  padding: 24,            // p-6 (6 * 4)
+  paddingHorizontal: 16,
+  paddingVertical: 24,            // p-6 (6 * 4)
   backgroundColor: '#FFFFFF',
 }
 })

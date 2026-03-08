@@ -1,132 +1,178 @@
-import { View, Text, StyleSheet, Platform, Alert, Modal, ActivityIndicator, TouchableOpacity } from 'react-native'
-import React, { useState, useCallback } from 'react'
-import { InputValueType } from '@/types';
+import { View, Text, StyleSheet, Platform, Alert, Modal, ActivityIndicator, TouchableOpacity, TextInput } from 'react-native'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { CartItemType, InputValueType } from '@/types';
 import { maskCurrency } from '@/utils/masks';
 import { validateRedeemAmount } from '@/utils/input-validation';
 import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
+import SpinnerModal from '@/components/UI/modals/SpinnerModal';
+import CommonModal from '@/components/UI/modals/CommonModal';
+import { flex, mr, text } from '@/styles/styles';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { updateBalance } from '@/api/orders/orders.api';
+import { InteractionManager } from "react-native";
+import { getDate } from '@/utils/utils';
 
+type RedeemProps = {
+  order: CartItemType, 
+  onRedeemedCompleted: () => void, 
+  onRefund: () => void
+}
 
-const Redeem = ({ balance, token, amount, onRedeemedCompleted, onRefund }: any) => {
+const Redeem = ({ order, onRedeemedCompleted, onRefund }: any) => {
+  const {amount, id, balance} = order;
   const [redeemAmount, setRedeemAmount] = useState<InputValueType>({value: '', isValid: true});
-  const [showModal, setShowModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [toggleSpinnerModal, setToggleSpinnerModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [remainingBalance, setRemainingBalance] = useState<string>('')
+  const [showRedeemModal, setShowRedeemModal] = useState(false)
+  const [redeemDate, setRedeemDate] = useState('')
+  const isFocused = useIsFocused();
+  const customInputRef = useRef<TextInput>(null);
 
-/*   useFocusEffect(
-    useCallback(() => {
-      resetForm()
-    }, [])
-  ); */
+  useEffect(() => {
+    if(balance) {
+      setRemainingBalance(balance);
+      setRedeemDate(order.redeemDate)
+    } else {
+      setRemainingBalance(amount)
+    } 
+  }, [isFocused, balance])
+  
 
   const handleAmountInput = (amount: InputValueType) => {
     setRedeemAmount(amount)
   }
 
   const onRedeem = () => {
+    setShowRedeemModal(true)
+  }
+
+  const onRedeemSubmit = async() => {
+    if (toggleSpinnerModal) return; //prevent double input
+
     isFormCompleted();
-    if(redeemAmount.value && redeemAmount.isValid) {
-      setShowModal(true)
-      setTimeout(() => {
-        setShowModal(false)
-        const remBalance = amount - parseInt(redeemAmount.value.replace(/\s/g, ''))
-        setRemainingBalance(remBalance.toString());
-        setShowSuccessModal(true)
-        //setShowErrorModal(true)
-      }, 2000);
-      
+
+    if(!redeemAmount.value || !redeemAmount.isValid) return;
+    const balance = parseInt(remainingBalance.replace(/\s/g, ""));
+    const redeemNum = parseInt(redeemAmount.value.replace(/\s/g, ""));
+    const remBalance = balance - redeemNum;
+    const dateNow = getDate();
+    
+
+    setShowRedeemModal(false)
+    setToggleSpinnerModal(true)
+
+    // allow UI to render spinner first
+    await new Promise(resolve => setImmediate(resolve));
+
+    try {
+      await updateBalance(id, remBalance.toString(), dateNow);
+      setRemainingBalance(remBalance.toString());
+      setRedeemDate(dateNow)
+      resetForm();
+    } catch {
+      setShowErrorModal(true);
+    } finally {
+      setToggleSpinnerModal(false);
     }
   }
 
   const resetForm =() => {
-    setRedeemAmount({value: ''});
+    if (customInputRef.current) {
+      customInputRef.current.clear();
+      setRedeemAmount({value: ''});
+    }
   }
 
   const isFormCompleted = () => {
     if(!redeemAmount.value) {
-      console.log('Missing data', "Please select amount")
       return Alert.alert('Missing data', "Please select amount")
     }
   }
 
-  const redeemed = () => {
+  const amountRules = [
+    (val: string) => validateRedeemAmount(val, balance || amount) || `Amount can't be more than ${balance || balance}`
+  ]
+
+  const onCancel = () => {
     onRedeemedCompleted(true)
   }
 
-  const amountRules = [
-    (val: string) => validateRedeemAmount(val, balance) || `Amount can't be more than ${balance}`
-  ]
+  const onRedeemSubmitCancel = () => {
+    setShowRedeemModal(false)
+  }
+
+  const closeErrorModal = () => {
+    setShowErrorModal(false)
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
         <View style={styles.row}>
-          <Text style={styles.modalText}>Gift card amount:</Text>
-          <Text style={styles.modalText}>{maskCurrency(amount)}</Text>
+          <Text style={[text.md, text.grey]}>Gift card amount:</Text>
+          <Text style={[text.md, text.grey]}>{maskCurrency(amount)}</Text>
         </View>
-        <View style={styles.rowBalance}>
-          <Text style={styles.modalText}>Balance:</Text>
-          <Text style={styles.modalText}>{maskCurrency(balance)}</Text>
+        <View style={styles.row}>
+          <Text style={[text.md, text.grey]}>Balance:</Text>
+          <Text style={[text.md, text.grey]}>{maskCurrency(remainingBalance)}</Text>
         </View>
-        <TouchableOpacity onPress={onRefund}>
-          <Text style={styles.modalText}>Last transaction details</Text>
-        </TouchableOpacity>
-        <View style={styles.inputContainer}>
-          <CustomInput
-            onInput={(amount: InputValueType) => { handleAmountInput(amount) }}
-            keyboardType="number-pad"
-            placeholder='Redeem amount'
-            mask='currency'
-            rules={amountRules}
-          />
-        </View>
+        { redeemDate &&
+          <View style={styles.row}>
+            <Text style={[text.md, text.grey]}>Redeemed on:</Text>
+            <Text style={[text.md, text.grey]}>{redeemDate}</Text>
+          </View>
+        }
         <View style={styles.buttonContainer}>
-          <CustomButton label={'Redeem'} handlePress={onRedeem}/>
+          {
+            (parseInt(remainingBalance) > 0) &&
+            <CustomButton label={'Redeem'} handlePress={onRedeem}/>
+          }
+          <CustomButton label={'Cancel'} handlePress={onCancel} containerStyles={styles.skipButton} secondary />
         </View>
       </View>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={showModal}
-      >
-        <View style={styles.modalBackground}>
-          <View style={styles.modalContent}>
-            <ActivityIndicator size={'large'} color={"#FF4416"} />
-          </View>
-        </View>
-      </Modal>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={showSuccessModal}
-      >
-        <View style={styles.modalBackground} >
-          <View style={styles.shadow}>
-            <Text style={styles.modalText}>Redeemed!</Text>
-            <View >
-              <Text style={styles.modalText}>Remaining balance:</Text>
-              <Text style={styles.modalText}>{maskCurrency(remainingBalance)}</Text>
+      <SpinnerModal toggleModal={toggleSpinnerModal}></SpinnerModal>       
+      <CommonModal
+        toggleModal={showRedeemModal}
+        title="Redeem"
+        content={(
+          <View>
+            <View style={[flex.row, flex.justifyBetween]}>
+              <Text style={[text.md, text.grey]}>Remaining balance:</Text>
+              <Text style={[text.md, text.grey]}>{maskCurrency(remainingBalance)}</Text>
             </View>
-            <CustomButton label='OK' handlePress={redeemed} />
-          </View>
-        </View>
-      </Modal>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={showErrorModal}
-      >
-        <View style={styles.modalBackground}>
-          <View style={styles.shadow}>
-            <Text style={styles.modalText}>Oops!</Text>
-            <View >
-              <Text style={styles.modalText}>Couldn't redeem. Please try again.</Text>
+            <View style={styles.inputContainer}>
+              <CustomInput
+                onInput={(amount: InputValueType) => { handleAmountInput(amount) }}
+                keyboardType="number-pad"
+                placeholder='Redeem amount'
+                mask='currency'
+                rules={amountRules}
+                ref={customInputRef}
+              />
             </View>
-            <CustomButton label='Rescan' handlePress={redeemed} />
           </View>
-        </View>
-      </Modal>
+        )}
+        action={(
+          <View style={styles.buttonContainer}>
+            <CustomButton label='Submit' handlePress={onRedeemSubmit} />
+            <CustomButton label={'Cancel'} handlePress={onRedeemSubmitCancel} containerStyles={styles.skipButton} secondary />
+          </View>
+        )}
+      />
+      <CommonModal
+        toggleModal={showErrorModal}
+        title="Oops..."
+        content={(
+          <View style={[flex.row, flex.justifyBetween]}>
+            <Text style={[text.md, text.grey]}>Couldn't redeem. Please try again.</Text>
+          </View>
+        )}
+        action={(
+          <CustomButton label='Ok' handlePress={closeErrorModal} />
+        )}
+      />
     </View>
   )
 }
@@ -137,26 +183,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#fff',
-    paddingTop: 24,
-    ...Platform.select({
-      ios: {
-        paddingTop: 50
-      }
-    })
   },
-    inner: {
+  inner: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 24,
-    paddingBottom: 40,
+    paddingHorizontal: 16,
+    paddingVertical: 24,
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 8,
-    marginTop: 16,
-  },
-  rowBalance: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
@@ -167,67 +201,17 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   inputContainer: {
-    marginTop: 16,
+    marginTop: 32,
     marginBottom: 24,
   },
   buttonContainer: {
     marginTop: 'auto',
-    paddingTop: 32,
+    paddingTop: 24,
   },
-  modalBackground: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.25)',
-    paddingBottom: 64,
+  skipButton: {
+    marginTop: 16,
+    width: '100%',
   },
-  modalContent: {
-    width: '85%',
-    padding: 24,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-  },
-  modalTitle: {
-    fontSize: 20,
-    color: '#FF4416',
-    marginBottom: 24,
-  },
-  modalRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 48,
-  },
-  modalText: {
-    fontSize: 18,
-    color: '#333',
-  },
-  dropdown: {
-    ...Platform.select({
-      android: {
-        marginLeft: -15
-      }
-    })
-  },
-  phonePrefix: {
-    paddingLeft: 30
-  },
-  shadow: {
-    shadowColor: "rgba(152, 152, 152, 0.5)",
-    shadowOffset: {
-        width: 0,
-        height: 7,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 7,
-
-    elevation: 10,
-    ...Platform.select({
-      android: {
-        shadowColor: "rgba(0, 0, 0, 0.5)",
-        shadowOpacity: 1,
-      }
-    })
-  }
 })
 
 export default Redeem;

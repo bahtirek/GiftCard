@@ -1,4 +1,5 @@
 import { CartItemType } from '@/types';
+import { getDate } from '@/utils/utils';
 
 export type Item = {
   id: string;
@@ -39,17 +40,12 @@ export const fetchAllOrders = async (page: number) => {
 export const postOrder = async (orderData: CartItemType[]) => {
   try {
     const requests = orderData.map((item) => {
-      const today = new Date();
-      const formattedDate = today.toLocaleDateString('ru-RU', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-      });
-      item.orderDate = formattedDate;
+      const dateNow = getDate();
+      item.orderDate = dateNow;
       const { giftCard, ...itemWithoutGiftCard } = item;
       itemWithoutGiftCard.giftCardId = giftCard?.id;
       itemWithoutGiftCard.name = giftCard?.name;
-      itemWithoutGiftCard.orderDate = formattedDate;
+      itemWithoutGiftCard.orderDate = dateNow;
       return fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -65,5 +61,18 @@ export const postOrder = async (orderData: CartItemType[]) => {
     throw error;
   }
 };
+
+export const updateBalance = async (orderId: string, balance: string, dateNow: string) => {
+  await fetch(`${API_URL}/${orderId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      balance: balance,
+      redeemDate: dateNow
+    })
+  });
+}
 
 

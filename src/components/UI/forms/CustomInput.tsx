@@ -1,5 +1,5 @@
 import { View, TextInput, StyleSheet, Platform, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { maskPhone, maskCurrency, maskVisaCard, maskExpDate, maskName } from '../../../utils/masks'
 import { Colors } from '@/styles/constants'
 
@@ -13,6 +13,7 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
   const [touched, setTouched] = useState(false);
   const [validation, setValidation] = useState<validationProp>({isValid: true, error: ''})
   const [borderColor, setBorderColor] = useState(Colors.secondary200);
+  const textInputRef = useRef<TextInput>(null);
 
   useEffect(() => {
     onChange(value)
@@ -85,10 +86,17 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
     setBorderColor(Colors.primary500);
   }
 
+  const clear = () => {
+    if (textInputRef.current) {
+      textInputRef.current.clear();
+    }
+  };
+
   return (
     <View style={{width: '100%'}}>
       <View style={[styles.container]}>
         <TextInput
+          ref={textInputRef}
           style={[style, { borderColor: borderColor }, !validation.isValid && touched ? { borderColor: 'red' } : {}, textarea ? styles.textarea : styles.input, prefix ? { paddingLeft: 40 } : {} ]}
           value={value}
           placeholderTextColor="#FFA07A"

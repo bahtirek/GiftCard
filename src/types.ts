@@ -95,6 +95,8 @@ export type CartItemType = {
   orderDate?: string,
   name?: string,
   image?: string,
+  balance?: string,
+  redeemDate?: string
 }
 
 export type PaymentType = {

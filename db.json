@@ -37,7 +37,9 @@
       "name": "Namangan Garden House",
       "image": "https://picsum.photos/seed/restaurant6/400/300",
       "orderDate": "28.02.2026",
-      "giftCardId": 6
+      "giftCardId": 6,
+      "balance": "0",
+      "redeemDate": "08.03.2026, 15:11"
     },
     {
       "id": "4f51c15d-6247-4ac3-9c83-334cc11b54d4",
