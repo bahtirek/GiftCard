@@ -316,6 +316,9 @@ export const mt = StyleSheet.create({
   xxl: {
     marginTop: 48,
   },
+  auto: {
+    marginTop: 'auto'
+  }
 })
 export const mb = StyleSheet.create({
   xs: {
