@@ -65,11 +65,10 @@ export const fetchItems = async (query: string, page: number, city: string) => {
 
 export const fetchAllItems = async (page: number, city: string) => {
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=${page}&_limit=20&address.city=${city}`
+    `http://localhost:3000/restaurants?_page=${page}&_limit=20`
   );
 
   const data = await res.json();
-
   const hasNextPage =
     res.headers.get('x-total-count') !== null &&
     page * 20 < Number(res.headers.get('x-total-count'));
@@ -86,7 +85,7 @@ export const fetchTenItems = async (limit = 20, city='Tashkent') => {
     `http://10.0.2.2:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
   ); */
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
+    `http://localhost:3000/restaurants?_page=1&_limit=${limit}`
   );
 
   const data: GiftCardType[] = await res.json();
