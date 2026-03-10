@@ -41,10 +41,6 @@ export const verifyPinByPhone = async (phone: string) => {
   return {profile};
 }
 
-
-
-
-
 export const fetchProfileByPhone = async (phone: string) => {
   const res = await fetch(
     `${BASE_URL}?phone=${phone}`
@@ -65,12 +61,4 @@ export const updateProfile = async (profileData: ProfileType) => {
   return response.json();
 };
 
-/* export const updateRestaurantPatch = async (id, data) => {
-  const response = await fetch(`${BASE_URL}/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
 
-  return response.json();
-}; */
