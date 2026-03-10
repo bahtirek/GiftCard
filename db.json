@@ -89,7 +89,9 @@
       "phone": "(45)674-5671",
       "firstName": "Sdfgsdfg",
       "lastName": "Sdfgsdfgs",
-      "nameUpdatedSkiped": true
+      "nameUpdatedSkiped": true,
+      "role": "owner",
+      "accounts": [1, 7]
     }
   ],
   "restaurants": [

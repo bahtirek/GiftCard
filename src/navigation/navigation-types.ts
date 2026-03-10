@@ -34,9 +34,17 @@ export type AccountStackParamList = {
   ProfileScreen: undefined;
   OrdersScreen: undefined;
   OrderDetailsScreen: { orderId: string };
-  DashboardScreen: undefined;
+  DashboardScreen: NavigatorScreenParams<DashboardStackParamList>;
   AccountScreen: undefined;
   RedeemScreen: undefined;
+};
+
+export type DashboardStackParamList = {
+  DashboardScreen: undefined;
+  DashboardListScreen: undefined;
+  DashboardPurchasedScreen: undefined;
+  DashboardRedeemedScreen: undefined;
+  DashboardAccountDetailsScreen: undefined;
 };
 
 // Define the props for screens in the main stack navigator

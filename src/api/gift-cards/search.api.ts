@@ -46,9 +46,11 @@ type ApiResponse = {
   };
 }; */
 
+const BASE_URL = 'http://localhost:3000/restaurants';
+
 export const fetchItems = async (query: string, page: number, city: string) => {
   const res = await fetch(
-    `http://localhost:3000/restaurants?name_like=${query}&_page=${page}&_limit=20&address.city=${city}`
+    `${BASE_URL}?name_like=${query}&_page=${page}&_limit=20&address.city=${city}`
   );
 
   const data = await res.json();
@@ -65,7 +67,7 @@ export const fetchItems = async (query: string, page: number, city: string) => {
 
 export const fetchAllItems = async (page: number, city: string) => {
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=${page}&_limit=20`
+    `${BASE_URL}?_page=${page}&_limit=20`
   );
 
   const data = await res.json();
@@ -85,7 +87,7 @@ export const fetchTenItems = async (limit = 20, city='Tashkent') => {
     `http://10.0.2.2:3000/restaurants?_page=1&address.city=${city}&_limit=${limit}`
   ); */
   const res = await fetch(
-    `http://localhost:3000/restaurants?_page=1&_limit=${limit}`
+    `${BASE_URL}?_page=1&_limit=${limit}`
   );
 
   const data: GiftCardType[] = await res.json();
@@ -94,3 +96,23 @@ export const fetchTenItems = async (limit = 20, city='Tashkent') => {
 
   return {items: data};
 };
+
+
+export const fetchAccounts = async(accountIds: number[], page: number) => {
+  const query = accountIds.map(id => `id=${id}`).join("&");
+
+  const res = await fetch(
+    `${BASE_URL}?${query}`
+  );
+
+  const data = await res.json();
+
+  const hasNextPage =
+    res.headers.get('x-total-count') !== null &&
+    page * 20 < Number(res.headers.get('x-total-count'));
+
+  return {
+    accounts: data,
+    nextPage: hasNextPage ? page + 1 : null,
+  };
+}

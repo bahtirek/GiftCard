@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { profileStorage } from '@/services/profile.storage';
 import { useEffect, useState } from 'react';
 import { useProfileStore } from './stores/profile.store';
+import { fetchProfileByPhone } from './api/profile/verify-profile.api';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,8 +41,14 @@ export default function App() {
     const profile = await profileStorage.getProfile();
     //clearProfileFromStorage()
     if(profile !== null && profile.profile !== null) {
-      setProfile(profile.profile)
+      setProfile(profile.profile);
+      refreshProfile(profile.profile.phone)
     } 
+  }
+
+  const refreshProfile = async(phone: string) => {
+    const profile = await fetchProfileByPhone(phone);
+    setProfile(profile.profile);
   }
 
   const clearProfileFromStorage = async() => {
