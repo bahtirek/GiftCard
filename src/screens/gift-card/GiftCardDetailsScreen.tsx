@@ -1,24 +1,44 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomButton from '@/components/UI/buttons/CustomButton';
-import { useGiftCardsStore } from '@/stores/giftCard.store';
 import { useNavigation, Link } from '@react-navigation/native';
 import {commonStyles, pb, text} from '@/styles/styles';
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types';
+import { fetchGiftCardById } from '@/api/gift-cards/search.api';
+import { GiftCardType } from '@/types';
 
-const CardDetailsScreen = () => {
-  const giftCard = useGiftCardsStore(state => state.giftCard);
-  const navigation = useNavigation();
+type Props = NativeStackScreenProps<GiftCardsStackParamList, 'GiftCardDetails'>;
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
+const CardDetailsScreen = ({route}: Props) => {
+  const [giftCard, setGiftCard] = useState<GiftCardType>()
+  const navigation = useNavigation<NavigationProp>();
+  const { giftCardProp } = route.params;
+  
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: giftCard?.name
+      title: giftCardProp?.name
     });
-  }, [navigation, giftCard])
+  }, [navigation, giftCardProp])
 
-  const handlePurchase = () => {
-    console.log('Purchase gift card:', giftCard?.id);
-    navigation.navigate('Purchase' as never);
+
+  useEffect(() => {
+    fetchGiftCardDetails();
+  }, [])
+  
+  const fetchGiftCardDetails = async() => {
+    setGiftCard(giftCardProp)
+    const giftCardData = await fetchGiftCardById(giftCardProp?.id.toString());
+    if (giftCardData.data.id) setGiftCard(giftCardData.data)
+  }
+
+  const handlePurchase = (giftCardProp: GiftCardType) => {
+    navigation.navigate('GiftCardsNavigation', {
+      screen: 'Purchase',
+      params: { giftCardProp }
+    });
   }
 
   return (
@@ -44,7 +64,7 @@ const CardDetailsScreen = () => {
               </View>
               
               <View style={pb.sm}>
-                <CustomButton label='Purchase' handlePress={()=>{handlePurchase()}} />
+                <CustomButton label='Purchase' handlePress={()=>{handlePurchase(giftCard!)}} />
               </View>
             </View>
           </View>

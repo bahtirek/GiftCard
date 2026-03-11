@@ -11,6 +11,7 @@ import { RootStackParamList } from '@/navigation/navigation-types';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTenItems } from '@/api/gift-cards/search.api';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
+import { GiftCardType } from '@/types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
 
@@ -32,10 +33,10 @@ export default function HomeScreen() {
     navigation.navigate('GiftCardsNavigation' as never );
   }
 
-  const goToCardDetailsScreen = (giftCardId: string) => {
+  const goToCardDetailsScreen = (giftCardProp: GiftCardType) => {
     navigation.navigate('GiftCardsNavigation', {
       screen: 'GiftCardDetails',
-      params: { giftCardId }
+      params: { giftCardProp }
     });
   }
   
@@ -52,7 +53,7 @@ export default function HomeScreen() {
         data={data?.items}
         keyExtractor={(item) => item.id ? String(item.id) : Math.random().toString()}
         renderItem={({item}) => (
-          <GiftCard giftCard={item} customeStyle={styles.giftCard} goToCardDetailsScreen={goToCardDetailsScreen} />
+          <GiftCard giftCard={item} customeStyle={styles.giftCard} onPress={goToCardDetailsScreen} />
         )}
         ListHeaderComponent={() => (
           <View>

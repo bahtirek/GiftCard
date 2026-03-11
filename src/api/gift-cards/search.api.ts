@@ -116,3 +116,15 @@ export const fetchAccounts = async(accountIds: number[], page: number) => {
     nextPage: hasNextPage ? page + 1 : null,
   };
 }
+
+export const fetchGiftCardById = async (id: string) => {
+  const res = await fetch(
+    `${BASE_URL}?id=${id}`
+  );
+
+  const data: GiftCardType[] = await res.json();
+
+  return {
+    data: data[0]
+  };
+}

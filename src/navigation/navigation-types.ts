@@ -1,7 +1,5 @@
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { NavigatorScreenParams } from "@react-navigation/native";
-import { CartItemType } from "@/types";
+import { CartItemType, GiftCardType } from "@/types";
 
 // Define the parameters for the Cart stack navigator
 export type CartStackParamList = {
@@ -11,8 +9,8 @@ export type CartStackParamList = {
 
 export type GiftCardsStackParamList = {
   AllGiftCards: { search: string };
-  GiftCardDetails: { giftCardId: string };
-  Purchase: undefined
+  GiftCardDetails: { giftCardProp: GiftCardType };
+  Purchase: { giftCardProp: GiftCardType };
 };
 
 export type OrdersStackParamList = {
@@ -23,7 +21,7 @@ export type OrdersStackParamList = {
 // Define the parameters for the main stack navigator
 export type RootStackParamList = {
   MainTabsView: NavigatorScreenParams<MainTabParamList>;
-  GiftCardDetails: { giftCardId: string };
+  GiftCardDetails: { giftCardProp: GiftCardType };
   Settings: undefined;
   Payment: undefined;
   GiftCardsNavigation: NavigatorScreenParams<GiftCardsStackParamList>;
