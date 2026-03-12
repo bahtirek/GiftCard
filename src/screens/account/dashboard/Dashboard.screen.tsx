@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { commonStyles, flex, mb, pt, text } from '@/styles/styles'
+import { StyleSheet} from 'react-native'
+import React, { useEffect} from 'react'
+import { flex, pt} from '@/styles/styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
-import ListItem from '@/components/common/ListItem'
 import { useProfileStore } from '@/stores/profile.store'
-import { fetchAccounts } from '@/api/gift-cards/search.api'
 import GiftCardList from '@/components/GiftCard/GiftCardList'
 import { GiftCardType } from '@/types'
 import { useAccountsQuery } from '@/api/gift-cards/search.query'
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
+import { AccountStackParamList, MainTabParamList} from '@/navigation/navigation-types'
+
+type Props = NativeStackScreenProps<AccountStackParamList, 'DashboardScreen'>;
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'AccountNavigation'>;
 
 const DashboardScreen = () => {
-  const navigation = useNavigation();
-  //const [accounts, setAccounts] = useState<GiftCardType[]>([]);
+  const navigation = useNavigation<NavigationProp>();
   const {profile} = useProfileStore();
 
     const {
@@ -28,19 +30,14 @@ const DashboardScreen = () => {
     const accounts: GiftCardType[] = data?.pages.flatMap((page) => page.accounts) ?? [];
 
   useEffect(() => {
-    //getAccounts()
+
   }, [])
-  
-/*   const getAccounts = async() => {
-    if(profile.accounts && profile.accounts.length > 1) {
-      const accounts = await fetchAccounts(profile.accounts);
-      console.log(accounts);
-      setAccounts(accounts)
-    }
-  } */
- 
-  const goToScreen = (path: string) => {
-    navigation.navigate(path as never)
+
+  const onPress = (giftCardProp: GiftCardType) => {
+    navigation.navigate('AccountNavigation', {
+      screen: 'DashboardAccountDetailsScreen',
+      params: { giftCardProp }
+    });
   }
 
   return (
@@ -52,7 +49,7 @@ const DashboardScreen = () => {
           hasNextPage={!!hasNextPage}
           onLoadMore={fetchNextPage}
           onRefresh={refetch}
-          onScroll={() => {}}
+          onPress={onPress}
         />
     </SafeAreaView>
   )

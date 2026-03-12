@@ -1,10 +1,15 @@
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { CartItemType, GiftCardType } from "@/types";
 
-// Define the parameters for the Cart stack navigator
-export type CartStackParamList = {
-  CartScreen: undefined;
-  EditCartItem: { cartItem: CartItemType };
+export type RootStackParamList = {
+  MainTabsView: NavigatorScreenParams<MainTabParamList>;
+};
+
+export type MainTabParamList = {
+  Home: undefined;
+  GiftCardsNavigation: NavigatorScreenParams<GiftCardsStackParamList>;
+  CartNavigation: NavigatorScreenParams<CartStackParamList>;
+  AccountNavigation: NavigatorScreenParams<AccountStackParamList>;
 };
 
 export type GiftCardsStackParamList = {
@@ -13,49 +18,21 @@ export type GiftCardsStackParamList = {
   Purchase: { giftCardProp: GiftCardType };
 };
 
-export type OrdersStackParamList = {
-  AllOrders: { search: string };
-  OrderDetails: { orderId: string };
-};
-
-// Define the parameters for the main stack navigator
-export type RootStackParamList = {
-  MainTabsView: NavigatorScreenParams<MainTabParamList>;
-  GiftCardDetails: { giftCardProp: GiftCardType };
-  Settings: undefined;
-  Payment: undefined;
-  GiftCardsNavigation: NavigatorScreenParams<GiftCardsStackParamList>;
-  AccountNavigation: NavigatorScreenParams<AccountStackParamList>;
+export type CartStackParamList = {
+  CartScreen: undefined;
+  EditCartItem: { cartItem: CartItemType };
 };
 
 export type AccountStackParamList = {
   ProfileScreen: undefined;
   OrdersScreen: undefined;
   OrderDetailsScreen: { orderId: string };
-  DashboardScreen: NavigatorScreenParams<DashboardStackParamList>;
   AccountScreen: undefined;
   RedeemScreen: undefined;
-};
-
-export type DashboardStackParamList = {
+  
   DashboardScreen: undefined;
   DashboardListScreen: undefined;
   DashboardPurchasedScreen: undefined;
   DashboardRedeemedScreen: undefined;
-  DashboardAccountDetailsScreen: undefined;
-};
-
-// Define the props for screens in the main stack navigator
-/* export type RootStackScreenProps<T extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, T>; */
-
-// Define the props for screens in the main tab navigator
-/* export type MainTabScreenProps<T extends keyof MainTabParamList> =
-  BottomTabScreenProps<MainTabParamList, T>; */
-
-// Define the parameters for the main tab navigator
-export type MainTabParamList = {
-  Home: undefined;
-  Cart: NavigatorScreenParams<CartStackParamList>;
-  Profile: undefined;
+  DashboardAccountDetailsScreen: { giftCardProp: GiftCardType };
 };

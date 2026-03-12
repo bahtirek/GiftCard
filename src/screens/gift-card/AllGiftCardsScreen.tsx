@@ -5,7 +5,7 @@ import { useIsFocused, useNavigation } from '@react-navigation/native'
 import SearchInput from '@/components/search/SearchInput'
 import { Colors } from '@/styles/constants'
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
-import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types'
+import { GiftCardsStackParamList, MainTabParamList, RootStackParamList } from '@/navigation/navigation-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GiftCardList from '@/components/GiftCard/GiftCardList';
 import { useSearchStore } from '@/stores/search.store'
@@ -14,7 +14,7 @@ import { useSearchQuery } from '@/api/gift-cards/search.query'
 import { useLocationStore } from '@/stores/location.store'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
 
 const AllCardsScreen = ({ route }: Props) => {
   const isFocused = useIsFocused();

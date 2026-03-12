@@ -79,6 +79,19 @@
       "image": "https://picsum.photos/seed/restaurant3/400/300",
       "orderDate": "28.02.2026",
       "giftCardId": 3
+    },
+    {
+      "id": "ec51ac60-31e9-436c-a6f9-d6f16d9a51c7",
+      "quantity": 1,
+      "amount": "200 000",
+      "email": "",
+      "phone": "(56)456-4564",
+      "note": "",
+      "otherAmount": "",
+      "name": "Chorsu Grill House",
+      "image": "https://picsum.photos/seed/restaurant4/400/300",
+      "orderDate": "10.03.2026, 23:14",
+      "giftCardId": 4
     }
   ],
   "profile": [
@@ -91,7 +104,10 @@
       "lastName": "Sdfgsdfgs",
       "nameUpdatedSkiped": true,
       "role": "owner",
-      "accounts": [1, 7]
+      "accounts": [
+        1,
+        7
+      ]
     }
   ],
   "restaurants": [
