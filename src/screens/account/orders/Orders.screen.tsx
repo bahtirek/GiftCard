@@ -6,9 +6,9 @@ import { useNavigation } from '@react-navigation/native'
 import { useOrdersQuery } from '@/api/orders/orders.query'
 import { CartItemType } from '@/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParamList } from '@/navigation/navigation-types'
+import { MainTabParamList } from '@/navigation/navigation-types'
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'AccountNavigation'>;
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'AccountNavigation'>;
 
 const OrdersScreen = () => {
   const navigation = useNavigation<NavigationProp>();

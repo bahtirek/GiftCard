@@ -5,12 +5,12 @@ import CustomButton from '@/components/UI/buttons/CustomButton';
 import { useNavigation, Link } from '@react-navigation/native';
 import {commonStyles, pb, text} from '@/styles/styles';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { GiftCardsStackParamList, RootStackParamList } from '@/navigation/navigation-types';
+import { GiftCardsStackParamList, MainTabParamList } from '@/navigation/navigation-types';
 import { fetchGiftCardById } from '@/api/gift-cards/search.api';
 import { GiftCardType } from '@/types';
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'GiftCardDetails'>;
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
 
 const CardDetailsScreen = ({route}: Props) => {
   const [giftCard, setGiftCard] = useState<GiftCardType>()

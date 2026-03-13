@@ -7,13 +7,13 @@ import CategoryList from '@/components/category/CategoryList';
 import { Colors } from '@/styles/constants';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/navigation/navigation-types';
+import { MainTabParamList, RootStackParamList } from '@/navigation/navigation-types';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTenItems } from '@/api/gift-cards/search.api';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 import { GiftCardType } from '@/types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'GiftCardsNavigation'>;
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
 
 export default function HomeScreen() {
   const navigation = useNavigation<NavigationProp>();
