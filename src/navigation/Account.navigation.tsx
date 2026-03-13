@@ -11,6 +11,7 @@ import DashboardListScreen from '@/screens/account/dashboard/DashboardList.scree
 import DashboardPurchasedScreen from '@/screens/account/dashboard/DashboardPurchased.screen';
 import DashboardRedeemedScreen from '@/screens/account/dashboard/DashboardRedeemed.screen';
 import DashboardAccountDetailsScreen from '@/screens/account/dashboard/DashboardAccountDetails.screen';
+import DashboardAccountsListScreen from '@/screens/account/dashboard/DashboardAccountsListScreen';
 
 const Stack = createNativeStackNavigator<AccountStackParamList>();
 
@@ -45,6 +46,11 @@ const AccountNavigation = () => {
       <Stack.Screen name='DashboardScreen' component={DashboardScreen} options={{
         title: 'Accounts',
         headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='DashboardAccountsListScreen' component={DashboardAccountsListScreen} options={{
+        title: 'Accounts',
+        headerBackTitle: 'Back',
+        presentation: 'modal',
       }} />
       <Stack.Screen name='DashboardListScreen' component={ DashboardListScreen } options={{
         title: 'Dashboard',

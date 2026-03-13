@@ -31,6 +31,7 @@ export type AccountStackParamList = {
   RedeemScreen: undefined;
   
   DashboardScreen: undefined;
+  DashboardAccountsListScreen: undefined;
   DashboardListScreen: undefined;
   DashboardPurchasedScreen: undefined;
   DashboardRedeemedScreen: undefined;

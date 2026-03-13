@@ -1,10 +1,12 @@
-import { ProfileType } from "@/types";
+import { GiftCardType, ProfileType } from "@/types";
 import { create } from "zustand";
 
 type ProfileStoreType = {
   profile: ProfileType;
+  account: GiftCardType | undefined;
   tempProfile: ProfileType;
   setProfile: (profile: ProfileType) => void;
+  setAccount: (account: GiftCardType) => void;
   setTempProfile: (profile: ProfileType) => void;
   updateProfile: (profile: ProfileType) => void;
   getProfile: () => ProfileType
@@ -13,10 +15,15 @@ type ProfileStoreType = {
 
 export const useProfileStore = create<ProfileStoreType>((set, get) => ({
   profile: {isRegistered: false},
+  account: undefined,
   tempProfile: {isRegistered: false},
 
   setProfile: (profile) => {
     set({ profile: profile });
+  },
+
+  setAccount: (account: GiftCardType) => {
+    set({account: account})
   },
 
   updateProfile: (profile) => {
