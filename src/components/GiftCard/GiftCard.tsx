@@ -1,23 +1,20 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet, Platform } from 'react-native'
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react';
 import { GiftCardType } from '@/types';
 import { Colors, Font } from '@/styles/constants';
-import { useGiftCardsStore } from '@/stores/giftCard.store';
 import { commonStyles } from '@/styles/styles';
 
 type GiftCardPropType = {
   giftCard: GiftCardType,
   showDescription?: boolean,
   customeStyle?: object,
-  goToCardDetailsScreen?: (id: string) => void
+  onPress?: (giftCard: GiftCardType) => void
 }
 
 
-const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: GiftCardPropType, ) => {
-  const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
+const GiftCard = ({ giftCard, showDescription = true, onPress}: GiftCardPropType, ) => {  
   const handlePress = () => {
-    setGiftCard(giftCard);
-    goToCardDetailsScreen?.(giftCard.id!.toString());
+    onPress?.(giftCard);
   }
   return (
     <View style={[styles.container]}>
@@ -28,11 +25,13 @@ const GiftCard = ({ giftCard, showDescription = true, goToCardDetailsScreen}: Gi
       >
         <View style={[styles.card]}>
           <View style={[styles.imageContainer, commonStyles.shadow]}>
-            <Image 
-              source={{uri: giftCard.image}}
-              style={[styles.image]}
-              resizeMode='cover'
-            />
+            { giftCard.images &&
+              <Image 
+                source={{uri: giftCard?.images[0]}}
+                style={[styles.image]}
+                resizeMode='cover'
+              />
+            }
           </View>
           <View style={[styles.detailsContainer]}>
             <Text style={[styles.name]} numberOfLines={1}>{giftCard.name}</Text>

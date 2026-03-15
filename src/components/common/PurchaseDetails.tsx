@@ -1,45 +1,55 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { CartItemType, InputValueType } from '@/types';
-import { useGiftCardsStore } from '@/stores/giftCard.store';
+import { CartItemType, GiftCardType, InputValueType } from '@/types';
 import { useCartStore } from '@/stores/cart.store';
 import { validateAmount, validateEmail, validateLength } from '@/utils/input-validation';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import RadioButton from '@/components/UI/forms/RadioButton';
 import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
-import { useNavigation } from '@react-navigation/native';
 import { mb, mt, pb, text } from '@/styles/styles';
+import { fetchGiftCardById } from '@/api/gift-cards/search.api';
+import { useProfileStore } from '@/stores/profile.store';
 
 type PurchaseDetailsProps = {
   handleButtonPress: () => void;
   buttonLabel: string;
   cartItemToEdit?: CartItemType
+  giftCardProp?: GiftCardType
 }
 
-const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit }: PurchaseDetailsProps) => {
-  const navigation = useNavigation();
-  const giftCard = useGiftCardsStore(state => state.giftCard);
-  const setGiftCard = useGiftCardsStore(state => state.setGiftCard);
-  //const cartItemToEdit = useCartStore(state => state.cartItemToEdit);
+const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftCardProp }: PurchaseDetailsProps) => {
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
   const addItem = useCartStore(state => state.addItem);
+  const [giftCard, setGiftCard] = useState<GiftCardType>();
+  const {profile} = useProfileStore();
 
   useEffect(() => {
-    if(cartItemToEdit?.id) {
-      if(cartItemToEdit.otherAmount) {
-        setOtherAmount({value: cartItemToEdit.otherAmount});
-        setSelectedAmount('other');
-      } else {
-        setSelectedAmount(cartItemToEdit.amount!);
-      }
-      if(cartItemToEdit.email) setEmail({value: cartItemToEdit.email});
-      if(cartItemToEdit.phone) setPhone({value: cartItemToEdit.phone});
-      if(cartItemToEdit.note) setNote({value: cartItemToEdit.note});
-    } else {
-      resetForm()
-    }
+    setupEditing()
   }, [])
+
+  const setupEditing = async() => {
+    resetForm()
+    if(cartItemToEdit?.id) {
+      const giftCardData = await fetchGiftCardById(cartItemToEdit.giftCard!.id.toString());     
+      if (giftCardData.data.id) setGiftCard(giftCardData.data)
+      presetInputFields(cartItemToEdit)
+    } else {
+      setGiftCard(giftCardProp)
+    }
+  }
+
+  const presetInputFields = (cartItemToEdit: CartItemType) => {
+    if(cartItemToEdit.otherAmount) {
+      setOtherAmount({value: cartItemToEdit.otherAmount});
+      setSelectedAmount('other');
+    } else {
+      setSelectedAmount(cartItemToEdit.amount!);
+    }
+    if(cartItemToEdit.email) setEmail({value: cartItemToEdit.email});
+    if(cartItemToEdit.phone) setPhone({value: cartItemToEdit.phone});
+    if(cartItemToEdit.note) setNote({value: cartItemToEdit.note});
+  }
+
   const [selectedAmount, setSelectedAmount] = useState('');
   const [otherAmount, setOtherAmount] = useState<InputValueType>({value: '', isValid: true});
   const [quantity, setQuantity] = useState(1);
@@ -95,7 +105,19 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit }: Pur
     ) {
       const id = cartItemToEdit?.id ? cartItemToEdit.id : '';
 
-      addItem({id: id, quantity: quantity, amount: amount, name: giftCard!.name, image: giftCard!.image, giftCard: giftCard!, email: email.value, phone: phone.value, note: note.value, otherAmount: otherAmount.value});
+      addItem({
+        id: id, 
+        quantity: quantity, 
+        amount: amount, 
+        name: giftCard!.name, 
+        image: giftCard!.images[0] || '', 
+        giftCard: giftCard!, 
+        email: email.value, 
+        phone: phone.value, 
+        note: note.value, 
+        otherAmount: otherAmount.value, 
+        userId: profile.id});
+
       addItemToEdit({});
       resetForm();
       handleButtonPress();

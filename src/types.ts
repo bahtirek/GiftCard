@@ -38,7 +38,7 @@ export type GiftCardType2 = {
 export type GiftCardType = {
   id: number,
   name: string,
-  image: string,
+  images: string[],
   description: string,
   phone: string,
   website?: string,
@@ -96,7 +96,8 @@ export type CartItemType = {
   name?: string,
   image?: string,
   balance?: string,
-  redeemDate?: string
+  redeemDate?: string,
+  userId?: number 
 }
 
 export type PaymentType = {
@@ -118,7 +119,7 @@ export type InputValueType = {
 
 export type ProfileType = {
   isRegistered: boolean
-  id?: string,
+  id?: number,
   phone?: string
   firstName?: string,
   lastName?: string,
@@ -126,5 +127,7 @@ export type ProfileType = {
   timestamp?: number,
   pin?: string,
   nameUpdatedSkiped?: boolean,
-  tempPhone?: string
+  tempPhone?: string,
+  role?: string,
+  accounts?: number[]
 }

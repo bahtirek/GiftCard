@@ -4,8 +4,8 @@ import MainView from '@/components/common/MainView'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
 import SearchInput from '@/components/search/SearchInput'
 import { Colors } from '@/styles/constants'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { GiftCardsStackParamList } from '@/navigation/navigation-types'
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
+import { GiftCardsStackParamList, MainTabParamList } from '@/navigation/navigation-types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GiftCardList from '@/components/GiftCard/GiftCardList';
 import { useSearchStore } from '@/stores/search.store'
@@ -14,6 +14,7 @@ import { useSearchQuery } from '@/api/gift-cards/search.query'
 import { useLocationStore } from '@/stores/location.store'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
 
 const AllCardsScreen = ({ route }: Props) => {
   const isFocused = useIsFocused();
@@ -23,7 +24,7 @@ const AllCardsScreen = ({ route }: Props) => {
   const [ city, setCity ] = useState('')
   const { search } = route.params || {};
   const [showSearchInput, setShowSearchInput] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
   const insets = useSafeAreaInsets();
   const {
     data,
@@ -79,6 +80,13 @@ const AllCardsScreen = ({ route }: Props) => {
     )
   }
 
+  const onPress = (giftCardProp: GiftCardType) => {
+    navigation.navigate('GiftCardsNavigation', {
+      screen: 'GiftCardDetails',
+      params: { giftCardProp }
+    });
+  }
+
   return (
     <MainView>
       {isLoading && <ActivityIndicator />}
@@ -91,6 +99,7 @@ const AllCardsScreen = ({ route }: Props) => {
           onLoadMore={fetchNextPage}
           onRefresh={refetch}
           onScroll={onScroll}
+          onPress={onPress}
         />
       </View>
     </MainView>

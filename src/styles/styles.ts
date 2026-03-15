@@ -2,6 +2,11 @@ import { StyleSheet, Platform } from 'react-native'
 import { Colors } from './constants'
 
 export const commonStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 24
+  },
   shadow: {
     shadowRadius: 16,
     elevation: 5,

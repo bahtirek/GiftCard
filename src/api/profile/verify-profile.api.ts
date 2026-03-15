@@ -6,7 +6,7 @@ type ApiResponse = {
   
 };
 
-const BASE_URL = "http://localhost:3000/profile";
+const BASE_URL = "https://gift-card.evendor.app/profile";
 
 export const postProfile = async (profileData: ProfileType) => {
   profileData.pin = '123456'  
@@ -41,10 +41,6 @@ export const verifyPinByPhone = async (phone: string) => {
   return {profile};
 }
 
-
-
-
-
 export const fetchProfileByPhone = async (phone: string) => {
   const res = await fetch(
     `${BASE_URL}?phone=${phone}`
@@ -65,12 +61,4 @@ export const updateProfile = async (profileData: ProfileType) => {
   return response.json();
 };
 
-/* export const updateRestaurantPatch = async (id, data) => {
-  const response = await fetch(`${BASE_URL}/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
 
-  return response.json();
-}; */

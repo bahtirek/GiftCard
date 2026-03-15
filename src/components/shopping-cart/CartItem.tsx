@@ -20,7 +20,7 @@ type CartItemPropType = {
 }
 
 const CartItem = ({ cartItem }: CartItemPropType) => {
-  const {amount, phone, email, giftCard, note, orderDate, name, image} = cartItem;
+  const {amount, phone, email, note, orderDate, name, image} = cartItem;
   const navigation = useNavigation<NavigationProp>();
 
   const addItemToEdit = useCartStore(state => state.addItemToEdit);

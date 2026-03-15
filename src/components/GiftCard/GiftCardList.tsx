@@ -11,21 +11,22 @@ type GiftCardListProp = {
   loading: boolean;
   refreshing: boolean;
   hasNextPage: boolean;
-  onScroll: (isOutOfView: boolean) => void,
+  onScroll?: (isOutOfView: boolean) => void,
   onLoadMore: () => void;
   onRefresh: () => void;
+  onPress: (giftCard: GiftCardType) => void
 }
 
-const GiftCardList = ({onScroll, items, loading, refreshing, hasNextPage, onLoadMore, onRefresh,}: GiftCardListProp) => {
+const GiftCardList = ({onScroll, items, loading, refreshing, hasNextPage, onLoadMore, onRefresh, onPress}: GiftCardListProp) => {
   const navigation = useNavigation();
   
-  const goToCardDetailsScreen = (giftCardId: string) => {
-    navigation.navigate('GiftCardDetails' as never);
+  const goToCardDetailsScreen = (giftCard: GiftCardType) => {
+    onPress(giftCard)
   }
   
   const handleScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
-    onScroll(offsetY > 65)
+    if(onScroll) onScroll(offsetY > 65)
   };
 
   return (
@@ -34,7 +35,7 @@ const GiftCardList = ({onScroll, items, loading, refreshing, hasNextPage, onLoad
       keyExtractor={(item) => item.id!.toString()}
       renderItem={({ item }) => (
         <View>
-         <GiftCard giftCard={item} showDescription goToCardDetailsScreen={goToCardDetailsScreen} />
+         <GiftCard giftCard={item} showDescription onPress={onPress} />
         </View>
       )}
       onEndReached={() => {

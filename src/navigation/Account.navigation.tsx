@@ -7,10 +7,15 @@ import DashboardScreen from '@/screens/account/dashboard/Dashboard.screen';
 import AccountScreen from '@/screens/account/Account.screen';
 import OrderDetailsScreen from '@/screens/account/orders/OrderDetails.screen';
 import { AccountStackParamList } from './navigation-types';
+import DashboardListScreen from '@/screens/account/dashboard/DashboardList.screen';
+import DashboardPurchasedScreen from '@/screens/account/dashboard/DashboardPurchased.screen';
+import DashboardRedeemedScreen from '@/screens/account/dashboard/DashboardRedeemed.screen';
+import DashboardAccountDetailsScreen from '@/screens/account/dashboard/DashboardAccountDetails.screen';
+import DashboardAccountsListScreen from '@/screens/account/dashboard/DashboardAccountsListScreen';
 
 const Stack = createNativeStackNavigator<AccountStackParamList>();
 
-const ProfileNavigation = () => {
+const AccountNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: { backgroundColor: 'white'},
@@ -38,11 +43,33 @@ const ProfileNavigation = () => {
         title: 'Redeem',
         headerBackTitle: 'Back',
       }} />
-      <Stack.Screen name='DashboardScreen' component={ DashboardScreen } options={{
+      <Stack.Screen name='DashboardScreen' component={DashboardScreen} options={{
+        title: 'Accounts',
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='DashboardAccountsListScreen' component={DashboardAccountsListScreen} options={{
+        title: 'Accounts',
+        headerBackTitle: 'Back',
+        presentation: 'modal',
+      }} />
+      <Stack.Screen name='DashboardListScreen' component={ DashboardListScreen } options={{
+        title: 'Dashboard',
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='DashboardPurchasedScreen' component={ DashboardPurchasedScreen } options={{
+        title: 'Purchased',
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='DashboardRedeemedScreen' component={ DashboardRedeemedScreen } options={{
+        title: 'Redeemed',
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='DashboardAccountDetailsScreen' component={ DashboardAccountDetailsScreen } options={{
+        title: 'AccountDetails',
         headerBackTitle: 'Back',
       }} />
     </Stack.Navigator>
   )
 }
 
-export default ProfileNavigation;
+export default AccountNavigation;

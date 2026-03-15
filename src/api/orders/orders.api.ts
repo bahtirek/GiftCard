@@ -6,7 +6,7 @@ export type Item = {
   name: string;
 };
 
-const API_URL = 'http://localhost:3000/orders';
+const API_URL = 'https://gift-card.evendor.app/orders';
 
 export const fetchOrderById = async (orderId: string) => {
   const res = await fetch(

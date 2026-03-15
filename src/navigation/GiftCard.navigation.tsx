@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllCardsScreen from '@/screens/gift-card/AllGiftCardsScreen';
 import GiftCardDetailsScreen from '@/screens/gift-card/GiftCardDetailsScreen';
 import PurchaseScreen from '@/screens/gift-card/PurchaseScreen';
-import { GiftCardsStackParamList, RootStackParamList } from './navigation-types';
+import { GiftCardsStackParamList } from './navigation-types';
 
 const Stack = createNativeStackNavigator<GiftCardsStackParamList>();
 

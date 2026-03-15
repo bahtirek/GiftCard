@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchItems, fetchAllItems } from '@/api/gift-cards/search.api';
+import { fetchItems, fetchAllItems, fetchAccounts } from '@/api/gift-cards/search.api';
 import { GiftCardType } from '@/types';
 
 type FetchItemsResult = {
@@ -10,6 +10,11 @@ type FetchItemsResult = {
 type searchQueryType = {
   query: string,
   city: string
+}
+
+type FetchAccountsResult = {
+  accounts: GiftCardType[],
+  nextPage?: number | null
 }
 
 export const useSearchQuery = ({query, city}: searchQueryType  ) => {
@@ -29,3 +34,14 @@ export const useSearchQuery = ({query, city}: searchQueryType  ) => {
   });
 }
 
+export const useAccountsQuery = (accountIds: number[]) => {
+  return useInfiniteQuery({
+    queryKey: ['items', accountIds],
+    queryFn: ({pageParam }) => {
+      return fetchAccounts(accountIds, pageParam)
+    },
+    getNextPageParam: (lastPage: FetchAccountsResult) => lastPage.nextPage,
+    enabled: !!accountIds.length,
+    initialPageParam: 1,
+  })
+}
