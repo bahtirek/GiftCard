@@ -96,7 +96,8 @@ export type CartItemType = {
   name?: string,
   image?: string,
   balance?: string,
-  redeemDate?: string
+  redeemDate?: string,
+  userId?: number 
 }
 
 export type PaymentType = {
@@ -118,7 +119,7 @@ export type InputValueType = {
 
 export type ProfileType = {
   isRegistered: boolean
-  id?: string,
+  id?: number,
   phone?: string
   firstName?: string,
   lastName?: string,

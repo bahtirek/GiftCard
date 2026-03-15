@@ -8,6 +8,7 @@ import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
 import { mb, mt, pb, text } from '@/styles/styles';
 import { fetchGiftCardById } from '@/api/gift-cards/search.api';
+import { useProfileStore } from '@/stores/profile.store';
 
 type PurchaseDetailsProps = {
   handleButtonPress: () => void;
@@ -19,7 +20,8 @@ type PurchaseDetailsProps = {
 const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftCardProp }: PurchaseDetailsProps) => {
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
   const addItem = useCartStore(state => state.addItem);
-  const [giftCard, setGiftCard] = useState<GiftCardType>()
+  const [giftCard, setGiftCard] = useState<GiftCardType>();
+  const {profile} = useProfileStore();
 
   useEffect(() => {
     setupEditing()
@@ -103,7 +105,19 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
     ) {
       const id = cartItemToEdit?.id ? cartItemToEdit.id : '';
 
-      addItem({id: id, quantity: quantity, amount: amount, name: giftCard!.name, image: giftCard!.images[0] || '', giftCard: giftCard!, email: email.value, phone: phone.value, note: note.value, otherAmount: otherAmount.value});
+      addItem({
+        id: id, 
+        quantity: quantity, 
+        amount: amount, 
+        name: giftCard!.name, 
+        image: giftCard!.images[0] || '', 
+        giftCard: giftCard!, 
+        email: email.value, 
+        phone: phone.value, 
+        note: note.value, 
+        otherAmount: otherAmount.value, 
+        userId: profile.id});
+
       addItemToEdit({});
       resetForm();
       handleButtonPress();
