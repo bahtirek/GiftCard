@@ -8,6 +8,7 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-naviga
 import { GiftCardsStackParamList, MainTabParamList } from '@/navigation/navigation-types';
 import { fetchGiftCardById } from '@/api/gift-cards/search.api';
 import { GiftCardType } from '@/types';
+import ImageCarousel from '@/components/common/ImageCarousel';
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'GiftCardDetails'>;
 type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
@@ -48,11 +49,9 @@ const CardDetailsScreen = ({route}: Props) => {
             <View 
               style={[styles.imageContainer, commonStyles.shadow, commonStyles.shadowBorderRadius]}
             >
-              <Image
-                source={{uri: giftCard?.image}}
-                resizeMode='cover'
-                style={styles.image}
-              />
+              { giftCard && giftCard.images &&
+                <ImageCarousel images={giftCard?.images}/>
+              }
             </View>
             <View style={{flex: 1, justifyContent: 'space-between'}}>
               <View style={styles.content}>

@@ -12,7 +12,7 @@ type GiftCardPropType = {
 }
 
 
-const GiftCard = ({ giftCard, showDescription = true, onPress}: GiftCardPropType, ) => {
+const GiftCard = ({ giftCard, showDescription = true, onPress}: GiftCardPropType, ) => {  
   const handlePress = () => {
     onPress?.(giftCard);
   }
@@ -25,11 +25,13 @@ const GiftCard = ({ giftCard, showDescription = true, onPress}: GiftCardPropType
       >
         <View style={[styles.card]}>
           <View style={[styles.imageContainer, commonStyles.shadow]}>
-            <Image 
-              source={{uri: giftCard.image}}
-              style={[styles.image]}
-              resizeMode='cover'
-            />
+            { giftCard.images &&
+              <Image 
+                source={{uri: giftCard?.images[0]}}
+                style={[styles.image]}
+                resizeMode='cover'
+              />
+            }
           </View>
           <View style={[styles.detailsContainer]}>
             <Text style={[styles.name]} numberOfLines={1}>{giftCard.name}</Text>

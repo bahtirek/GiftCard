@@ -38,7 +38,7 @@ export type GiftCardType2 = {
 export type GiftCardType = {
   id: number,
   name: string,
-  image: string,
+  images: string[],
   description: string,
   phone: string,
   website?: string,
