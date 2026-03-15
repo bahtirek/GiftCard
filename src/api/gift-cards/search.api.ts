@@ -46,7 +46,7 @@ type ApiResponse = {
   };
 }; */
 
-const BASE_URL = 'http://localhost:3000/restaurants';
+const BASE_URL = 'https://giftcard.evendor.app/restaurants';
 
 export const fetchItems = async (query: string, page: number, city: string) => {
   const res = await fetch(
@@ -89,11 +89,9 @@ export const fetchTenItems = async (limit = 20, city='Tashkent') => {
   const res = await fetch(
     `${BASE_URL}?_page=1&_limit=${limit}`
   );
-
-  const data: GiftCardType[] = await res.json();
-  //console.log('data', data);
   
-
+  const data: GiftCardType[] = await res.json();
+  
   return {items: data};
 };
 
