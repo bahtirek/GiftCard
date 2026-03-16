@@ -6,7 +6,7 @@ type ApiResponse = {
   
 };
 
-const BASE_URL = "https://gift-card.evendor.app/profile";
+const BASE_URL = "https://api.giftcard.startng.app/profile";
 
 export const postProfile = async (profileData: ProfileType) => {
   profileData.pin = '123456'  
