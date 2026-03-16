@@ -66,7 +66,7 @@ const MainTabsView = () => {
       )
     }}/>
     <Tabs.Screen name='CartNavigation' component={CartNavigation} options={{
-      title: 'Shopping Bag',
+      headerShown: false,
       tabBarLabel: 'Bag',
       tabBarShowLabel: false,
       tabBarIcon: ({color}) => (

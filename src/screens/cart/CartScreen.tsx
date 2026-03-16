@@ -1,5 +1,5 @@
-import { View, FlatList, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, FlatList, StyleSheet, Platform } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useCartStore } from '@/stores/cart.store';
 import CartItem from '@/components/shopping-cart/CartItem';
@@ -9,12 +9,19 @@ import { flex, pb, pt, px } from '@/styles/styles';
 import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
+  const {cartItemToEdit} = useCartStore()
   const items = useCartStore(state => state.items)
   const navigation = useNavigation();
 
   const checkout = () => {
     navigation.navigate('Payment' as never);
   }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: Platform.OS === 'android' ? !!cartItemToEdit?.id : true
+    });
+  }, [navigation])
 
   return (
     <SafeAreaView edges={["left", "right"]} style={[flex.flex]}>
