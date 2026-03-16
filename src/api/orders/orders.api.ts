@@ -6,7 +6,7 @@ export type Item = {
   name: string;
 };
 
-const API_URL = 'https://gift-card.evendor.app/orders';
+const API_URL = 'https://api.giftcard.startng.app/orders';
 
 export const fetchOrderById = async (orderId: string) => {
   const res = await fetch(

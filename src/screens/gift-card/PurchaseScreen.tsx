@@ -1,5 +1,4 @@
-import { Alert } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import PurchaseDetails from '@/components/common/PurchaseDetails';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -21,9 +20,12 @@ const PurchaseScreen = ({route}: Props) => {
   }
 
   return (
-    <SafeAreaView edges={["left", "right"]} style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+     <KeyboardAvoidingView
+          behavior='padding'
+          keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
+          contentContainerStyle={{flexGrow: 1}}>
       <PurchaseDetails handleButtonPress={handleButtonPress} giftCardProp={giftCardProp} buttonLabel='Add to cart'/>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 

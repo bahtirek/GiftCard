@@ -3,12 +3,13 @@ import HomeScreen from '@/screens/home/HomeScreen';
 import { Colors } from '@/styles/constants';
 import ExpoIcons from '@expo/vector-icons/Feather';
 import GiftCardsNavigation from './GiftCard.navigation';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import { useCartStore } from '@/stores/cart.store';
 import { text } from '@/styles/styles';
 import CartNavigation from './Cart.navigation';
 import HomeHeader from '@/components/home/HomeHeader';
 import AccountNavigation from './Account.navigation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 const Tabs = createBottomTabNavigator();
@@ -29,10 +30,19 @@ const ShoppingBagIcon = ({ color }: { color: string }) => {
 }
 
 const MainTabsView = () => {
+  const insets = useSafeAreaInsets()
+  
+  let tabHeight = 70;
+  if (Platform.OS === 'android') {
+    if(insets.bottom > 40) {
+      tabHeight = 80;
+    }
+  }
+  
   return <Tabs.Navigator screenOptions={{
     headerStyle: { backgroundColor: 'white'},
     headerTintColor: Colors.primary,
-    tabBarStyle: { backgroundColor: 'white', height: 70, paddingBottom: 5 },
+    tabBarStyle: { backgroundColor: 'white', height: tabHeight, paddingBottom: 5 },
     tabBarInactiveTintColor: '#FCAF58',
     tabBarActiveTintColor: Colors.primary
   }}>
@@ -56,7 +66,7 @@ const MainTabsView = () => {
       )
     }}/>
     <Tabs.Screen name='CartNavigation' component={CartNavigation} options={{
-      title: 'Shopping Bag',
+      headerShown: false,
       tabBarLabel: 'Bag',
       tabBarShowLabel: false,
       tabBarIcon: ({color}) => (

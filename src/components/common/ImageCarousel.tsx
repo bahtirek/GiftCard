@@ -16,7 +16,7 @@ type CarouselProps = {
   height?: number;
 };
 
-export default function ImageCarousel({ images, height = 270 }: CarouselProps) {
+export default function ImageCarousel({ images }: CarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef<FlatList<string>>(null);
 
@@ -39,7 +39,7 @@ export default function ImageCarousel({ images, height = 270 }: CarouselProps) {
         renderItem={({ item }) => (
           <Image
             source={{ uri: item }}
-            style={[styles.image, { height }]}
+            style={[styles.image]}
           />
         )}
       />
@@ -64,7 +64,8 @@ export default function ImageCarousel({ images, height = 270 }: CarouselProps) {
 const styles = StyleSheet.create({
   image: {
     width: width - 32,
-    borderRadius: 12
+    borderRadius: 12,
+    aspectRatio: 4/3,
   },
 
   pagination: {
@@ -75,7 +76,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 2,
     borderRadius: 12,
-
   },
 
   dot: {

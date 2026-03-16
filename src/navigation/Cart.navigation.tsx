@@ -16,9 +16,10 @@ const CartNavigation = () => {
       }
     }}>
       <Stack.Screen name='CartScreen' component={CartScreen} options={{
-        headerShown: false,
+        title: 'Shopping bag'
       }} />
       <Stack.Screen name='EditCartItem' component={ EditCartItemScreen } options={{
+        title: "Edit order",
         presentation: 'modal',
       }} />
     </Stack.Navigator>

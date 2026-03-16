@@ -1,4 +1,4 @@
-import { View, StyleSheet, Platform, ScrollView } from 'react-native'
+import { View, StyleSheet, Platform, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import React, { useState } from 'react'
 import CustomButton from '@components/UI/buttons/CustomButton';
@@ -28,7 +28,11 @@ const CheckoutModal = () => {
   }
  
   return (
-    <SafeAreaView edges={["left", "right"]} style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+    <KeyboardAvoidingView
+      behavior='padding'
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
+      contentContainerStyle={{flexGrow: 1}}
+    >
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={[styles.container]}>
           <View style={{flex: 1, backgroundColor: 'white', paddingHorizontal: 16, paddingVertical: 16}}>
@@ -62,7 +66,7 @@ const CheckoutModal = () => {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   )
 }
 
