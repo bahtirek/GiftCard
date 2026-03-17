@@ -39,22 +39,23 @@ export const fetchAllOrders = async (page: number) => {
 
 export const postOrder = async (orderData: CartItemType[], dateNow: string) => {
   try {
-    const requests = orderData.map((item) => {
+    const requests = orderData.map(async (item) => {
       item.orderDate = dateNow;
       const { giftCard, ...itemWithoutGiftCard } = item;
       itemWithoutGiftCard.giftCardId = giftCard?.id;
       itemWithoutGiftCard.name = giftCard?.name;
       itemWithoutGiftCard.orderDate = dateNow;
-      return fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(itemWithoutGiftCard)
       });
+      return res.json()
     });
 
-    await Promise.all(requests);
+    const createdOrders = await Promise.all(requests);
 
-    return { success: true };
+    return { success: true, orders: createdOrders };
   } catch (error) {
     console.error("API Error:", error);
     throw error;

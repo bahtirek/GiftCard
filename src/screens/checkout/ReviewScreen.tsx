@@ -11,6 +11,7 @@ import { flex, pa, pb, pt, px, text } from '@/styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { postOrder } from '@/api/orders/orders.api';
 import { getDate } from '@/utils/utils';
+import { useProfileStore } from '@/stores/profile.store';
 
 
 const SubmitOrder = () => {
@@ -22,6 +23,7 @@ const SubmitOrder = () => {
   const [maskedCreditCard, setMaskedCreditCard] = useState('**** **** **** ****');
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
+  const {profile} = useProfileStore()
 
   useEffect(() => {
     getTotalAmount();
@@ -55,10 +57,14 @@ const SubmitOrder = () => {
     const dateNow = getDate();
 
     try {
-      await postOrder(items, dateNow);
+      const createdOrders = await postOrder(items, dateNow);
       deleteAllItemsFromCart();
       removePaymentDetails();
       navigation.navigate('ConfirmationScreen' as never);
+/*       if(profile.id) {
+      } else {
+
+      } */
     } catch (error) {
       console.error('Error submitting order:', error);
       Alert.alert('Something went wrong!', 'Please try later', [
