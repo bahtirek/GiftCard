@@ -6,7 +6,7 @@ type ApiResponse = {
   
 };
 
-const BASE_URL = "https://api.giftcard.startng.app/profile";
+const BASE_URL = "https://api.giftcard.startng.app/profiles";
 
 export const postProfile = async (profileData: ProfileType) => {
   profileData.pin = '123456'  
@@ -21,7 +21,7 @@ export const postProfile = async (profileData: ProfileType) => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to create restaurant");
+      throw new Error("Failed to create profile");
     }
 
     return await response.json();

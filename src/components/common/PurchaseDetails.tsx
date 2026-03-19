@@ -116,7 +116,7 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
         phone: phone.value, 
         note: note.value, 
         otherAmount: otherAmount.value, 
-        userId: profile.id});
+        profileId: profile.id});
 
       addItemToEdit({});
       resetForm();

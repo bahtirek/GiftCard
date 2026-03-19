@@ -29,6 +29,7 @@ const CheckoutModal = () => {
  
   return (
     <KeyboardAvoidingView
+      style={{ flex: 1 }}
       behavior='padding'
       keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
       contentContainerStyle={{flexGrow: 1}}

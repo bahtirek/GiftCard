@@ -22,12 +22,8 @@ const CardDetailsScreen = ({route}: Props) => {
     navigation.setOptions({
       title: giftCardProp?.name
     });
-  }, [navigation, giftCardProp])
-
-
-  useEffect(() => {
     fetchGiftCardDetails();
-  }, [])
+  }, [navigation, giftCardProp])
   
   const fetchGiftCardDetails = async() => {
     setGiftCard(giftCardProp)

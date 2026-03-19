@@ -7,11 +7,11 @@ type FetchItemsResult = {
   nextPage?: number | null
 };
 
-export const useOrdersQuery = () => {
+export const useOrdersQuery = (profileId: string) => {
   return useInfiniteQuery({
     queryKey: ['orders'],
     queryFn: ({ pageParam = 1 }) => {
-      return fetchAllOrders(pageParam)
+      return fetchAllOrders(pageParam, profileId)
     },
     getNextPageParam: (lastPage: FetchItemsResult) => lastPage.nextPage,
     enabled: true,

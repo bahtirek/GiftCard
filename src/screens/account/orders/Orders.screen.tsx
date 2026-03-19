@@ -7,10 +7,12 @@ import { useOrdersQuery } from '@/api/orders/orders.query'
 import { CartItemType } from '@/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { MainTabParamList } from '@/navigation/navigation-types'
+import { useProfileStore } from '@/stores/profile.store'
 
 type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'AccountNavigation'>;
 
 const OrdersScreen = () => {
+  const {profile} = useProfileStore()
   const navigation = useNavigation<NavigationProp>();
   const {
     data,
@@ -20,7 +22,7 @@ const OrdersScreen = () => {
     refetch,
     isFetchingNextPage,
     isRefetching,
-  } = useOrdersQuery();
+  } = useOrdersQuery(profile.id ?? '');
 
   const orders: CartItemType[] = data?.pages.flatMap((page) => page.items) ?? [];
 
