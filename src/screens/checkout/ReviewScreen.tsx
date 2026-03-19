@@ -57,14 +57,10 @@ const SubmitOrder = () => {
     const dateNow = getDate();
 
     try {
-      const createdOrders = await postOrder(items, dateNow);
+      const createdOrders = await postOrder(items, dateNow);     
       deleteAllItemsFromCart();
       removePaymentDetails();
       navigation.navigate('ConfirmationScreen' as never);
-/*       if(profile.id) {
-      } else {
-
-      } */
     } catch (error) {
       console.error('Error submitting order:', error);
       Alert.alert('Something went wrong!', 'Please try later', [

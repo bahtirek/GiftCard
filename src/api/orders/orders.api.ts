@@ -20,9 +20,10 @@ export const fetchOrderById = async (orderId: string) => {
   };
 };
 
-export const fetchAllOrders = async (page: number) => {
+export const fetchAllOrders = async (page: number, profileId: string) => {
+  
   const res = await fetch(
-    `${API_URL}?_page=${page}&_limit=20`
+    `${API_URL}?_page=${page}&_limit=20&profileId=${profileId}`
   );
 
   const data = await res.json();

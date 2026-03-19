@@ -6,7 +6,7 @@ import { mt, pb, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { profileStorage } from '@/services/profile.storage'
-import { postProfile, updateProfile } from '@/api/profile/verify-profile.api'
+import { updateProfile } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 import { useIsFocused } from '@react-navigation/native'
 
@@ -20,8 +20,8 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
   const isFocused = useIsFocused();
   const [isPhoneInputTouched, setIsPhoneInputTouched] = useState(false);
   const [initialValue, setInitialValue] = useState('');
-  const setProfile = useProfileStore(state => state.setProfile);
-  const getProfile = useProfileStore(state => state.getProfile);
+  const setProfile_Store = useProfileStore(state => state.setProfile);
+  const getProfile_Store = useProfileStore(state => state.getProfile);
 
   const [phone, setPhone] = useState<InputValueType>({ value: '', isValid: false });
 
@@ -31,7 +31,7 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
 
   useEffect(() => {
     if(isEditing){
-      const profileData = getProfile();
+      const profileData = getProfile_Store();
       
       if(profileData?.phone) {
         setInitialValue(profileData.phone);
@@ -60,25 +60,21 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
       onCancelButtonClick();
     }
 
-    const profileData = await savePhoneToDB();
+    const profileData = await saveProfileToDB();
     if (!profileData) return
-    await savePhoneToStorage(profileData)
-    setProfile(profileData)
+    await saveProfileToStorage(profileData)
+    setProfile_Store(profileData)
     phoneIsSubmitted()
   }
 
-  const savePhoneToDB = async() => {
+  const saveProfileToDB = async() => {
     const timestamp = Date.now();
-    const profile = getProfile();
+    const profile = getProfile_Store();
     profile.isRegistered = false
     profile.tempPhone = phone.value
     profile.timestamp = timestamp
     try {
-      if(isEditing) {
-        await updateProfile(profile);
-      } else {
-        await postProfile(profile);
-      }
+      await updateProfile(profile);
       return profile
     } catch (error) {
       console.error("Error:", error);
@@ -86,7 +82,7 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
     }
   }
 
-  const savePhoneToStorage = async(profileData: ProfileType) => {
+  const saveProfileToStorage = async(profileData: ProfileType) => {
     return profileStorage.saveProfile(profileData);
   }
 
