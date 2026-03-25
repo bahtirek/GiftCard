@@ -64,7 +64,7 @@ export const postOrder = async (orderData: CartItemType[], dateNow: string) => {
 };
 
 export const updateBalance = async (orderId: string, balance: string, dateNow: string) => {
-  await fetch(`${API_URL}/${orderId}`, {
+  return fetch(`${API_URL}/${orderId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"

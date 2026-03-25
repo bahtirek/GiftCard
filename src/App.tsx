@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { profileStorage } from '@/services/profile.storage';
 import { useEffect, useRef, useState } from 'react';
 import { useProfileStore } from './stores/profile.store';
-import { fetchProfileByPhone, postProfile } from './api/profile/verify-profile.api';
+import { fetchProfileById, postProfile } from './api/profile/verify-profile.api';
 import GiftCardsNavigation from './navigation/GiftCard.navigation';
 import * as Crypto from 'expo-crypto';
 import { ProfileType } from './types';
@@ -51,7 +51,7 @@ export default function App() {
     if(profile !== null && profile.profile !== null) {
       setProfile(profile.profile);      
       // Is refresh profile needed???
-      // refreshProfile(profile.profile.id)
+      refreshProfile(profile.profile.id)
     } else {
       createProfile()      
     }
@@ -66,8 +66,8 @@ export default function App() {
     setProfile(profile);
   }
 
-  const refreshProfile = async(phone: string) => {
-    const profile = await fetchProfileByPhone(phone);
+  const refreshProfile = async(profileId: string) => {
+    const profile = await fetchProfileById(profileId);
     setProfile(profile.profile);
   }
 

@@ -73,7 +73,7 @@ const RedeemScreen = () => {
       </View> */}
       {
         showScanner && 
-        <QRCodeScanner onScan={handleScan}></QRCodeScanner>
+        <QRCodeScanner onScanCompleted={handleScan}></QRCodeScanner>
       }
       {
         showError &&
