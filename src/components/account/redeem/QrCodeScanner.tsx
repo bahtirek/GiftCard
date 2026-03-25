@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Modal, ActivityIndicator } fr
 import { CameraView, Camera, CameraMode, CameraType, } from 'expo-camera';
 import IconButton from '@/components/UI/buttons/IconButton';
 
-const QRCodeScanner = ({onScan}: any) => {
+const QRCodeScanner = ({onScanCompleted}: any) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
@@ -18,11 +18,11 @@ const QRCodeScanner = ({onScan}: any) => {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }: any) => {
-    onScan(data)
+    onScanCompleted(data)
   };
   
   const toggleTorch = () => {
-    handleBarCodeScanned({type:'qr', data: 'cdbcd1d2-91ef-4d73-bc35-85aaf930c7c5'})
+    //handleBarCodeScanned({type:'qr', data: 'cdbcd1d2-91ef-4d73-bc35-85aaf930c7c5'})
     setTorchOn(!torchOn);
   };
   

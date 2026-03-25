@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CartStackParamList } from '@/navigation/navigation-types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import QRCode from 'react-native-qrcode-svg';
+
 
 const Stack = createNativeStackNavigator<CartStackParamList>();
 type NavigationProp = NativeStackNavigationProp<CartStackParamList, 'EditCartItem'>;
@@ -20,7 +22,7 @@ type CartItemPropType = {
 }
 
 const CartItem = ({ cartItem }: CartItemPropType) => {
-  const {amount, phone, email, note, orderDate, name, image} = cartItem;
+  const {amount, phone, email, note, orderDate, name, image, id} = cartItem;
   const navigation = useNavigation<NavigationProp>();
 
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
@@ -93,6 +95,17 @@ const CartItem = ({ cartItem }: CartItemPropType) => {
             </View>
           </View>
         }
+        {
+          (!!orderDate && !!id) &&
+          <View style={[styles.qrContainer]}> 
+            <QRCode
+              value={id}
+              size={200}
+              color="black"
+              backgroundColor="white"
+            />
+          </View>
+        }
       </View>
     </View>
   )
@@ -120,5 +133,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 120,
     marginTop: 8,
+  },
+  qrContainer: {
+    marginTop: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
