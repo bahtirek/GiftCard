@@ -50,6 +50,18 @@ export const fetchProfileByPhone = async (phone: string) => {
   
   return {profile};
 }
+export const fetchProfileById = async (profileId: string) => {
+  const res = await fetch(
+    `${BASE_URL}?${profileId}`
+  );
+  console.log(`${BASE_URL}?${profileId}`);
+  
+  const data: ProfileType[] = await res.json();
+  const profile = data[0]
+  console.log(profile);
+  
+  return {profile};
+}
 
 export const updateProfile = async (profileData: ProfileType) => {  
   const response = await fetch(`${BASE_URL}/${profileData.id}`, {

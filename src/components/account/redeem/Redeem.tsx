@@ -63,7 +63,7 @@ const Redeem = ({ order, onRedeemedCompleted, onRefund }: any) => {
     setShowRedeemModal(false)
     setToggleSpinnerModal(true)
 
-    // allow UI to render spinner first
+    // allow UI to render spinner first to avoid duplicate spinner
     await new Promise(resolve => setImmediate(resolve));
 
     try {
@@ -129,7 +129,7 @@ const Redeem = ({ order, onRedeemedCompleted, onRefund }: any) => {
             (parseInt(remainingBalance) > 0) &&
             <CustomButton label={'Redeem'} handlePress={onRedeem}/>
           }
-          <CustomButton label={'Cancel'} handlePress={onCancel} containerStyles={styles.skipButton} secondary />
+          {/* <CustomButton label={'Cancel'} handlePress={onCancel} containerStyles={styles.skipButton} secondary /> */}
         </View>
       </View>
       <SpinnerModal toggleModal={toggleSpinnerModal}></SpinnerModal>       
