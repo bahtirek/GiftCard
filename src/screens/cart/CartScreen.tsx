@@ -19,7 +19,11 @@ const CartScreen = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerShown: Platform.OS === 'android' ? !!cartItemToEdit?.id : true
+      headerShown: ()=>{ 
+        if(Platform.OS === 'android') {
+          return !!cartItemToEdit?.id
+        }
+      }
     });
   }, [navigation])
 
