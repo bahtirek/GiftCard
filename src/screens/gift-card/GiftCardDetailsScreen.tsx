@@ -1,72 +1,106 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Alert, KeyboardAvoidingView, Platform } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomButton from '@/components/UI/buttons/CustomButton';
 import { useNavigation, Link } from '@react-navigation/native';
-import {commonStyles, pb, text} from '@/styles/styles';
+import { commonStyles, mt, pb, text } from '@/styles/styles';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { GiftCardsStackParamList, MainTabParamList } from '@/navigation/navigation-types';
 import { fetchGiftCardById } from '@/api/gift-cards/search.api';
-import { GiftCardType } from '@/types';
+import { GiftCardType, InputValueType } from '@/types';
 import ImageCarousel from '@/components/common/ImageCarousel';
 import { Colors } from '@/styles/constants';
+import AmountDetails from '@/components/common/AmountDetails';
+import { useCartStore } from '@/stores/cart.store';
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'GiftCardDetails'>;
 type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
 
-const CardDetailsScreen = ({route}: Props) => {
+const CardDetailsScreen = ({ route }: Props) => {
+  const addItem = useCartStore(state => state.addItem);
   const [giftCard, setGiftCard] = useState<GiftCardType>()
   const navigation = useNavigation<NavigationProp>();
   const { giftCardProp } = route.params;
-  
+  const [giftCardAmount, setGiftCardAmount] = useState<InputValueType>({value: '', isValid: false});
+  const [isOtherAmountInputTouched, setIsOtherAmountInputTouched] = useState(false);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: giftCardProp?.name
     });
     fetchGiftCardDetails();
   }, [navigation, giftCardProp])
-  
-  const fetchGiftCardDetails = async() => {
+
+  const fetchGiftCardDetails = async () => {
     setGiftCard(giftCardProp)
     const giftCardData = await fetchGiftCardById(giftCardProp?.id.toString());
     if (giftCardData.data.id) setGiftCard(giftCardData.data)
   }
 
-  const handlePurchase = (giftCardProp: GiftCardType) => {
+  const handleSelectButtonClick = (giftCardProp: GiftCardType) => {
+    if(!giftCardAmount || !giftCardAmount.isValid) {
+      return Alert.alert('Missing data', "Please select amount")
+    };
+      
+    if(!isOtherAmountInputTouched && giftCardAmount) {
+      setIsOtherAmountInputTouched(true);
+    }
+
+    addItem({
+      amount: giftCardAmount.value, 
+      name: giftCardProp!.name, 
+      image: giftCardProp!.images[0] || '', 
+      giftCard: giftCardProp!, 
+    });
+    
     navigation.navigate('GiftCardsNavigation', {
       screen: 'Purchase',
       params: { giftCardProp }
     });
   }
 
+  const handleAmountChange = (amount: InputValueType) => {
+    setGiftCardAmount(amount);
+  }
+
   return (
-    <SafeAreaView edges={["left", "right"] } style={styles.flex}>
-        <View style={styles.flex}>
-          <View style={[styles.container, styles.flex]}>
-            <View 
-              style={[styles.imageContainer, commonStyles.shadow, commonStyles.shadowBorderRadius]}
-            >
-              { giftCard && giftCard.images &&
-                <ImageCarousel images={giftCard?.images}/>
-              }
-            </View>
-            <View style={{flex: 1, justifyContent: 'space-between'}}>
+    <KeyboardAvoidingView
+      behavior='padding'
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
+      contentContainerStyle={{flexGrow: 1}}>
+      <ScrollView>
+        <View style={[styles.container, styles.flex]}>
+          <View style={[styles.imageContainer, commonStyles.shadow, commonStyles.shadowBorderRadius]}>
+            {giftCard && giftCard.images &&
+              <ImageCarousel images={giftCard?.images} />
+            }
+          </View>
+          <View style={{ flex: 1, justifyContent: 'space-between' }}>
+            <View style={[styles.flex]}>
               <View style={styles.content}>
                 <Text style={[text.grey]}>{giftCard?.description}</Text>
                 <Text style={[text.grey]}>{giftCard?.address?.line_one}</Text>
                 <Text style={[text.grey]}>{giftCard?.address?.city}</Text>
                 <Text style={[text.grey]}>{giftCard?.website}</Text>
                 <Text style={[text.grey]}>{giftCard?.phone}</Text>
-                <View style={styles.separator} />
               </View>
-              
-              <View style={pb.sm}>
-                <CustomButton label='Purchase' handlePress={()=>{handlePurchase(giftCard!)}} />
+              <View style={styles.separator} />
+              <View style={[styles.flex]}>
+                <AmountDetails
+                  handleAmountChange={handleAmountChange}
+                  priceSet={giftCardProp.priceSet!}
+                  isOtherAmountInputTouched={isOtherAmountInputTouched}
+                />
               </View>
+            </View>
+
+            <View style={[pb.sm, mt.xxl]}>
+              <CustomButton label='Select' handlePress={() => { handleSelectButtonClick(giftCard!) }} />
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 
