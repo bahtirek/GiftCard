@@ -62,7 +62,7 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
   }
 
   const validateRules = (value: string):validationProp => {
-    let validationResult = { isValid: true, error: '' }
+    let validationResult = { isValid: !!value, error: '' }
     if(!rules) return validationResult;
 
     rules.find((rule: Function) => {

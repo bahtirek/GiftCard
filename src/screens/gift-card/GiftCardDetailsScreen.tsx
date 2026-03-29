@@ -9,6 +9,7 @@ import { GiftCardsStackParamList, MainTabParamList } from '@/navigation/navigati
 import { fetchGiftCardById } from '@/api/gift-cards/search.api';
 import { GiftCardType } from '@/types';
 import ImageCarousel from '@/components/common/ImageCarousel';
+import { Colors } from '@/styles/constants';
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'GiftCardDetails'>;
 type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
@@ -56,6 +57,7 @@ const CardDetailsScreen = ({route}: Props) => {
                 <Text style={[text.grey]}>{giftCard?.address?.city}</Text>
                 <Text style={[text.grey]}>{giftCard?.website}</Text>
                 <Text style={[text.grey]}>{giftCard?.phone}</Text>
+                <View style={styles.separator} />
               </View>
               
               <View style={pb.sm}>
@@ -79,8 +81,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    height: undefined,
-    aspectRatio: 4/3,
+    height: 230,
+    //aspectRatio: 4/3,
   },
   image: {
     width: '100%',
@@ -90,6 +92,11 @@ const styles = StyleSheet.create({
   },
   content: {
     gap: 8,
+    paddingBottom: 16,
+  },
+  separator: {
+    backgroundColor: '#E2E2E2',
+    height: 1,
     marginVertical: 16,
   }
 })

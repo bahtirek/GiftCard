@@ -1,12 +1,11 @@
 import { CartItemType } from '@/types';
-import { getDate } from '@/utils/utils';
 
 export type Item = {
   id: string;
   name: string;
 };
 
-const API_URL = 'https://api.giftcard.startng.app/orders';
+const API_URL = 'https://giftcard.startng.app/orders';
 
 export const fetchOrderById = async (orderId: string) => {
   const res = await fetch(

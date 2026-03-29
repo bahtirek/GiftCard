@@ -1,14 +1,11 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { CartItemType, GiftCardType, InputValueType } from '@/types';
 import { useCartStore } from '@/stores/cart.store';
-import { validateAmount, validateEmail, validateLength } from '@/utils/input-validation';
-import RadioButton from '@/components/UI/forms/RadioButton';
-import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
-import { mb, mt, pb, text } from '@/styles/styles';
-import { fetchGiftCardById } from '@/api/gift-cards/search.api';
 import { useProfileStore } from '@/stores/profile.store';
+import AmountDetails from './AmountDetails';
+import RecepientDetails from './RecepientDetails';
 
 type PurchaseDetailsProps = {
   handleButtonPress: () => void;
@@ -20,39 +17,8 @@ type PurchaseDetailsProps = {
 const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftCardProp }: PurchaseDetailsProps) => {
   const addItemToEdit = useCartStore(state => state.addItemToEdit);
   const addItem = useCartStore(state => state.addItem);
-  const [giftCard, setGiftCard] = useState<GiftCardType>();
+  const [giftCardAmount, setGiftCardAmount] = useState<InputValueType>({value: '', isValid: false});
   const {profile} = useProfileStore();
-
-  useEffect(() => {
-    setupEditing()
-  }, [])
-
-  const setupEditing = async() => {
-    resetForm()
-    if(cartItemToEdit?.id) {
-      const giftCardData = await fetchGiftCardById(cartItemToEdit.giftCard!.id.toString());     
-      if (giftCardData.data.id) setGiftCard(giftCardData.data)
-      presetInputFields(cartItemToEdit)
-    } else {
-      setGiftCard(giftCardProp)
-    }
-  }
-
-  const presetInputFields = (cartItemToEdit: CartItemType) => {
-    if(cartItemToEdit.otherAmount) {
-      setOtherAmount({value: cartItemToEdit.otherAmount});
-      setSelectedAmount('other');
-    } else {
-      setSelectedAmount(cartItemToEdit.amount!);
-    }
-    if(cartItemToEdit.email) setEmail({value: cartItemToEdit.email});
-    if(cartItemToEdit.phone) setPhone({value: cartItemToEdit.phone});
-    if(cartItemToEdit.note) setNote({value: cartItemToEdit.note});
-  }
-
-  const [selectedAmount, setSelectedAmount] = useState('');
-  const [otherAmount, setOtherAmount] = useState<InputValueType>({value: '', isValid: true});
-  const [quantity, setQuantity] = useState(1);
   const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
   const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
   const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
@@ -60,30 +26,8 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
   const [isEmailInputTouched, setIsEmailInputTouched] = useState(false);
   const [isOtherAmountInputTouched, setIsOtherAmountInputTouched] = useState(false);
 
-  let minAmount = '';
-  if (giftCard?.priceSet) {
-    minAmount = giftCard.priceSet[0].amount;
-  }
-
-  const handleSelect = (amount: string) => {
-    setSelectedAmount(amount);
-    if(amount != 'other') setOtherAmount({value: ''});
-  }
-
-  const handleEmailInput = (email: InputValueType) => {
-    setEmail(email)
-  }
-
-  const handleNoteInput = (note: InputValueType) => {
-    setNote(note)
-  }
-
-  const handlePhoneInput = (phone: InputValueType) => {
-    setPhone(phone)
-  }
-
-  const handleAmountInput = (amount: InputValueType) => {
-    setOtherAmount(amount)
+  const handleAmountChange = (amount: InputValueType) => {
+    setGiftCardAmount(amount);
   }
 
   const addToCart = () => {
@@ -94,154 +38,65 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
     if(!isEmailInputTouched && email.value) {
       setIsEmailInputTouched(true);
     }
-    if(!isOtherAmountInputTouched && otherAmount.value) {
+    if(!isOtherAmountInputTouched && giftCardAmount) {
       setIsOtherAmountInputTouched(true);
     }
 
-    const amount = otherAmount.value ? otherAmount.value : selectedAmount;
-    if(
-      ((amount && amount != "other") || otherAmount.isValid) &&
-      (email.isValid || phone.isValid)
-    ) {
+    if ( giftCardAmount.isValid && (email.isValid || phone.isValid) ) {
       const id = cartItemToEdit?.id ? cartItemToEdit.id : '';
 
       addItem({
         id: id, 
-        quantity: quantity, 
-        amount: amount, 
-        name: giftCard!.name, 
-        image: giftCard!.images[0] || '', 
-        giftCard: giftCard!, 
+        amount: giftCardAmount.value, 
+        name: giftCardProp!.name, 
+        image: giftCardProp!.images[0] || '', 
+        giftCard: giftCardProp!, 
         email: email.value, 
         phone: phone.value, 
-        note: note.value, 
-        otherAmount: otherAmount.value, 
-        profileId: profile.id});
+        note: note.value,
+        profileId: profile.id
+      });
 
       addItemToEdit({});
-      resetForm();
       handleButtonPress();
     }
   }
 
-  const resetForm =() => {
-    setSelectedAmount('');
-    setOtherAmount({value: ''});
-    setEmail({value: ''});
-    setPhone({value: ''});
-    setNote({value: ''});
-  }
-
   const isFormCompleted = () => {
-    if(!selectedAmount) {
-      console.log('Missing data', "Please select amount")
+    if(!giftCardAmount) {
       return Alert.alert('Missing data', "Please select amount")
     }
 
-    if (selectedAmount == 'other') {
-      if(!otherAmount.value) {
-        console.log('Missing data', "Please select amount")
-        return Alert.alert('Missing data', "Please select amount")
-      }
-    }
-
     if (!email.value && !phone.value) {
-      console.log('Missing data', "Please provide recepient details")
       return Alert.alert('Missing data', "Please provide recepient details")
     }   
   }
 
-  const phoneRules = [
-    (val: string) => validateLength(val, 12) || 'Wrong phone number'
-  ]
-
-  const emailRules = [
-    (val: string) => validateEmail(val) || 'Wrong email format'
-  ]
-
-  const amountRules = [
-    (val: string) => validateAmount(val, minAmount) || `Amount can't be less than ${minAmount}`
-  ]
+  const handleRecipientDetailsChange = (recepientDetails: {email?: InputValueType; phone?: InputValueType; note?: InputValueType}) => {
+    if(recepientDetails.email) setEmail(recepientDetails.email);
+    if(recepientDetails.phone) setPhone(recepientDetails.phone);
+    if(recepientDetails.note) setNote(recepientDetails.note);
+    
+  }
 
   return (
     <>
-      {giftCard?.id  &&
+      {giftCardProp?.id  &&
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.container}>
           <View>
-            <Text style={[text.md, text.grey, pb.sm]}>Choose amount</Text>
-            <View>
-              {
-                giftCard?.priceSet!.map((price, index) => {
-                  return <RadioButton 
-                    label={price.amount}
-                    value={price.amount}
-                    status={selectedAmount === price.amount ? true : false}
-                    className="mt-4"
-                    onSelect={() => handleSelect(price.amount)}
-                    key={price.id}
-                  />
-                })
-              }
-              <RadioButton 
-                label="other"
-                value='other'
-                status={selectedAmount === 'other' ? true : false}
-                className="mt-4"
-                onSelect={() => handleSelect('other')}
-              />
-            </View>
-            <View>
-              { (selectedAmount === 'other') &&
-                <View style={{marginTop: 16}}>
-                    <CustomInput 
-                      onInput={(amount: InputValueType) => {handleAmountInput(amount)}} 
-                      keyboardType="number-pad" 
-                      placeholder='Other amount' 
-                      mask='currency'
-                      presetValue={cartItemToEdit?.otherAmount}
-                      rules={amountRules}
-                      isTouched={isOtherAmountInputTouched}
-                    />
-                </View>
-              }
-            </View>
-            <Text style={[text.md, text.grey, pb.md, mt.xl]}>Recepient details:</Text>
-            <View style={styles.inputContainer}>
-              <CustomInput 
-                onInput={(phone: InputValueType) => {handlePhoneInput(phone)}} 
-                placeholder='Phone'
-                mask='phone' 
-                maxLength={12}
-                keyboardType='number-pad'
-                presetValue={cartItemToEdit?.phone}
-                rules={phoneRules}
-                className='pl-14'
-                isTouched={isPhoneInputTouched}
-              />
-            </View>
-            <Text style={[text.md, text.grey, pb.md]}>Or</Text>
-            <View style={[mb.xl]}>
-              <CustomInput 
-                onInput={(email: InputValueType) => {handleEmailInput(email)}} 
-                placeholder='Email'
-                keyboardType='email-address'
-                presetValue={cartItemToEdit?.email}
-                rules={emailRules}
-                isTouched={isEmailInputTouched}
-              />
-            </View>
-            <Text style={[text.md, text.grey, pb.md]}>Gift note:</Text>
-            <View>
-              <CustomInput 
-                onInput={(note: InputValueType) => {handleNoteInput(note)}} 
-                placeholder='Best wishes'
-                multiline={true}
-                numberOfLines={10}
-                presetValue={cartItemToEdit?.note}
-                textarea={true}
-              />
-            </View>
+            <AmountDetails 
+              handleAmountChange={handleAmountChange} 
+              priceSet={giftCardProp.priceSet!} 
+              isOtherAmountInputTouched={isOtherAmountInputTouched} 
+              cartItemToEdit={cartItemToEdit}
+            />
+            <RecepientDetails 
+              handleRecipientDetailsChange={handleRecipientDetailsChange} 
+              cartItemToEdit={cartItemToEdit} 
+              isPhoneInputTouched={isPhoneInputTouched} 
+              isEmailInputTouched={isEmailInputTouched} 
+            />
             <View style={{marginTop: 'auto', paddingTop: 38, paddingBottom: 8}}>
               <CustomButton label={buttonLabel} handlePress={addToCart}/>
             </View>
