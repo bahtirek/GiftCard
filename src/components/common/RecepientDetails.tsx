@@ -1,12 +1,9 @@
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { CartItemType, GiftCardType, InputValueType } from '@/types';
-import { useCartStore } from '@/stores/cart.store';
-import { validateAmount, validateEmail, validateLength } from '@/utils/input-validation';
+import { CartItemType, InputValueType } from '@/types';
+import { validateEmail, validateLength } from '@/utils/input-validation';
 import CustomInput from '@/components/UI/forms/CustomInput';
-import { mb, mt, pb, text } from '@/styles/styles';
-import { fetchGiftCardById } from '@/api/gift-cards/search.api';
-import { useProfileStore } from '@/stores/profile.store';
+import { mb, pb, text } from '@/styles/styles';
 
 type RecepientDetailsProps = {
   handleRecipientDetailsChange: (recepientDetails: RecepientDetailsType) => void;
@@ -22,32 +19,27 @@ type RecepientDetailsType = {
 }
 
 const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhoneInputTouched, isEmailInputTouched }: RecepientDetailsProps) => {
-  const [giftCard, setGiftCard] = useState<GiftCardType>();
-  const [giftCardAmount, setGiftCardAmount] = useState<string>('');
-  const {profile} = useProfileStore();
-
+  const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
+  const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
+  const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
+  
   useEffect(() => {
     resetForm()
   }, [])
 
-  const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
-  const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
-  const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
-
-
   const handleEmailInput = (email: InputValueType) => {
-    setEmail(email);    
-    handleRecipientDetailsChange({email})
+    setEmail(email);
+    handleRecipientDetailsChange({ email })
   }
 
   const handleNoteInput = (note: InputValueType) => {
     setNote(note)
-    handleRecipientDetailsChange({note})
+    handleRecipientDetailsChange({ note })
   }
 
   const handlePhoneInput = (phone: InputValueType) => {
     setPhone(phone)
-    handleRecipientDetailsChange({phone})
+    handleRecipientDetailsChange({ phone })
   }
 
   const resetForm =() => {
@@ -67,7 +59,7 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
   return (
     <View style={styles.container}>
       <View>
-        <Text style={[text.md, text.grey, pb.md, mt.xl]}>Recepient details:</Text>
+        <Text style={[text.md, text.grey, pb.md]}>Recepient details:</Text>
         <View style={styles.inputContainer}>
           <CustomInput 
             onInput={(phone: InputValueType) => {handlePhoneInput(phone)}} 

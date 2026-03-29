@@ -6,6 +6,7 @@ import CustomButton from '@/components/UI/buttons/CustomButton';
 import { useProfileStore } from '@/stores/profile.store';
 import AmountDetails from './AmountDetails';
 import RecepientDetails from './RecepientDetails';
+import { mt } from '@/styles/styles';
 
 type PurchaseDetailsProps = {
   handleButtonPress: () => void;
@@ -90,6 +91,7 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
               isOtherAmountInputTouched={isOtherAmountInputTouched} 
               cartItemToEdit={cartItemToEdit}
             />
+            <View style={[mt.xl]}></View>
             <RecepientDetails 
               handleRecipientDetailsChange={handleRecipientDetailsChange} 
               cartItemToEdit={cartItemToEdit} 
