@@ -76,7 +76,6 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
     if(recepientDetails.email) setEmail(recepientDetails.email);
     if(recepientDetails.phone) setPhone(recepientDetails.phone);
     if(recepientDetails.note) setNote(recepientDetails.note);
-    
   }
 
   return (

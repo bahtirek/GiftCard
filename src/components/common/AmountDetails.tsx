@@ -16,6 +16,7 @@ type PurchaseDetailsProps = {
 const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched, cartItemToEdit }: PurchaseDetailsProps) => {
   const [giftCardAmount, setGiftCardAmount] = useState<InputValueType>({ value: '', isValid: false });
   const [otherAmount, setOtherAmount] = useState<boolean>(false);
+  const [presetValue, setPresetValue] = useState<string>('');
 
   useEffect(() => {
     setupEditing()
@@ -24,7 +25,14 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
   const setupEditing = async() => {
     resetForm()
     if(!cartItemToEdit || !cartItemToEdit.id) return;
-    priceSet.some(price => price.amount === cartItemToEdit.amount) ? setGiftCardAmount({ value: cartItemToEdit.amount!, isValid: true }) : setOtherAmount(true);
+    const isAmountSelected = priceSet.some(price => price.amount === cartItemToEdit.amount);
+    if (!isAmountSelected) {
+      setGiftCardAmount({ value: cartItemToEdit.amount!, isValid: true });
+      setPresetValue(cartItemToEdit.amount!);
+      setOtherAmount(true);
+    }  else {
+      setGiftCardAmount({ value: cartItemToEdit.amount!, isValid: true });
+    }
   }
 
   let minAmount = '';
@@ -36,6 +44,11 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
     setOtherAmount(false);
     setGiftCardAmount({ value: amount, isValid: true });
     handleAmountChange({ value: amount, isValid: true });
+  }
+
+  const handleOtherSelect = () => {
+    setGiftCardAmount({ value: '', isValid: false });
+    setOtherAmount(true);
   }
 
   const handleOtherAmountInput = (amount: InputValueType) => {
@@ -53,11 +66,6 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
     (val: string) => validateAmount(val, minAmount) || `Amount can't be less than ${minAmount}`
   ]
 
-  const handleOtherSelect = () => {
-    setOtherAmount(!otherAmount);
-    setGiftCardAmount({ value: '', isValid: false });
-  }
-
   return (
     <View style={styles.container}>
       <View>
@@ -68,7 +76,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
               return <RadioButton 
                 label={price.amount}
                 value={price.amount}
-                status={giftCardAmount.value === price.amount ? true : false}
+                status={(!otherAmount && giftCardAmount.value === price.amount) ? true : false}
                 className="mt-4"
                 onSelect={() => handleSelect(price.amount)}
                 key={price.id}
@@ -91,7 +99,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
                 keyboardType="number-pad" 
                 placeholder='Other amount' 
                 mask='currency'
-                valueToEdit={cartItemToEdit?.amount}
+                presetValue={presetValue}
                 rules={amountRules}
                 isTouched={isOtherAmountInputTouched}
               />
