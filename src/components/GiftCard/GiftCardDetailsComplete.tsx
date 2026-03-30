@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View, Image, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Alert, Platform, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { GiftCardType } from '@/types'
-import { commonStyles, flex, mb, mr, mt, pa, pl, pt, px, py, text } from '@/styles/styles'
+import { commonStyles, flex, ma, mb, mr, mt, pa, pl, pt, px, py, text } from '@/styles/styles'
 import { useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CartStackParamList } from '@/navigation/navigation-types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Colors, Font } from '@/styles/constants'
+import ExpoIcons from '@expo/vector-icons/Feather';
+import IconButton from '../UI/buttons/IconButton'
+import ImageGallery from './ImageGallery'
 
 
 const Stack = createNativeStackNavigator<CartStackParamList>();
@@ -19,29 +22,46 @@ type GiftCardDetailsCompletePropType = {
 const GiftCardDetailsComplete = ({giftCard}: GiftCardDetailsCompletePropType) => {
   const navigation = useNavigation<NavigationProp>();
 
+  const openImageGallery = () => {
+    Alert.alert(
+      "Image Gallery",
+      "This feature is coming soon!",
+      [
+        {
+          text: "OK",
+          onPress: () => console.log("OK Pressed")
+        }
+      ]
+    );
+  }
+
+  const handlePress = () => {
+    openImageGallery();
+  }
+
   return (
     <View>
       <View style={[styles.container]}>
           <View style={[styles.card]}>
-            <View style={[styles.imageContainer, commonStyles.shadow]}>
-              { giftCard?.images &&
-                <Image 
-                  source={{uri: giftCard?.images[0]}}
-                  style={[styles.image]}
-                  resizeMode='cover'
-                />
-              }
-            </View>
+            <ImageGallery images={giftCard?.images} />
             <View style={[styles.descriptionContainer]}>
               <Text style={[styles.description]}>{giftCard?.description}</Text>
             </View>
           </View>
           <View>
             <View style={styles.detailsContainer}>
-              <Text style={[text.grey]}>{giftCard?.address?.line_one}</Text>
-              <Text style={[text.grey]}>{giftCard?.address?.city}</Text>
-              <Text style={[text.grey]}>{giftCard?.website}</Text>
-              <Text style={[text.grey]}>{giftCard?.phone}</Text>
+              <View style={styles.detailsRow}>
+                <ExpoIcons name="map" size={14} color={Colors.primary} />
+                <Text style={[text.grey]}>{giftCard?.address?.line_one}, {giftCard?.address?.city}</Text>
+              </View>
+              <View style={styles.detailsRow}>
+                <ExpoIcons name="globe" size={14} color={Colors.primary} />
+                <Text style={[text.grey]}>{giftCard?.website}</Text>
+              </View>
+              <View style={styles.detailsRow}>
+                <ExpoIcons name="phone" size={14} color={Colors.primary} />
+                <Text style={[text.grey]}>{giftCard?.phone}</Text>
+              </View>
             </View>
           </View>
       </View>
@@ -64,19 +84,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
   },
-  imageContainer: {
-    width: 88,
-    height: 88,
-    flexBasis: 88,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 12,
-    overflow: 'hidden'
-  },
   descriptionContainer: {
     paddingLeft: 16,
     flexGrow: 1,
@@ -92,7 +99,12 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
   detailsContainer: {
-    marginTop: 12,
+    marginTop: 16,
     rowGap: 8,
-  }
+  },
+  detailsRow: {
+    flexDirection: 'row',
+    columnGap: 8,
+    alignItems: 'center'
+  },
 });

@@ -64,19 +64,19 @@ export default function ImageCarousel({ images }: CarouselProps) {
 
 const styles = StyleSheet.create({
   flatlistContainer: {
-    borderRadius: 12,
+    //borderRadius: 12,
   },
   image: {
     width: width - 32,
-    borderRadius: 12,
-    //aspectRatio: 4/3,
-    height: 230,
+    //borderRadius: 12,
+    aspectRatio: 4/3,
+    //height: 250,
   },
 
   pagination: {
-    marginTop: -24,
+    marginTop: 8,
     marginHorizontal: "auto",
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    //backgroundColor: "rgba(255, 255, 255, 0.7)",
     flexDirection: "row",
     paddingVertical: 5,
     paddingHorizontal: 2,
