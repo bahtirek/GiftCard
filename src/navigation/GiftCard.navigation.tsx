@@ -23,6 +23,7 @@ const GiftCardsNavigation = () => {
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='Purchase' component={ PurchaseScreen } options={{
+        title: 'Recepient details',
         headerBackTitle: 'Back',
       }} />
     </Stack.Navigator>

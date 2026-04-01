@@ -79,6 +79,13 @@ return value.split('').reverse()
   //5500 0000 0000 0004
 }
 
+function validatePhoneFormat(val: string) {
+  // Accepts Uzbek phone numbers: 998XXXXXXXXX (12 digits, starts with 998)
+  val = val.replace(/[\s()-]/g, '');
+  const phoneRegex = /^998\d{9}$/;
+  return phoneRegex.test(val);
+}
+
 export {
   isEmpty,
   validateAmount,
@@ -86,5 +93,6 @@ export {
   validateCreditCard,
   validateLength, 
   validateExpDate,
-  validateRedeemAmount
+  validateRedeemAmount,
+  validatePhoneFormat
 }

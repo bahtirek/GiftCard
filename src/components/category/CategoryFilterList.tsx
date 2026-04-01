@@ -2,6 +2,7 @@ import { FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import CategoryCheckbox from './CategoryCheckbox';
 import { useCategoryStore } from '@/stores/category.store';
+import CustomCheckbox from '../UI/forms/CustomCheckbox';
 
 const CategoryFilterList = () => {
   const updateCategories = useCategoryStore(state => state.updateCategories);
@@ -18,7 +19,7 @@ const CategoryFilterList = () => {
       data={categories}
       keyExtractor={(item) => item.id!}
       renderItem={({item}) => (
-        <CategoryCheckbox item={item} handelCheckBoxSelect={(value: boolean) => {handelCheckBoxSelect(item.id!, value)}}/>
+        <CustomCheckbox label={item.label} checked={item.checked!} handelCheckBoxSelect={(value: boolean) => {handelCheckBoxSelect(item.id!, value)}}/>
       )}
     />
   )

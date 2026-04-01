@@ -54,6 +54,7 @@ export type GiftCardType = {
   distanceKm?: number,
   isFeatured?: boolean,
   isPromoted?: boolean,
+  tempAmount?: string
 };
 
 export type Address = {
@@ -97,7 +98,8 @@ export type CartItemType = {
   image?: string,
   balance?: string,
   redeemDate?: string,
-  profileId?: string 
+  profileId?: string,
+  senderName?: string
 }
 
 export type PaymentType = {
