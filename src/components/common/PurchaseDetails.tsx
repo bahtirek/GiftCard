@@ -1,5 +1,5 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CartItemType, GiftCardType, InputValueType } from '@/types';
 import { useCartStore } from '@/stores/cart.store';
 import CustomButton from '@/components/UI/buttons/CustomButton';
@@ -23,15 +23,24 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
   const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
   const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
   const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
+  const [senderName, setSenderName] = useState<InputValueType>({value: '', isValid: true});
   const [isPhoneInputTouched, setIsPhoneInputTouched] = useState(false);
   const [isEmailInputTouched, setIsEmailInputTouched] = useState(false);
   const [isOtherAmountInputTouched, setIsOtherAmountInputTouched] = useState(false);
+
+  useEffect(() => {
+    if(cartItemToEdit && cartItemToEdit.id) {
+      setGiftCardAmount({value: cartItemToEdit.amount!, isValid: true});
+    }
+  }, [cartItemToEdit]);
 
   const handleAmountChange = (amount: InputValueType) => {
     setGiftCardAmount(amount);
   }
 
   const addToCart = () => {
+    console.log(giftCardAmount, email, phone);
+    
     isFormCompleted();
     if(!isPhoneInputTouched && phone.value) {
       setIsPhoneInputTouched(true);
@@ -55,7 +64,8 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
         email: email.value, 
         phone: phone.value, 
         note: note.value,
-        profileId: profile.id
+        profileId: profile.id,
+        senderName: senderName.value
       });
 
       addItemToEdit({});
@@ -73,12 +83,13 @@ const PurchaseDetails = ({ handleButtonPress, buttonLabel, cartItemToEdit, giftC
     }   
   }
 
-  const handleRecipientDetailsChange = (recepientDetails: {email?: InputValueType; phone?: InputValueType; note?: InputValueType}) => {
+  const handleRecipientDetailsChange = (recepientDetails: {email?: InputValueType; phone?: InputValueType; note?: InputValueType; senderName?: InputValueType}) => {
     if(recepientDetails.email) setEmail(recepientDetails.email);
     if(recepientDetails.phone) setPhone(recepientDetails.phone);
     if(recepientDetails.note) setNote(recepientDetails.note);
+    if(recepientDetails.senderName) setSenderName(recepientDetails.senderName);
   }
-
+/* Can't edit the phone number */
   return (
     <>
       {giftCardProp?.id  &&

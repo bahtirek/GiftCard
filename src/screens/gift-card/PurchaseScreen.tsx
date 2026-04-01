@@ -21,14 +21,9 @@ const PurchaseScreen = ({route}: Props) => {
   const [email, setEmail] = useState<InputValueType>({value: '', isValid: false});
   const [phone, setPhone] = useState<InputValueType>({value: '', isValid: false});
   const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
+  const [senderName, setSenderName] = useState<InputValueType>({value: '', isValid: true});
   const [isPhoneInputTouched, setIsPhoneInputTouched] = useState(false);
   const [isEmailInputTouched, setIsEmailInputTouched] = useState(false);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      title: giftCardProp?.name
-    });
-  }, [navigation, giftCardProp])
 
   const addToCart = () => {
     if (!email.value && !phone.value) {
@@ -52,7 +47,8 @@ const PurchaseScreen = ({route}: Props) => {
       email: email.value, 
       phone: phone.value, 
       note: note.value,
-      profileId: profile.id
+      profileId: profile.id,
+      senderName: senderName.value
     });
 
     showSuccessAlert();
@@ -74,10 +70,11 @@ const PurchaseScreen = ({route}: Props) => {
     });
   }
 
-  const handleRecipientDetailsChange = (recepientDetails: {email?: InputValueType; phone?: InputValueType; note?: InputValueType}) => {
+  const handleRecipientDetailsChange = (recepientDetails: {email?: InputValueType; phone?: InputValueType; note?: InputValueType; senderName?: InputValueType}) => {
     if(recepientDetails.email) setEmail(recepientDetails.email);
     if(recepientDetails.phone) setPhone(recepientDetails.phone);
     if(recepientDetails.note) setNote(recepientDetails.note);
+    if(recepientDetails.senderName) setSenderName(recepientDetails.senderName);
   }
 
   return (

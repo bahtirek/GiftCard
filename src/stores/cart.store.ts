@@ -20,7 +20,7 @@ export const useCartStore = create<CartStoreType>((set, get) => ({
   cartItemToEdit: null as CartItemType | null,
 
   addItem: (cartItem: CartItemType) => {
-    const { id, quantity, amount, name, giftCard, email, phone, note, otherAmount, image, profileId } = cartItem;
+    const { id, quantity, amount, name, giftCard, email, phone, note, otherAmount, image, profileId, senderName } = cartItem;
     const items = get().items;
     let newItems = [...items];
     if(id) {
@@ -37,7 +37,8 @@ export const useCartStore = create<CartStoreType>((set, get) => ({
             otherAmount,
             name,
             image,
-            profileId
+            profileId,
+            senderName
           }
         }
         return item;
@@ -54,7 +55,8 @@ export const useCartStore = create<CartStoreType>((set, get) => ({
         otherAmount,
         name, 
         image,
-        profileId
+        profileId,
+        senderName
       });
     }
     set({ items: newItems, totalItemsInCart: newItems.length });

@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { CartItemType, InputValueType } from '@/types';
-import { validateEmail, validateLength } from '@/utils/input-validation';
+import { validateEmail, validateLength, validatePhoneFormat } from '@/utils/input-validation';
 import CustomInput from '@/components/UI/forms/CustomInput';
-import { mb, pb, text } from '@/styles/styles';
+import { mb, pb, pr, pt, text } from '@/styles/styles';
 import * as Contacts from 'expo-contacts';
 import ContactsIconButton from '../UI/buttons/ContactsIconButton';
+import CustomCheckbox from '../UI/forms/CustomCheckbox';
+import { useProfileStore } from '@/stores/profile.store';
 
 type RecepientDetailsProps = {
   handleRecipientDetailsChange: (recepientDetails: RecepientDetailsType) => void;
@@ -18,6 +20,7 @@ type RecepientDetailsType = {
   email?: InputValueType;
   phone?: InputValueType;
   note?: InputValueType;
+  senderName?: InputValueType;
 }
 
 const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhoneInputTouched, isEmailInputTouched }: RecepientDetailsProps) => {
@@ -26,6 +29,9 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
   const [note, setNote] = useState<InputValueType>({value: '', isValid: true});
   const [presetValue, setPresetValue] = useState<InputValueType>({value: '', isValid: false});
   const [permissionStatus, setPermissionStatus] = useState<string | null>(null);
+  const [senderName, setSenderName] = useState<InputValueType>({value: '', isValid: true});
+  const [presetSenderName, setPresetSenderName] = useState<string>('');
+  const {profile} = useProfileStore();
 
   useEffect(() => {
     resetForm();
@@ -38,6 +44,16 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
   useEffect(() => {
     getPermissions();
   }, [])
+
+  useEffect(() => {
+    console.log('Profile data in RecepientDetails:', cartItemToEdit?.senderName);
+    
+    if (cartItemToEdit && cartItemToEdit.id) {
+      setPresetSenderName(cartItemToEdit.senderName || '');
+    } else {
+      setPresetSenderName(`${profile?.firstName} ${profile?.lastName}`)
+    }
+  }, [profile])
 
   const getPermissions = async () => {
     const { status } = await Contacts.requestPermissionsAsync();
@@ -59,6 +75,11 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
     handleRecipientDetailsChange({ phone })
   }
 
+  const handleSenderNameInput = (senderName: InputValueType) => {
+    setSenderName(senderName)
+    handleRecipientDetailsChange({ senderName })
+  }
+
   const resetForm =() => {
     setEmail({isValid: false, value: ''});
     setPhone({isValid: false, value: ''});
@@ -66,7 +87,8 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
   }
 
   const phoneRules = [
-    (val: string) => validateLength(val, 12) || 'Wrong phone number'
+    (val: string) => val.length > 0 || 'Phone number is required',
+    (val: string) => validateLength(val, 17) || 'Wrong phone number',
   ]
 
   const emailRules = [
@@ -79,7 +101,8 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
       if (contact && contact.phoneNumbers && contact.phoneNumbers.length > 0) {
         const selectedPhone = contact.phoneNumbers[0].number;
         const formattedPhone = selectedPhone!.replace(/\D/g, '');
-        setPresetValue({ value: formattedPhone, isValid: true });
+        const missingDigits = '1'.repeat(12 - formattedPhone.length);
+        setPresetValue({ value: `${formattedPhone}${missingDigits}`, isValid: true });
       }
     }
   }
@@ -87,13 +110,13 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
   return (
     <View style={styles.container}>
       <View>
-        <Text style={[text.md, text.grey, pb.md]}>Recepient details:</Text>
+        <Text style={[text.md, text.grey, pb.sm]}>Phone:</Text>
         <View style={styles.phoneInputContainer}>
           <CustomInput
             onInput={(phone: InputValueType) => { handlePhoneInput(phone) }}
-            placeholder='Phone'
+            placeholder='998 90 1234567'
             mask='phone' 
-            maxLength={12}
+            maxLength={17}
             keyboardType='number-pad'
             presetValue={presetValue.value}
             rules={phoneRules}
@@ -104,7 +127,7 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
             <ContactsIconButton onPress={openContacts} />
           </View>
         </View>
-        <Text style={[text.md, text.grey, pb.md]}>Or</Text>
+        {/* <Text style={[text.md, text.grey, pb.md]}>Or</Text>
         <View style={[mb.xl]}>
           <CustomInput 
             onInput={(email: InputValueType) => {handleEmailInput(email)}} 
@@ -114,16 +137,24 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
             rules={emailRules}
             isTouched={isEmailInputTouched}
           />
-        </View>
-        <Text style={[text.md, text.grey, pb.md]}>Gift note:</Text>
+        </View> */}
+        <Text style={[text.md, text.grey, pb.sm, pt.sm]}>Gift note:</Text>
         <View>
-          <CustomInput 
-            onInput={(note: InputValueType) => {handleNoteInput(note)}} 
+          <CustomInput
+            onInput={(note: InputValueType) => { handleNoteInput(note) }}
             placeholder='Best wishes'
             multiline={true}
             numberOfLines={10}
             presetValue={cartItemToEdit?.note}
             textarea={true}
+          />
+        </View>
+        <Text style={[text.md, text.grey, pb.sm, pt.lg]}>From:</Text>
+        <View>
+          <CustomInput
+            onInput={(name: InputValueType) => { handleSenderNameInput(name) }}
+            placeholder='John Doe'
+            presetValue={presetSenderName}
           />
         </View>
       </View>

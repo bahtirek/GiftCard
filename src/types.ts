@@ -98,7 +98,8 @@ export type CartItemType = {
   image?: string,
   balance?: string,
   redeemDate?: string,
-  profileId?: string 
+  profileId?: string,
+  senderName?: string
 }
 
 export type PaymentType = {
