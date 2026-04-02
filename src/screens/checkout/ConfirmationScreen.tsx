@@ -1,33 +1,68 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { usePreventBack } from '@/utils/use-prevent-back';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import ExpoIcons from '@expo/vector-icons/Feather';
 import { Colors } from '@/styles/constants';
+import { useProfileStore } from '@/stores/profile.store';
+import CustomButton from '@/components/UI/buttons/CustomButton';
 
 const ConfirmationScreen = () => {
   usePreventBack();
   const navigation = useNavigation();
+  const [showCreateProfile, setShowCreateProfile] = useState(false);
+  const { profile } = useProfileStore();
 
   const goHome = () => {
+    if (!profile.phone) {
+      setShowCreateProfile(true);
+    } else {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'MainTabsView' as never }],
+      })
+    }
+  }
+
+  const onCreateProfileButtonClick = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: 'MainTabsView' as never }],
-    })
+      routes: [
+        {
+          name: 'MainTabsView' as never,
+          params: {
+            screen: 'AccountNavigation',
+            params: {
+              screen: 'ProfileScreen',
+            },
+          },
+        },
+      ],
+    });
   }
+
 
   return (
     <SafeAreaView edges={["left", "right"]} style={styles.container}>
       <View style={styles.innerContainer}>
-        <ExpoIcons name="gift" size={60} color={Colors.primary500} />
-        <Text style={styles.title}>Congratulations!</Text>
-        <Text style={styles.subtitle}>Gift cards were sent to recipients</Text>
-        <View style={styles.row}>
+        <View style={styles.iconsContainer}>
+          <ExpoIcons name="bar-chart-2" size={54} color={Colors.primary500} style={styles.chartIcon} />
+          <ExpoIcons name="gift" size={54} color={Colors.primary500} />
         </View>
-        <TouchableOpacity onPress={goHome} activeOpacity={0.5}>
-          <Text style={styles.homeButtonText}>Return to home screen</Text>
-        </TouchableOpacity>
+        <Text style={styles.subtitle}>Gift cards were sent successfully</Text>
+        {showCreateProfile &&
+          <>
+            <Text style={styles.title}>Don’t lose access to your order</Text>
+            <Text style={styles.subtitle}>Create a profile to securely manage your gift card, track its status, and resend it if needed.</Text>
+            <View>
+              <CustomButton label={'Create Profile'} handlePress={onCreateProfileButtonClick} secondary />
+            </View>
+          </>
+        }
+        <View>
+          <CustomButton label={'Return to home screen'} handlePress={goHome} secondary />
+        </View>
       </View>
     </SafeAreaView>
   )
@@ -39,40 +74,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   innerContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16,
-    marginTop: -100,
-  },
-  icon: {
-    // No style needed, handled by ExpoIcons props
+    marginTop: -150,
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#4B5563',
+    color: Colors.primary500,
     textAlign: 'center',
-    marginTop: 32,
-    marginBottom: 16,
+    marginTop: 16,
+    marginBottom: 8,
   },
   subtitle: {
     fontSize: 18,
-    marginBottom: 8,
-    color: '#6B7280',
+    marginBottom: 16,
+    color: Colors.secondary600,
     textAlign: 'center',
+    maxWidth: 320,
   },
-  row: {
+  iconsContainer: {
+    marginBottom: 24,
     flexDirection: 'row',
+    paddingRight: 32,
+  },
+  chartIcon: {
+    transform: [{ rotate: '270deg' }],
+    marginBottom: -10,
+    marginRight: -12,
   },
   homeButton: {
-    marginTop: 10,
+    marginTop: 32,
   },
   homeButtonText: {
     fontSize: 18,
     color: '#FCAF58',
     textDecorationLine: 'underline',
-  },
+  }
 })
