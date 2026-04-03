@@ -54,11 +54,9 @@ export const fetchProfileById = async (profileId: string) => {
   const res = await fetch(
     `${BASE_URL}?${profileId}`
   );
-  console.log(`${BASE_URL}?${profileId}`);
   
   const data: ProfileType[] = await res.json();
   const profile = data[0]
-  console.log(profile);
   
   return {profile};
 }

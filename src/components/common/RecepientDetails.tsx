@@ -45,9 +45,7 @@ const RecepientDetails = ({ handleRecipientDetailsChange, cartItemToEdit, isPhon
     getPermissions();
   }, [])
 
-  useEffect(() => {
-    console.log('Profile data in RecepientDetails:', cartItemToEdit?.senderName);
-    
+  useEffect(() => {    
     if (cartItemToEdit && cartItemToEdit.id) {
       setPresetSenderName(cartItemToEdit.senderName || '');
     } else {
