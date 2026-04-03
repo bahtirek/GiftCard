@@ -24,16 +24,11 @@ export default ContactsIconButton
 
 const styles = StyleSheet.create({
   calendarIcon: {
-    transform: [{ rotate: '-90deg' }],
+    transform: [{ rotate: '270deg' }],
   },  
   userIcon: {
     position: 'absolute',
     top: 8,
     right: 4,
   }
-  /* userIcon: {
-    position: 'absolute',
-    top: 4,
-    right: 8,
-  } */
 })

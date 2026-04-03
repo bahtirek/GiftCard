@@ -19,7 +19,6 @@ const CheckoutModal = () => {
   }
 
   const onPaymentUpdated = (value: boolean) => {
-    console.log('payment updated',value);
     if(value) navigation.navigate('ReviewScreen' as never);
   }
 
