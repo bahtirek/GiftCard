@@ -3,6 +3,9 @@ import { CartItemType, GiftCardType } from "@/types";
 
 export type RootStackParamList = {
   MainTabsView: NavigatorScreenParams<MainTabParamList>;
+  GiftCardDetails: { giftCardProp: GiftCardType };
+  Settings: undefined;
+  Payment: NavigatorScreenParams<PaymentStackParamList>;
 };
 
 export type MainTabParamList = {
@@ -10,6 +13,26 @@ export type MainTabParamList = {
   GiftCardsNavigation: NavigatorScreenParams<GiftCardsStackParamList>;
   CartNavigation: NavigatorScreenParams<CartStackParamList>;
   AccountNavigation: NavigatorScreenParams<AccountStackParamList>;
+};
+
+export type PaymentStackParamList = {
+  PaymentScreen: undefined;
+  ReviewScreen: undefined;
+  ConfirmationScreen: undefined;
+};
+
+export type AccountStackParamList = {
+  AccountScreen: undefined;
+  ProfileScreen: undefined;
+  OrdersScreen: undefined;
+  OrderDetailsScreen: { orderId: string };
+  RedeemScreen: undefined;
+
+  DashboardScreen: undefined;
+  DashboardListScreen: undefined;
+  DashboardPurchasedScreen: undefined;
+  DashboardRedeemedScreen: undefined;
+  DashboardAccountDetailsScreen: { giftCardProp: GiftCardType };
 };
 
 export type GiftCardsStackParamList = {
@@ -21,19 +44,4 @@ export type GiftCardsStackParamList = {
 export type CartStackParamList = {
   CartScreen: undefined;
   EditCartItem: { cartItem: CartItemType };
-};
-
-export type AccountStackParamList = {
-  ProfileScreen: undefined;
-  OrdersScreen: undefined;
-  OrderDetailsScreen: { orderId: string };
-  AccountScreen: undefined;
-  RedeemScreen: undefined;
-  
-  DashboardScreen: undefined;
-  DashboardAccountsListScreen: undefined;
-  DashboardListScreen: undefined;
-  DashboardPurchasedScreen: undefined;
-  DashboardRedeemedScreen: undefined;
-  DashboardAccountDetailsScreen: { giftCardProp: GiftCardType };
 };
