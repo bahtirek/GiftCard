@@ -7,12 +7,14 @@ import ExpoIcons from '@expo/vector-icons/Feather';
 import { Colors } from '@/styles/constants';
 import { useProfileStore } from '@/stores/profile.store';
 import CustomButton from '@/components/UI/buttons/CustomButton';
+import { useAppRoutes } from '@/navigation/useAppRoutes';
 
 const ConfirmationScreen = () => {
   usePreventBack();
   const navigation = useNavigation();
   const [showCreateProfile, setShowCreateProfile] = useState(false);
   const { profile } = useProfileStore();
+  const { goToAccountReset } = useAppRoutes();
 
   const goHome = () => {
     if (!profile.phone) {
@@ -26,20 +28,7 @@ const ConfirmationScreen = () => {
   }
 
   const onCreateProfileButtonClick = () => {
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: 'MainTabsView' as never,
-          params: {
-            screen: 'AccountNavigation',
-            params: {
-              screen: 'ProfileScreen',
-            },
-          },
-        },
-      ],
-    });
+    goToAccountReset('ProfileScreen');
   }
 
 
