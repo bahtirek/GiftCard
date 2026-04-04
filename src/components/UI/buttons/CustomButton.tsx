@@ -37,9 +37,10 @@ const styles = StyleSheet.create({
   },
   secondary: {
     alignSelf: 'flex-start',
+    paddingHorizontal: 0,
   },
   secondaryText: {
-    color: Colors.primary900,
+    color: Colors.primary,
     fontWeight: '600',
   },
   text: {
