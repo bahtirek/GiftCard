@@ -9,13 +9,15 @@ import { GiftCardType } from '@/types'
 import { useAccountsQuery } from '@/api/gift-cards/search.query'
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
 import { AccountStackParamList, MainTabParamList} from '@/navigation/navigation-types'
+import { useAccountStore } from '@/stores/account.store'
 
 type Props = NativeStackScreenProps<AccountStackParamList, 'DashboardScreen'>;
 type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'AccountNavigation'>;
 
 const DashboardAccountsListScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { profile, setAccount } = useProfileStore();
+  const { profile} = useProfileStore();
+  const { setAccount } = useAccountStore();
 
     const {
       data,
@@ -36,10 +38,6 @@ const DashboardAccountsListScreen = () => {
   const onPress = (giftCardProp: GiftCardType) => {
     setAccount(giftCardProp);
     navigation.goBack();
-/*     navigation.navigate('AccountNavigation', {
-      screen: 'DashboardAccountDetailsScreen',
-      params: { giftCardProp }
-    }); */
   }
 
   return (
