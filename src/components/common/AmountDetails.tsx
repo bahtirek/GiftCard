@@ -48,6 +48,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
 
   const handleOtherSelect = () => {
     setGiftCardAmount({ value: '', isValid: false });
+    handleAmountChange({ value: '', isValid: false });
     setOtherAmount(true);
   }
 
