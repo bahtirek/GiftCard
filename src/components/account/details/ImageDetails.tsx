@@ -88,7 +88,7 @@ const ImageDetails = () => {
         renderItem={({item, index}) => (
           <TouchableOpacity onPress={() => {showImageInModal(item)}}>
             <View style={styles.imageContainer}>
-              <Image source={{uri: item}} style={{width: 100, height: 100, borderRadius: 8}} />
+              <Image source={{uri: item}} style={{width: 90, height: 90, borderRadius: 8}} />
               <View style={styles.deleteButton}>
                 <IconButton icon='trash-2' onPress={() => onImageDeleteButtonClicked(index)} />
               </View>
