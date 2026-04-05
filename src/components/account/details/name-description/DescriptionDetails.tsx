@@ -77,5 +77,6 @@ const styles = StyleSheet.create({
   details: {
     flexGrow: 1,
     width: 0,
+    paddingRight: 16
   },
 })

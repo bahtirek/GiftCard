@@ -42,7 +42,7 @@ export type GiftCardType = {
   description: string,
   phone: string,
   website?: string,
-  address?: Address,
+  address?: AddressType,
   instagram?: string,
   telegram?: string,
   priceSet?: PriceType[],
@@ -57,11 +57,11 @@ export type GiftCardType = {
   tempAmount?: string
 };
 
-export type Address = {
+export type AddressType = {
   line_one: string,
-  line_two: string,
+  line_two?: string,
   city: string,
-  zip: string
+  zip?: string
 };
 
 export type GiftCardsStoreState = {

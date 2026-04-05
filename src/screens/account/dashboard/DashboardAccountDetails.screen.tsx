@@ -4,7 +4,7 @@ import { flex, pa } from '@/styles/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ImageDetails from '@/components/account/details/name-description/ImageDetails';
 import DescriptionDetails from '@/components/account/details/name-description/DescriptionDetails';
-import AddressDetails from '@/components/account/details/AddressDetails';
+import AddressDetails from '@/components/account/details/address/AddressDetails';
 import PriceDetails from '@/components/account/details/PriceDetails';
 
 const DashboardAccountDetailsScreen = () => {

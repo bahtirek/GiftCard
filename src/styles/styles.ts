@@ -44,6 +44,10 @@ export const commonStyles = StyleSheet.create({
     marginTop: 16,
     width: '100%',
   },
+  inputContainer: {
+    marginBottom: 24, 
+    marginTop: 4
+  }
 })
 
 export const flex = StyleSheet.create({
