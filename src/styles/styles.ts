@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native'
-import { Colors } from './constants'
+import { Colors, Font } from './constants'
 
 export const commonStyles = StyleSheet.create({
   container: {
@@ -35,6 +35,14 @@ export const commonStyles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  buttonContainer: {
+    marginTop: 'auto',
+    paddingTop: 24,
+  },
+  secondaryButton: {
+    marginTop: 16,
+    width: '100%',
   },
 })
 
@@ -87,17 +95,23 @@ export const text = StyleSheet.create({
   primary: {
     color: Colors.primary
   },
+  primaryLight: {
+    color: Colors.primary800
+  },
+  xs: {
+    fontSize: Font.xs,
+  },
   sm: {
-    fontSize: 14,
+    fontSize: Font.sm,
   },
   md: {
-    fontSize: 16,
+    fontSize: Font.md,
   },
   lg: {
-    fontSize: 20,
+    fontSize: Font.lg,
   }, 
   xl: {
-    fontSize: 24,
+    fontSize: Font.xl,
   },
 })
 

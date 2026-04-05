@@ -42,10 +42,11 @@ const styles = StyleSheet.create({
   secondaryText: {
     color: Colors.primary,
     fontWeight: '600',
+    fontSize: Font.md
   },
   text: {
     color: Colors.primary,
     textAlign: 'center',
-    fontSize: Font.xl,
+    fontSize: Font.lg,
   },
 })
