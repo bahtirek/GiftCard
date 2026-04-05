@@ -39,8 +39,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.25)',
-    paddingBottom: 64,
-    paddingHorizontal: 16
+    paddingBottom: 32,
+    paddingHorizontal: 16,
+    paddingTop: 32
   },
   modalContent: {
     width: '100%',
