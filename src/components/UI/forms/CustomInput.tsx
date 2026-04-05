@@ -97,7 +97,13 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
       <View style={[styles.container]}>
         <TextInput
           ref={textInputRef}
-          style={[style, { borderColor: borderColor }, !validation.isValid && touched ? { borderColor: 'red' } : {}, textarea ? styles.textarea : styles.input, prefix ? { paddingLeft: 40 } : {} ]}
+          style={[
+            style, 
+            { borderColor: borderColor }, 
+            ((rules && rules.length > 0) && !validation.isValid && touched) ? { borderColor: 'red' } : {}, 
+            textarea ? styles.textarea : styles.input, 
+            prefix ? { paddingLeft: 40 } : {} 
+          ]}
           value={value}
           placeholderTextColor="#FFA07A"
           onChangeText={onChange}
@@ -110,7 +116,7 @@ const CustomInput = ( { onInput, mask, presetValue, className, reset, rules, pre
         </View>
       </View>
       {
-        (!validation.isValid && touched) && <Text style={styles.errorText}>{validation.error}</Text>
+        ((rules && rules.length > 0) && !validation.isValid && touched) && <Text style={styles.errorText}>{validation.error}</Text>
       }
     </View>
   )
