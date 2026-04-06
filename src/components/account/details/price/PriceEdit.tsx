@@ -16,12 +16,7 @@ type PriceEditPropType = {
 
 
 const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditPropType) => {
-  const [isPriceTouched, setIsPriceTouched] = useState(false);
   const [prices, setPrices] = useState<InputValueType[]>([{value: '', isValid: false}, {value: '', isValid: false}, {value: '', isValid: false}])
-  const [updatedPrices, setUpdatedPrices] = useState<PriceType[]>([])
-  const [priceOne, setPriceOne] = useState<InputValueType>({value: '', isValid: false})
-  const [priceTwo, setPriceTwo] = useState<InputValueType>({value: '', isValid: false})
-  const [priceThree, setPriceThree] = useState<InputValueType>({value: '', isValid: false})
 
   useEffect(() => {
     const preset = prices.map((item, index) => item = {value: presetValue[index]?.amount || '', isValid: true});
@@ -36,7 +31,6 @@ const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditP
   }
 
   const onUpdateButtonClicked = () => {
-    setIsPriceTouched(true)
     if(!prices[0].isValid) return;
     const updatedPrices: PriceType[] = []
     prices.forEach((item, index) => {
