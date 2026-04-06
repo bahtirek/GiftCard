@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ImageDetails from '@/components/account/details/name-description/ImageDetails';
 import DescriptionDetails from '@/components/account/details/name-description/DescriptionDetails';
 import AddressDetails from '@/components/account/details/address/AddressDetails';
-import PriceDetails from '@/components/account/details/PriceDetails';
+import PriceDetails from '@/components/account/details/price/PriceDetails';
 
 const DashboardAccountDetailsScreen = () => {
 
