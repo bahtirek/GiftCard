@@ -1,13 +1,13 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { InputValueType, PriceType } from '@/types'
+import { InputValueType } from '@/types'
 import CommonModal from '@/components/UI/modals/CommonModal'
 import CustomInput from '@/components/UI/forms/CustomInput'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { commonStyles } from '@/styles/styles'
 
 type PriceEditPropType = {
-  presetValue: PriceType[],
+  presetValue: string[],
   showModal: boolean
   closeModal: () => void,
   updatePrice: (price: any) => void,
@@ -19,7 +19,7 @@ const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditP
   const [prices, setPrices] = useState<InputValueType[]>([{value: '', isValid: false}, {value: '', isValid: false}, {value: '', isValid: false}])
 
   useEffect(() => {
-    const preset = prices.map((item, index) => item = {value: presetValue[index]?.amount || '', isValid: true});
+    const preset = prices.map((item, index) => item = {value: presetValue[index] || '', isValid: true});
     setPrices(preset)
   }, [presetValue])
   
@@ -32,10 +32,10 @@ const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditP
 
   const onUpdateButtonClicked = () => {
     if(!prices[0].isValid) return;
-    const updatedPrices: PriceType[] = []
-    prices.forEach((item, index) => {
+    const updatedPrices: string[] = []
+    prices.forEach((item) => {
       if (item && item.value) {
-        updatedPrices.push({id: index.toString(), amount: item.value})
+        updatedPrices.push(item.value)
       }
     })
     updatePrice(updatedPrices)
@@ -62,7 +62,7 @@ const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditP
               rules={priceRules}
               keyboardType="number-pad"
               mask='currency'
-              presetValue={presetValue[0]?.amount || ''}
+              presetValue={presetValue[0] || ''}
             />
           </View>
           <View style={[commonStyles.inputContainer]}>
@@ -71,7 +71,7 @@ const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditP
               placeholder='Price 2'
               keyboardType="number-pad"
               mask='currency'
-              presetValue={presetValue[1]?.amount || ''}
+              presetValue={presetValue[1] || ''}
             />
           </View>
           <View style={[commonStyles.inputContainer]}>
@@ -80,7 +80,7 @@ const PriceEdit = ({presetValue, closeModal, showModal, updatePrice}: PriceEditP
               placeholder='Price 2'
               keyboardType="number-pad"
               mask='currency'
-              presetValue={presetValue[2]?.amount || ''}
+              presetValue={presetValue[2] || ''}
             />
           </View>
         </View>

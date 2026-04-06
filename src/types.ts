@@ -31,7 +31,7 @@ export type GiftCardType2 = {
   website?: string,
   instagram?: string,
   telegram?: string,
-  priceSet?: PriceType[],
+  priceSet?: string[],
   showDescription?: boolean 
 };
 
@@ -45,7 +45,7 @@ export type GiftCardType = {
   address?: AddressType,
   instagram?: string,
   telegram?: string,
-  priceSet?: PriceType[],
+  priceSet?: string[],
   showDescription?: boolean
   geo?: {
     lat: number,
@@ -76,11 +76,6 @@ export type CreatorType = {
 export type LocationType = {
   id?: string,
   name?: string
-}
-
-export type PriceType = {
-  id: string,
-  amount: string
 }
 
 export type CartItemType = {

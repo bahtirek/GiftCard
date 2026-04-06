@@ -4,7 +4,6 @@ import { useAccountStore } from '@/stores/account.store';
 import IconButton from '@/components/UI/buttons/IconButton';
 import { mb, text } from '@/styles/styles';
 import { updateAccountAPI } from '@/api/account/account.api';
-import { PriceType } from '@/types';
 import PriceEdit from './PriceEdit';
 
 const PriceDetails = () => {
@@ -15,7 +14,7 @@ const PriceDetails = () => {
     setShowPriceEditModal(true)
   }
 
-  const updatePrice = async (prices: PriceType[]) => {
+  const updatePrice = async (prices: string[]) => {
     const updatedAccount = {...account!, priceSet: prices}
     await updateAccountAPI(updatedAccount)
     updateAccount(updatedAccount);
@@ -28,7 +27,7 @@ const PriceDetails = () => {
       <View style={styles.detailsRow}>
         <View style={[styles.details]}>
           {account?.priceSet?.map((item) => (
-            <Text key={item.amount} style={[mb.xs]}>{item.amount}</Text>
+            <Text key={item} style={[mb.xs]}>{item}</Text>
           ))}
         </View>
         <IconButton icon='edit' onPress={() => onPriceEditButtonClicked()} />
