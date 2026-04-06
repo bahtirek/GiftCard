@@ -25,7 +25,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
   const setupEditing = async() => {
     resetForm()
     if(!cartItemToEdit || !cartItemToEdit.id) return;
-    const isAmountSelected = priceSet.some(price => price === cartItemToEdit);
+    const isAmountSelected = priceSet.some(price => price === cartItemToEdit.amount);
     if (!isAmountSelected) {
       setGiftCardAmount({ value: cartItemToEdit.amount!, isValid: true });
       setPresetValue(cartItemToEdit.amount!);
