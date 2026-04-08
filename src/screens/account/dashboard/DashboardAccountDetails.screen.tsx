@@ -6,6 +6,8 @@ import ImageDetails from '@/components/account/details/name-description/ImageDet
 import DescriptionDetails from '@/components/account/details/name-description/DescriptionDetails';
 import AddressDetails from '@/components/account/details/address/AddressDetails';
 import PriceDetails from '@/components/account/details/price/PriceDetails';
+import SocialDetails from '@/components/account/details/social/SocialDetails';
+import ContactsDetails from '@/components/account/details/contacts/ContactsDetails';
 
 const DashboardAccountDetailsScreen = () => {
 
@@ -15,6 +17,8 @@ const DashboardAccountDetailsScreen = () => {
         <ImageDetails />
         <DescriptionDetails />
         <AddressDetails />
+        <ContactsDetails />
+        <SocialDetails />
         <PriceDetails />
       </ScrollView>
     </SafeAreaView>
