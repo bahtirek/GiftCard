@@ -43,7 +43,7 @@ export type GiftCardType = {
   phone: string,
   website?: string,
   address?: AddressType,
-  social?: SocialType[],
+  social?: SocialType,
   contacts?: ContactType,
   priceSet?: string[],
   showDescription?: boolean
@@ -130,8 +130,9 @@ export type ProfileType = {
 }
 
 export type SocialType = {
-  network: string,
-  link: string
+  telegram: string,
+  instagram: string,
+  twitter: string
 }
 
 export type ContactType = {
