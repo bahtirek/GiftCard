@@ -13,6 +13,7 @@ import DashboardRedeemedScreen from '@/screens/account/dashboard/DashboardRedeem
 import DashboardAccountDetailsScreen from '@/screens/account/dashboard/DashboardAccountDetails.screen';
 import DashboardAccountsListScreen from '@/screens/account/dashboard/DashboardAccountsListScreen';
 import DashboardRedeemersScreen from '@/screens/account/dashboard/DashboardRedeemers.screen';
+import DashboardRedeemerFormScreen from '@/screens/account/dashboard/DashboardRedeemerForm.screen';
 
 const Stack = createNativeStackNavigator<AccountStackParamList>();
 
@@ -71,6 +72,10 @@ const AccountNavigation = () => {
       }} />
       <Stack.Screen name='DashboardRedeemersScreen' component={ DashboardRedeemersScreen } options={{
         title: 'Redeemers',
+        headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='DashboardRedeemerFormScreen' component={ DashboardRedeemerFormScreen } options={{
+        title: 'Redeemer',
         headerBackTitle: 'Back',
       }} />
     </Stack.Navigator>

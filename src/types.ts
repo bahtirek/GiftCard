@@ -140,3 +140,11 @@ export type ContactType = {
   phone: string,
   email: string
 }
+
+export type RedeemerType = {
+  id: number,
+  lastname: string,
+  firstname: string,
+  phone: string,
+  reddemedItems?: number
+}
