@@ -30,9 +30,11 @@ export type AccountStackParamList = {
 
   DashboardScreen: undefined;
   DashboardListScreen: undefined;
+  DashboardAccountsListScreen: undefined;
   DashboardPurchasedScreen: undefined;
   DashboardRedeemedScreen: undefined;
   DashboardAccountDetailsScreen: { giftCardProp: GiftCardType };
+  DashboardRedeemersScreen: undefined;
 };
 
 export type GiftCardsStackParamList = {
