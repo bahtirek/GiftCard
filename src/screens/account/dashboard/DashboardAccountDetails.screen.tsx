@@ -2,12 +2,12 @@ import { StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { flex, pa } from '@/styles/styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ImageDetails from '@/components/account/details/name-description/ImageDetails';
-import DescriptionDetails from '@/components/account/details/name-description/DescriptionDetails';
-import AddressDetails from '@/components/account/details/address/AddressDetails';
-import PriceDetails from '@/components/account/details/price/PriceDetails';
-import SocialDetails from '@/components/account/details/social/SocialDetails';
-import ContactsDetails from '@/components/account/details/contacts/ContactsDetails';
+import ImageDetails from '@/components/account/dashboard/details/name-description/ImageDetails';
+import DescriptionDetails from '@/components/account/dashboard/details/name-description/DescriptionDetails';
+import AddressDetails from '@/components/account/dashboard/details/address/AddressDetails';
+import PriceDetails from '@/components/account/dashboard/details/price/PriceDetails';
+import SocialDetails from '@/components/account/dashboard/details/social/SocialDetails';
+import ContactsDetails from '@/components/account/dashboard/details/contacts/ContactsDetails';
 
 const DashboardAccountDetailsScreen = () => {
 
