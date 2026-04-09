@@ -39,7 +39,7 @@ const DashboardScreen = () => {
     {id: 1, label: "Purchased", path: 'DashboardPurchasedScreen'},
     {id: 2, label: "Redeemed", path: 'DashboardRedeemedScreen'},
     {id: 3, label: "Account details", path: 'DashboardAccountDetailsScreen'},
-    {id: 3, label: "Redeemers", path: 'DashboardRedeemersScreen'},
+    {id: 4, label: "Redeemers", path: 'DashboardRedeemersScreen'},
   ]
 
   return (
