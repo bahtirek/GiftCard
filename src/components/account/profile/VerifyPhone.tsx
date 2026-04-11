@@ -98,7 +98,7 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
           onInput={(phone: InputValueType) => { handlePhoneInput(phone) }}
           placeholder='Phone'
           mask='phone'
-          maxLength={12}
+          maxLength={17}
           keyboardType='number-pad'
           rules={phoneRules}
           isTouched={isPhoneInputTouched}

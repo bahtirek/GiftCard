@@ -12,9 +12,9 @@ const DashboardRedeemersScreen = () => {
   const navigation = useNavigation();
       
   useEffect(() => {
-    if(!account) {
+    /* if(!account) {
       openAccountslistScreen()
-    }
+    } */
   }, [])
 
   const openAccountslistScreen = () => {

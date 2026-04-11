@@ -1,12 +1,12 @@
-import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Colors } from '@/styles/constants';
 import RedeemerDetails from './RedeemerDetails';
 import ListEmptyComponent from '@/components/common/ListEmptyComponent';
 import { RedeemerType } from '@/types';
-import { useProfileStore } from '@/stores/profile.store';
 import { useAccountStore } from '@/stores/account.store';
 import { useRedeemersQuery } from '@/api/redeemer/redeemer.query';
+import { useIsFocused } from '@react-navigation/native';
 
 
 type RedeemerListProp = {
@@ -21,7 +21,8 @@ type RedeemerListProp = {
 }
 
 const RedeemersList = () => {
-  const { profile} = useProfileStore();
+  const store = useAccountStore();
+  const isFocused = useIsFocused()
 
   const {
     data,
@@ -32,21 +33,35 @@ const RedeemersList = () => {
     isFetchingNextPage,
     isRefetching,
   } = useRedeemersQuery([]);
-  
-  const redeemers: RedeemerType[] = data?.pages.flatMap((page) => page.redeemers) ?? [];
 
-  const onPress = (redeemer: RedeemerType) => {
-    /* setAccount(giftCardProp);
-    navigation.goBack(); */
-  }
+  useEffect(() => {
+    if (!data) {
+      fetchNextPage();
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (data) {
+      const allRedeemers = data?.pages?.flatMap((page) => page?.redeemers ?? []) ?? [];
+      store.setRedeemers(allRedeemers);
+    } else {
+      fetchNextPage()
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (isFocused) {
+      refetch();
+    }
+  }, [isFocused]);
 
   return (
     <FlatList
-      data={redeemers}
+      data={store.redeemers}
       keyExtractor={(item) => item.id!.toString()}
       renderItem={({ item }) => (
         <View>
-         <RedeemerDetails />
+         <RedeemerDetails redeemer={item} />
         </View>
       )}
       onEndReached={() => {

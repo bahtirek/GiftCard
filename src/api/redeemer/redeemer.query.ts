@@ -19,7 +19,7 @@ type FetchRedeemersResult = {
 
 export const useRedeemersQuery = (accountIds: number[]) => {
   return useInfiniteQuery({
-    queryKey: ['items', accountIds],
+    queryKey: ['redeemers', accountIds],
     queryFn: ({pageParam }) => {
       return fetchRedeemers(accountIds, pageParam)
     },

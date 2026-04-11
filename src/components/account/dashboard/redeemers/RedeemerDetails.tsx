@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { RedeemerType } from '@/types'
 
-const RedeemerDetails = () => {
+type RedeemerDetailsProp = {
+  redeemer: RedeemerType
+}
+
+const RedeemerDetails = ({redeemer}: RedeemerDetailsProp) => {
   return (
     <View>
-      <Text>RedeemerDetails</Text>
+      <Text>{redeemer.firstname}</Text>
+      <Text>{redeemer.lastname}</Text>
+      <Text>{redeemer.phone}</Text>
     </View>
   )
 }
