@@ -34,6 +34,8 @@ const RedeemersList = () => {
     isRefetching,
   } = useRedeemersQuery([]);
 
+  const redeemers = data?.pages?.flatMap((page) => page?.redeemers ?? []) ?? [];
+
   useEffect(() => {
     if (!data) {
       fetchNextPage();
@@ -42,8 +44,7 @@ const RedeemersList = () => {
 
   useEffect(() => {
     if (data) {
-      const allRedeemers = data?.pages?.flatMap((page) => page?.redeemers ?? []) ?? [];
-      store.setRedeemers(allRedeemers);
+      store.setRedeemers(redeemers);
     } else {
       fetchNextPage()
     }
@@ -57,7 +58,7 @@ const RedeemersList = () => {
 
   return (
     <FlatList
-      data={store.redeemers}
+      data={redeemers}
       keyExtractor={(item) => item.id!.toString()}
       renderItem={({ item }) => (
         <View>
