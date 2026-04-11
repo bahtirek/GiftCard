@@ -10,29 +10,18 @@ import RedeemersList from '@/components/account/dashboard/redeemers/RedeemersLis
 const DashboardRedeemersScreen = () => {
   const { account } = useAccountStore();
   const navigation = useNavigation();
-      
-  useEffect(() => {
-    /* if(!account) {
-      openAccountslistScreen()
-    } */
-  }, [])
 
-  const openAccountslistScreen = () => {
+  const openRedeemerFormScreen = () => {
     navigation.navigate('DashboardRedeemerFormScreen' as never)
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton icon='user-plus' onPress={openAccountslistScreen} color="#FCAF58" />
+        return <IconButton icon='user-plus' onPress={openRedeemerFormScreen} color="#FCAF58" />
       }
     });
   }, [navigation, account])
-
-
-  const goToScreen = (path: string) => {
-    navigation.navigate(path as never)
-  }
 
   return (
     <SafeAreaView edges={["left", "right"]} style={[flex.flexGrow, pt.md]}>
