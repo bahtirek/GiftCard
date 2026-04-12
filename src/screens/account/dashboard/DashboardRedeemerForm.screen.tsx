@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { commonStyles, flex, mt, pb, pt, text } from '@/styles/styles'
 import CustomInput from '@/components/UI/forms/CustomInput'
@@ -8,15 +8,15 @@ import { InputValueType, RedeemerType } from '@/types'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { validateLength } from '@/utils/input-validation'
-import { postRedeemerAPI } from '@/api/redeemer/redeemer.api'
+import { postRedeemerAPI, updateRedeemerAPI } from '@/api/redeemer/redeemer.api'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { AccountStackParamList } from '@/navigation/navigation-types'
 
 
-type RedeemerFormProp = {
-  onSkipOrUpdate: () => void,
-  isEditing?: boolean
-}
+type Props = NativeStackScreenProps<AccountStackParamList, 'DashboardRedeemerFormScreen'>;
 
-const DashboardRedeemerFormScreen = () => {
+const DashboardRedeemerFormScreen = ({ route }: Props) => {
+  const { redeemer } = route.params;
   const store = useAccountStore();
   const [firstname, setFirstName] = useState<InputValueType>({ value: '', isValid: false });
   const [lastname, setLastName] = useState<InputValueType>({ value: '', isValid: false });
@@ -24,85 +24,79 @@ const DashboardRedeemerFormScreen = () => {
   const [initialValueFirstName, setInitialValueFirstName] = useState('');
   const [initialValueLastName, setInitialValueLastName] = useState('');
   const [initialValuePhone, setInitialValuePhone] = useState('');
-  const [isEditing, setIsEditing] = useState(false)
+  const [buttonLabel, setButtonLabel] = useState('Submit')
   const navigation = useNavigation();
   
- /*    useEffect(() => {    
-      if(isEditing){
-        const redeemerData: RedeemerType  = getRedeemer(1);
-        
-        if(redeemerData?.firstname) {
-          setInitialValueFirstName(redeemerData.firstname);
-        }
-        if(redeemerData?.lastname) {
-          setInitialValueLastName(redeemerData.lastname);
-        }
-      }
-    }, [isFocused]) */
-  
-    const handleFirstNameInput = (firstname: InputValueType) => {
-      setFirstName(firstname);
-    }
-    const handleLastNameInput = (lastname: InputValueType) => {
-      setLastName(lastname);
-    }
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: redeemer?.id ? 'Edit redeemer details' : 'Create redeemer'
+    });
+  }, [navigation, redeemer])
 
-    const handlePhoneInput = (phone: InputValueType) => {
-      setPhone(phone)
+  useEffect(() => {    
+    if(redeemer?.id){     
+      setInitialValueFirstName(redeemer.firstname);
+      setInitialValueLastName(redeemer.lastname);
+      setInitialValuePhone(redeemer.phone);
     }
+  }, [redeemer])
   
-    const nameRules = [
-      (val: string) => !!val || 'Field is required',
-      (val: string) => /^[a-zA-Z\s]+$/.test(val) || 'Only letters and spaces are allowed'
-    ]
+  const handleFirstNameInput = (firstname: InputValueType) => {
+    setFirstName(firstname);
+  }
+  const handleLastNameInput = (lastname: InputValueType) => {
+    setLastName(lastname);
+  }
+  const handlePhoneInput = (phone: InputValueType) => {
+    setPhone(phone)
+  }
 
-    const phoneRules = [
-      (val: string) => !!val || 'Field is required',
-      (val: string) => validateLength(val, 17) || 'Wrong phone number'
-    ]
-  
-    const onSubmitButtonClick = async() => {
-      if (!phone.isValid && !firstname.isValid && !lastname.isValid) {
-        return Alert.alert('Missing data', "Please provide recipient details")
-      }
-      
-      const redeemers = store.getRedeemers()
-      const lastRedeemerId = redeemers.length > 0 ? redeemers[redeemers.length - 1].id : 1;
-      
-      const redeemer: RedeemerType = {
-        id: lastRedeemerId+1,
-        phone: phone.value,
-        lastname: lastname.value,
-        firstname: firstname.value
-      }
-      
-      await postRedeemerAPI(redeemer);
-      navigation.goBack();
+  const nameRules = [
+    (val: string) => !!val || 'Field is required',
+    (val: string) => /^[a-zA-Z\s]+$/.test(val) || 'Only letters and spaces are allowed'
+  ]
+
+  const phoneRules = [
+    (val: string) => !!val || 'Field is required',
+    (val: string) => validateLength(val, 17) || 'Wrong phone number'
+  ]
+
+  const onSubmitButtonClick = async() => {
+    if (!phone.isValid && !firstname.isValid && !lastname.isValid) {
+      return Alert.alert('Missing data', "Please provide recipient details")
+    }
+    if(redeemer?.id) {
+      updateRedeemer()
+    } else {
+      postRedeemer()
+    }
+  }
+
+  const postRedeemer = async() => {
+    const redeemers = store.getRedeemers()
+    const lastRedeemerId = redeemers.length > 0 ? redeemers[redeemers.length - 1].id : 1;
+    
+    const redeemer: RedeemerType = {
+      id: lastRedeemerId+1,
+      phone: phone.value,
+      lastname: lastname.value,
+      firstname: firstname.value
     }
     
-    const saveName = async() => {
-      const redeemer = store.getRedeemer(1);
-      if(firstname.value === redeemer.firstname && lastname.value === redeemer.lastname) {
-        //onSkipOrUpdate();
-        return;
-      }
-      if(firstname.value) redeemer.firstname = firstname.value.trim();
-      if(lastname.value) redeemer.lastname = lastname.value.trim();
-     /*  await updateRedeemer(redeemer);
-      updateRedeemerStore({...redeemer, nameUpdatedSkiped: true});
-      redeemerStorage.saveRedeemer(redeemer);
-      onSkipOrUpdate(); */
+    await postRedeemerAPI(redeemer);
+    navigation.goBack();
+  }
+
+  const updateRedeemer = async() => {
+    const updatedRedeemer: RedeemerType = {
+      id: redeemer!.id,
+      phone: phone.value,
+      lastname: lastname.value,
+      firstname: firstname.value
     }
-  
-    const onSkipButtonClick = () => {
-      const redeemer = store.getRedeemer(1);
-      //updateRedeemerStore({...redeemer, nameUpdatedSkiped: true});
-      //onSkipOrUpdate();
-    }
-    
-    const onCancelButtonClick = () => {
-      //onSkipOrUpdate();
-    }
+    await updateRedeemerAPI(updatedRedeemer);
+    navigation.goBack();
+  }
 
   return (
     <SafeAreaView edges={["left", "right"]} style={[flex.flexGrow]}>
@@ -143,9 +137,7 @@ const DashboardRedeemerFormScreen = () => {
         </View>
         </View>
         <View style={[commonStyles.buttonContainer]}>
-          <CustomButton label={'Submit'} handlePress={onSubmitButtonClick} />
-          {!isEditing && <CustomButton label={'Skip'} handlePress={onSkipButtonClick} containerStyles={styles.skipButton} secondary />}
-          {isEditing && <CustomButton label={'Cancel'} handlePress={()=>{}} containerStyles={styles.skipButton} secondary />}
+          <CustomButton label={buttonLabel} handlePress={onSubmitButtonClick} />
         </View>
     </View>
 

@@ -6,13 +6,20 @@ import IconButton from '@/components/UI/buttons/IconButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { flex, pt } from '@/styles/styles';
 import RedeemersList from '@/components/account/dashboard/redeemers/RedeemersList';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MainTabParamList } from '@/navigation/navigation-types';
+
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'AccountNavigation'>;
 
 const DashboardRedeemersScreen = () => {
   const { account } = useAccountStore();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
 
   const openRedeemerFormScreen = () => {
-    navigation.navigate('DashboardRedeemerFormScreen' as never)
+    navigation.navigate('AccountNavigation', {
+      screen: 'DashboardRedeemerFormScreen',
+      params: {}
+    });
   }
 
   useLayoutEffect(() => {

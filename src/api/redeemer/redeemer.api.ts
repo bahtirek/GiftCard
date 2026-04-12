@@ -57,3 +57,13 @@ export const deleteRedeemerAPI = async (redeemerId: number) => {
     throw error;
   }
 }
+
+export const updateRedeemerAPI = async (redeemer: RedeemerType) => {  
+  const response = await fetch(`${BASE_URL}/${redeemer.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(redeemer)
+  });
+
+  return response.json();
+};

@@ -4,15 +4,25 @@ import { RedeemerType } from '@/types'
 import { flex, mb, text } from '@/styles/styles'
 import IconButton from '@/components/UI/buttons/IconButton'
 import { deleteRedeemerAPI } from '@/api/redeemer/redeemer.api'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { MainTabParamList } from '@/navigation/navigation-types'
 
 type RedeemerDetailsProp = {
   redeemer: RedeemerType,
   onRedeemerDeleted: () => void
 }
 
-const RedeemerDetails = ({redeemer, onRedeemerDeleted}: RedeemerDetailsProp) => {
-  const onEditButtonClicked = () => {
+type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'AccountNavigation'>;
 
+const RedeemerDetails = ({redeemer, onRedeemerDeleted}: RedeemerDetailsProp) => {
+  const navigation = useNavigation<NavigationProp>();
+
+  const onEditButtonClicked = () => {
+    navigation.navigate('AccountNavigation', {
+      screen: 'DashboardRedeemerFormScreen',
+      params: { redeemer }
+    });
   }
 
   const onDeleteButtonClicked = async() => {
