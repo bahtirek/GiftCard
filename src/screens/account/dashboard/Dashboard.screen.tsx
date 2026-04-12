@@ -4,13 +4,11 @@ import { commonStyles, flex, mb, pt, text } from '@/styles/styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import ListItem from '@/components/common/ListItem'
-import { useAccountsQuery } from '@/api/gift-cards/search.query'
-import { GiftCardType } from '@/types'
-import { useProfileStore } from '@/stores/profile.store'
+import { useAccountStore } from '@/stores/account.store'
 import IconButton from '@/components/UI/buttons/IconButton'
 
 const DashboardScreen = () => {
-  const { account } = useProfileStore();
+  const { account } = useAccountStore();
   const navigation = useNavigation();
       
   useEffect(() => {
@@ -41,6 +39,7 @@ const DashboardScreen = () => {
     {id: 1, label: "Purchased", path: 'DashboardPurchasedScreen'},
     {id: 2, label: "Redeemed", path: 'DashboardRedeemedScreen'},
     {id: 3, label: "Account details", path: 'DashboardAccountDetailsScreen'},
+    {id: 4, label: "Redeemers", path: 'DashboardRedeemersScreen'},
   ]
 
   return (

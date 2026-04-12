@@ -1,5 +1,5 @@
 import { NavigatorScreenParams } from "@react-navigation/native";
-import { CartItemType, GiftCardType } from "@/types";
+import { CartItemType, GiftCardType, RedeemerType } from "@/types";
 
 export type RootStackParamList = {
   MainTabsView: NavigatorScreenParams<MainTabParamList>;
@@ -30,9 +30,12 @@ export type AccountStackParamList = {
 
   DashboardScreen: undefined;
   DashboardListScreen: undefined;
+  DashboardAccountsListScreen: undefined;
   DashboardPurchasedScreen: undefined;
   DashboardRedeemedScreen: undefined;
   DashboardAccountDetailsScreen: { giftCardProp: GiftCardType };
+  DashboardRedeemersScreen: undefined;
+  DashboardRedeemerFormScreen: {redeemer?: RedeemerType};
 };
 
 export type GiftCardsStackParamList = {

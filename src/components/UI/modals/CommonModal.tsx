@@ -1,5 +1,4 @@
-import { Modal, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 type CommonModalProp = {
   toggleModal: boolean,
@@ -10,13 +9,14 @@ type CommonModalProp = {
 
 const CommonModal = ({toggleModal, title, content, action}: CommonModalProp) => {
   return (
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={toggleModal}
-      >
-        <View style={styles.modalBackground} >
-          <View style={[styles.modalContent]}>
+    <Modal
+      animationType="fade"
+      transparent={true}
+      visible={toggleModal}
+    >
+      <View style={styles.modalBackground}>
+        <View style={[styles.modalContent]}>
+          <ScrollView style={{}}>
             <Text style={styles.modalTitle}>{title}</Text>
             <View>
               {content}
@@ -24,22 +24,24 @@ const CommonModal = ({toggleModal, title, content, action}: CommonModalProp) => 
             <View style={styles.actionContainer}>
               {action}
             </View>
-          </View>
+          </ScrollView>
         </View>
-      </Modal>
+      </View>
+    </Modal>
   )
 }
 
 export default CommonModal
 
 const styles = StyleSheet.create({
-    modalBackground: {
+  modalBackground: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.25)',
-    paddingBottom: 64,
-    paddingHorizontal: 16
+    paddingBottom: 32,
+    paddingHorizontal: 16,
+    paddingTop: 32
   },
   modalContent: {
     width: '100%',
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: '#fff',
     minHeight: 200,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   modalTitle: {
     fontSize: 20,

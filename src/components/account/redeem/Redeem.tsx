@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Platform, Alert, Modal, ActivityIndicator, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { View, Text, StyleSheet, Alert, TextInput } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
 import { CartItemType, InputValueType } from '@/types';
 import { maskCurrency } from '@/utils/masks';
 import { validateRedeemAmount } from '@/utils/input-validation';
@@ -7,10 +7,9 @@ import CustomInput from '@/components/UI/forms/CustomInput';
 import CustomButton from '@/components/UI/buttons/CustomButton';
 import SpinnerModal from '@/components/UI/modals/SpinnerModal';
 import CommonModal from '@/components/UI/modals/CommonModal';
-import { flex, mr, text } from '@/styles/styles';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { commonStyles, flex, text } from '@/styles/styles';
+import { useIsFocused} from '@react-navigation/native';
 import { updateBalance } from '@/api/orders/orders.api';
-import { InteractionManager } from "react-native";
 import { getDate } from '@/utils/utils';
 
 type RedeemProps = {
@@ -124,7 +123,7 @@ const Redeem = ({ order, onRedeemedCompleted, onRefund }: any) => {
             <Text style={[text.md, text.grey]}>{redeemDate}</Text>
           </View>
         }
-        <View style={styles.buttonContainer}>
+        <View style={commonStyles.buttonContainer}>
           {
             (parseInt(remainingBalance) > 0) &&
             <CustomButton label={'Redeem'} handlePress={onRedeem}/>
@@ -155,9 +154,9 @@ const Redeem = ({ order, onRedeemedCompleted, onRefund }: any) => {
           </View>
         )}
         action={(
-          <View style={styles.buttonContainer}>
+          <View style={[commonStyles.buttonContainer]}>
             <CustomButton label='Submit' handlePress={onRedeemSubmit} />
-            <CustomButton label={'Cancel'} handlePress={onRedeemSubmitCancel} containerStyles={styles.skipButton} secondary />
+            <CustomButton label={'Cancel'} handlePress={onRedeemSubmitCancel} containerStyles={[commonStyles.secondaryButton]} secondary />
           </View>
         )}
       />
@@ -203,14 +202,6 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginTop: 32,
     marginBottom: 24,
-  },
-  buttonContainer: {
-    marginTop: 'auto',
-    paddingTop: 24,
-  },
-  skipButton: {
-    marginTop: 16,
-    width: '100%',
   },
 })
 

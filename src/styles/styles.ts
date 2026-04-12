@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native'
-import { Colors } from './constants'
+import { Colors, Font } from './constants'
 
 export const commonStyles = StyleSheet.create({
   container: {
@@ -36,6 +36,18 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  buttonContainer: {
+    marginTop: 'auto',
+    paddingTop: 24,
+  },
+  secondaryButton: {
+    marginTop: 16,
+    width: '100%',
+  },
+  inputContainer: {
+    marginBottom: 24, 
+    marginTop: 4
+  }
 })
 
 export const flex = StyleSheet.create({
@@ -63,6 +75,9 @@ export const flex = StyleSheet.create({
   justifyBetween: {
     justifyContent: 'space-between',
   },
+  justifyAround: {
+    justifyContent: 'space-around',
+  },
   justifyEnd: {
     justifyContent: 'flex-end',
   },
@@ -87,17 +102,23 @@ export const text = StyleSheet.create({
   primary: {
     color: Colors.primary
   },
+  primaryLight: {
+    color: Colors.primary800
+  },
+  xs: {
+    fontSize: Font.xs,
+  },
   sm: {
-    fontSize: 14,
+    fontSize: Font.sm,
   },
   md: {
-    fontSize: 16,
+    fontSize: Font.md,
   },
   lg: {
-    fontSize: 20,
+    fontSize: Font.lg,
   }, 
   xl: {
-    fontSize: 24,
+    fontSize: Font.xl,
   },
 })
 

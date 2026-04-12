@@ -37,14 +37,16 @@ const styles = StyleSheet.create({
   },
   secondary: {
     alignSelf: 'flex-start',
+    paddingHorizontal: 0,
   },
   secondaryText: {
-    color: Colors.primary900,
+    color: Colors.primary,
     fontWeight: '600',
+    fontSize: Font.md
   },
   text: {
     color: Colors.primary,
     textAlign: 'center',
-    fontSize: Font.xl,
+    fontSize: Font.lg,
   },
 })

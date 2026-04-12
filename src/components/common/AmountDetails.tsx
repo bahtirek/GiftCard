@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { CartItemType, InputValueType, PriceType } from '@/types';
+import { CartItemType, InputValueType } from '@/types';
 import { validateAmount } from '@/utils/input-validation';
 import RadioButton from '@/components/UI/forms/RadioButton';
 import CustomInput from '@/components/UI/forms/CustomInput';
@@ -8,7 +8,7 @@ import { pb, text } from '@/styles/styles';
 
 type PurchaseDetailsProps = {
   handleAmountChange: (amount: InputValueType) => void;
-  priceSet: PriceType[];
+  priceSet: string[];
   isOtherAmountInputTouched: boolean;
   cartItemToEdit?: CartItemType;
 }
@@ -25,7 +25,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
   const setupEditing = async() => {
     resetForm()
     if(!cartItemToEdit || !cartItemToEdit.id) return;
-    const isAmountSelected = priceSet.some(price => price.amount === cartItemToEdit.amount);
+    const isAmountSelected = priceSet.some(price => price === cartItemToEdit.amount);
     if (!isAmountSelected) {
       setGiftCardAmount({ value: cartItemToEdit.amount!, isValid: true });
       setPresetValue(cartItemToEdit.amount!);
@@ -37,7 +37,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
 
   let minAmount = '';
   if (priceSet) {
-    minAmount = priceSet[0].amount;
+    minAmount = priceSet[0];
   }
 
   const handleSelect = (amount: string) => {
@@ -48,6 +48,7 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
 
   const handleOtherSelect = () => {
     setGiftCardAmount({ value: '', isValid: false });
+    handleAmountChange({ value: '', isValid: false });
     setOtherAmount(true);
   }
 
@@ -72,14 +73,14 @@ const AmountDetails = ({ handleAmountChange, priceSet, isOtherAmountInputTouched
         <Text style={[text.md, text.grey, pb.sm]}>Choose amount</Text>
         <View>
           {
-            priceSet!.map((price, index) => {
+            priceSet!.map((price) => {
               return <RadioButton 
-                label={price.amount}
-                value={price.amount}
-                status={(!otherAmount && giftCardAmount.value === price.amount) ? true : false}
+                label={price}
+                value={price}
+                status={(!otherAmount && giftCardAmount.value === price) ? true : false}
                 className="mt-4"
-                onSelect={() => handleSelect(price.amount)}
-                key={price.id}
+                onSelect={() => handleSelect(price)}
+                key={price}
               />
             })
           }

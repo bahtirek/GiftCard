@@ -31,7 +31,7 @@ export type GiftCardType2 = {
   website?: string,
   instagram?: string,
   telegram?: string,
-  priceSet?: PriceType[],
+  priceSet?: string[],
   showDescription?: boolean 
 };
 
@@ -42,10 +42,10 @@ export type GiftCardType = {
   description: string,
   phone: string,
   website?: string,
-  address?: Address,
-  instagram?: string,
-  telegram?: string,
-  priceSet?: PriceType[],
+  address?: AddressType,
+  social?: SocialType,
+  contacts?: ContactType,
+  priceSet?: string[],
   showDescription?: boolean
   geo?: {
     lat: number,
@@ -57,11 +57,11 @@ export type GiftCardType = {
   tempAmount?: string
 };
 
-export type Address = {
+export type AddressType = {
   line_one: string,
-  line_two: string,
+  line_two?: string,
   city: string,
-  zip: string
+  zip?: string
 };
 
 export type GiftCardsStoreState = {
@@ -76,11 +76,6 @@ export type CreatorType = {
 export type LocationType = {
   id?: string,
   name?: string
-}
-
-export type PriceType = {
-  id: string,
-  amount: string
 }
 
 export type CartItemType = {
@@ -132,4 +127,24 @@ export type ProfileType = {
   tempPhone?: string,
   role?: string,
   accounts?: number[]
+}
+
+export type SocialType = {
+  telegram: string,
+  instagram: string,
+  twitter: string
+}
+
+export type ContactType = {
+  website: string,
+  phone: string,
+  email: string
+}
+
+export type RedeemerType = {
+  id: number,
+  lastname: string,
+  firstname: string,
+  phone: string,
+  reddemedItems?: number
 }

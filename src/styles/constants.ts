@@ -27,10 +27,10 @@ export const Colors = {
 }
 
 export const Font = {
-  xxl: 20,
-  xl: 18,
-  lg: 16,
-  md: 14,
-  sm: 12,
-  xs: 10,
+  xxl: 28,
+  xl: 24,
+  lg: 20,
+  md: 16,
+  sm: 14,
+  xs: 12,
 }

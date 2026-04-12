@@ -44,7 +44,7 @@ function validateCreditCard(value: string) {
 }
 
 function validateLength(value: string, minLength: number, errorText? : string) {
-  return (value.length == 0 || value.length >= minLength)
+  return (value.length == 0 || value.length == minLength)
 }
 
 function validateExpDate(value: string) {
@@ -86,6 +86,12 @@ function validatePhoneFormat(val: string) {
   return phoneRegex.test(val);
 }
 
+function validateWebsite(value: string) {
+  if (!value) return true;
+  const websiteRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/;
+  return websiteRegex.test(value);
+}
+
 export {
   isEmpty,
   validateAmount,
@@ -94,5 +100,6 @@ export {
   validateLength, 
   validateExpDate,
   validateRedeemAmount,
-  validatePhoneFormat
+  validatePhoneFormat,
+  validateWebsite
 }

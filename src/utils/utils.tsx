@@ -16,8 +16,13 @@ const getDate = () => {
   return dateString;
 }
 
+const trimAll = (str: string, char: string = '') => {
+  return str.replace(/\s/g, char)
+}
+
 
 export {
   isPinNotExpired,
-  getDate
+  getDate,
+  trimAll
 }
