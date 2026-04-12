@@ -8,7 +8,7 @@ import { InputValueType, RedeemerType } from '@/types'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { validateLength } from '@/utils/input-validation'
-import { postRedeemer } from '@/api/redeemer/redeemer.api'
+import { postRedeemerAPI } from '@/api/redeemer/redeemer.api'
 
 
 type RedeemerFormProp = {
@@ -76,7 +76,7 @@ const DashboardRedeemerFormScreen = () => {
         firstname: firstname.value
       }
       
-      await postRedeemer(redeemer);
+      await postRedeemerAPI(redeemer);
       navigation.goBack();
     }
     

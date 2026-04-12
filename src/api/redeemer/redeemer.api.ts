@@ -2,14 +2,13 @@ import { RedeemerType } from "@/types";
 
 const BASE_URL = 'https://giftcard.startng.app/redeemers';
 
-export const fetchRedeemers = async(accountIds: number[]=[], page: number) => {
+export const fetchRedeemersAPI = async(accountIds: number[]=[], page: number) => {
 
   const res = await fetch(
     `${BASE_URL}`
   );
 
   const data = await res.json();
-console.log('redeemer API data',data);
 
   const hasNextPage =
     res.headers.get('x-total-count') !== null &&
@@ -21,7 +20,7 @@ console.log('redeemer API data',data);
   };
 }
 
-export const postRedeemer = async (redeemer: RedeemerType) => {
+export const postRedeemerAPI = async (redeemer: RedeemerType) => {
   try {
     const response = await fetch(BASE_URL, {
       method: "POST",
@@ -33,6 +32,23 @@ export const postRedeemer = async (redeemer: RedeemerType) => {
 
     if (!response.ok) {
       throw new Error("Failed to create profile");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("API Error:", error);
+    throw error;
+  }
+}
+
+export const deleteRedeemerAPI = async (redeemerId: number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${redeemerId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete profile");
     }
 
     return await response.json();

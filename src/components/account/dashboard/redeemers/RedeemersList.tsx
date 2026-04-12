@@ -60,9 +60,10 @@ const RedeemersList = () => {
     <FlatList
       data={redeemers}
       keyExtractor={(item) => item.id!.toString()}
+      contentContainerStyle={{padding: 16}}
       renderItem={({ item }) => (
         <View>
-         <RedeemerDetails redeemer={item} />
+         <RedeemerDetails redeemer={item} onRedeemerDeleted={refetch} />
         </View>
       )}
       onEndReached={() => {

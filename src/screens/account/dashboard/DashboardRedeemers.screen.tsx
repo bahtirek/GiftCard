@@ -24,7 +24,7 @@ const DashboardRedeemersScreen = () => {
   }, [navigation, account])
 
   return (
-    <SafeAreaView edges={["left", "right"]} style={[flex.flexGrow, pt.md]}>
+    <SafeAreaView edges={["left", "right"]} style={[flex.flexGrow]}>
       <RedeemersList />
     </SafeAreaView>
   )

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { GiftCardType, RedeemerType } from '@/types';
-import { fetchRedeemers } from './redeemer.api';
+import { fetchRedeemersAPI } from './redeemer.api';
 
 type FetchItemsResult = {
   items: GiftCardType[],
@@ -21,7 +21,7 @@ export const useRedeemersQuery = (accountIds: number[]) => {
   return useInfiniteQuery({
     queryKey: ['redeemers', accountIds],
     queryFn: ({pageParam }) => {
-      return fetchRedeemers(accountIds, pageParam)
+      return fetchRedeemersAPI(accountIds, pageParam)
     },
     getNextPageParam: (lastPage: FetchRedeemersResult) => lastPage.nextPage,
     enabled: !!accountIds.length,
