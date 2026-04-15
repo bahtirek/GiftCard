@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     width: '100%',
-    marginBottom: 16
+    marginBottom: 16,
+    borderBottomColor: '#E2E2E2',
   },
   details: {
     flexGrow: 1,
