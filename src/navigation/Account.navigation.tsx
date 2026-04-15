@@ -67,7 +67,7 @@ const AccountNavigation = () => {
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='DashboardAccountDetailsScreen' component={ DashboardAccountDetailsScreen } options={{
-        title: 'AccountDetails',
+        title: 'Account Details',
         headerBackTitle: 'Back',
       }} />
       <Stack.Screen name='DashboardRedeemersScreen' component={ DashboardRedeemersScreen } options={{
@@ -77,6 +77,7 @@ const AccountNavigation = () => {
       <Stack.Screen name='DashboardRedeemerFormScreen' component={ DashboardRedeemerFormScreen } options={{
         title: 'Redeemer',
         headerBackTitle: 'Back',
+        presentation: 'modal'
       }} />
     </Stack.Navigator>
   )

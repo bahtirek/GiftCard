@@ -54,7 +54,8 @@ export type GiftCardType = {
   distanceKm?: number,
   isFeatured?: boolean,
   isPromoted?: boolean,
-  tempAmount?: string
+  tempAmount?: string,
+  hideOnSearch?: boolean
 };
 
 export type AddressType = {

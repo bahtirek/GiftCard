@@ -8,6 +8,8 @@ import AddressDetails from '@/components/account/dashboard/details/address/Addre
 import PriceDetails from '@/components/account/dashboard/details/price/PriceDetails';
 import SocialDetails from '@/components/account/dashboard/details/social/SocialDetails';
 import ContactsDetails from '@/components/account/dashboard/details/contacts/ContactsDetails';
+import CustomCheckbox from '@/components/UI/forms/CustomCheckbox';
+import HideOnSearch from '@/components/account/dashboard/details/hide-on-search/HideOnSearch';
 
 const DashboardAccountDetailsScreen = () => {
 
@@ -20,6 +22,7 @@ const DashboardAccountDetailsScreen = () => {
         <ContactsDetails />
         <SocialDetails />
         <PriceDetails />
+        <HideOnSearch />
       </ScrollView>
     </SafeAreaView>
   )
