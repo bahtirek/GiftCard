@@ -77,6 +77,7 @@ const AccountNavigation = () => {
       <Stack.Screen name='DashboardRedeemerFormScreen' component={ DashboardRedeemerFormScreen } options={{
         title: 'Redeemer',
         headerBackTitle: 'Back',
+        presentation: 'modal'
       }} />
     </Stack.Navigator>
   )
