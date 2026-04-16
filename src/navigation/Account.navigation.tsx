@@ -14,10 +14,14 @@ import DashboardAccountDetailsScreen from '@/screens/account/dashboard/Dashboard
 import DashboardAccountsListScreen from '@/screens/account/dashboard/DashboardAccountsListScreen';
 import DashboardRedeemersScreen from '@/screens/account/dashboard/DashboardRedeemers.screen';
 import DashboardRedeemerFormScreen from '@/screens/account/dashboard/DashboardRedeemerForm.screen';
+import { useProfileStore } from '@/stores/profile.store';
 
 const Stack = createNativeStackNavigator<AccountStackParamList>();
 
 const AccountNavigation = () => {
+  const { profile } = useProfileStore()
+  const role = profile.role;
+  
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: { backgroundColor: 'white'},
@@ -41,44 +45,50 @@ const AccountNavigation = () => {
         title: 'Order Details',
         headerBackTitle: 'Back',
       }} />
-      <Stack.Screen name='RedeemScreen' component={ RedeemScreen } options={{
-        title: 'Redeem',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardScreen' component={DashboardScreen} options={{
-        title: 'Accounts',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardAccountsListScreen' component={DashboardAccountsListScreen} options={{
-        title: 'Accounts',
-        headerBackTitle: 'Back',
-        presentation: 'modal',
-      }} />
-      <Stack.Screen name='DashboardListScreen' component={ DashboardListScreen } options={{
-        title: 'Dashboard',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardPurchasedScreen' component={ DashboardPurchasedScreen } options={{
-        title: 'Purchased',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardRedeemedScreen' component={ DashboardRedeemedScreen } options={{
-        title: 'Redeemed',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardAccountDetailsScreen' component={ DashboardAccountDetailsScreen } options={{
-        title: 'Account Details',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardRedeemersScreen' component={ DashboardRedeemersScreen } options={{
-        title: 'Redeemers',
-        headerBackTitle: 'Back',
-      }} />
-      <Stack.Screen name='DashboardRedeemerFormScreen' component={ DashboardRedeemerFormScreen } options={{
-        title: 'Redeemer',
-        headerBackTitle: 'Back',
-        presentation: 'modal'
-      }} />
+      {role === 'support' || role === 'admin' && (
+        <Stack.Screen name='RedeemScreen' component={ RedeemScreen } options={{
+          title: 'Redeem',
+          headerBackTitle: 'Back',
+        }} />
+      )}
+      {role === 'admin' && (
+        <>
+          <Stack.Screen name='DashboardScreen' component={DashboardScreen} options={{
+            title: 'Accounts',
+            headerBackTitle: 'Back',
+          }} />
+          <Stack.Screen name='DashboardAccountsListScreen' component={DashboardAccountsListScreen} options={{
+            title: 'Accounts',
+            headerBackTitle: 'Back',
+            presentation: 'modal',
+          }} />
+          <Stack.Screen name='DashboardListScreen' component={ DashboardListScreen } options={{
+            title: 'Dashboard',
+            headerBackTitle: 'Back',
+          }} />
+          <Stack.Screen name='DashboardPurchasedScreen' component={ DashboardPurchasedScreen } options={{
+            title: 'Purchased',
+            headerBackTitle: 'Back',
+          }} />
+          <Stack.Screen name='DashboardRedeemedScreen' component={ DashboardRedeemedScreen } options={{
+            title: 'Redeemed',
+            headerBackTitle: 'Back',
+          }} />
+          <Stack.Screen name='DashboardAccountDetailsScreen' component={ DashboardAccountDetailsScreen } options={{
+            title: 'Account Details',
+            headerBackTitle: 'Back',
+          }} />
+          <Stack.Screen name='DashboardRedeemersScreen' component={ DashboardRedeemersScreen } options={{
+            title: 'Redeemers',
+            headerBackTitle: 'Back',
+          }} />
+          <Stack.Screen name='DashboardRedeemerFormScreen' component={ DashboardRedeemerFormScreen } options={{
+            title: 'Redeemer',
+            headerBackTitle: 'Back',
+            presentation: 'modal'
+          }} />
+        </>
+      )}
     </Stack.Navigator>
   )
 }

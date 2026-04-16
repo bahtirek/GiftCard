@@ -63,7 +63,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
     marginBottom: 16,
+    paddingBottom: 16,
     borderBottomColor: '#E2E2E2',
+    borderBottomWidth: 1
   },
   details: {
     flexGrow: 1,
