@@ -10,7 +10,6 @@ const HomeHeader = () => {
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.headerRow}>
         <View>
-          {/* <Text className='text-xs font-pregular text-gray-600'>Unwrap Joy, Anytime, Anywhere!</Text> */}
           <Text style={styles.subtitle}>Your One-Stop Gift Card Shop!</Text>
           <Text style={styles.title}>GiftCard Genie</Text>
         </View>
@@ -30,7 +29,7 @@ export default HomeHeader
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 4,
+    paddingVertical: 16,
     paddingHorizontal: 16,
     backgroundColor: '#fff',
     elevation: 6,
@@ -50,6 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 14, // text-sm
     fontFamily: 'PRegular', // font-pregular
     color: '#4B5563', // text-gray-600
+    marginVertical: 4
   },
   title: {
     fontSize: 26, // text-3xl
