@@ -7,10 +7,11 @@ import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 
 type VerifyPhoneProp = {
-  onPhoneVerify: (phone: string) => void
+  onPhoneVerify: (phone: string) => void,
+  onCancel: () => void
 }
 
-const VerifyPhoneScreen = ({onPhoneVerify}: VerifyPhoneProp) => {
+const VerifyPhoneScreen = ({onPhoneVerify, onCancel}: VerifyPhoneProp) => {
   const [phone, setPhone] = useState<InputValueType>({ value: '', isValid: false })
   const [isPhoneInputTouched, setIsPhoneInputTouched] = useState<Boolean>(false)
 
@@ -25,7 +26,7 @@ const VerifyPhoneScreen = ({onPhoneVerify}: VerifyPhoneProp) => {
   
   const onUpdateButtonClicked = () => {
     setIsPhoneInputTouched(true)
-    if(phone.value && !phone.isValid) return
+    if(!phone.isValid) return
     onPhoneVerify(phone.value)
   }
   return (
@@ -43,8 +44,9 @@ const VerifyPhoneScreen = ({onPhoneVerify}: VerifyPhoneProp) => {
             isTouched={isPhoneInputTouched}
           />
         </View>
-        <View style={{marginTop: 'auto', paddingTop: 38}}>
+        <View style={[commonStyles.buttonContainer]}>
           <CustomButton label='Verify' handlePress={onUpdateButtonClicked} />
+          <CustomButton label='Cancel' handlePress={onCancel} secondary containerStyles={[commonStyles.secondaryButton]} />
         </View>
       </View>
     </ScrollView>
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#FFFFFF',
-    padding: 16,
-    paddingBottom: 48
+/*     padding: 16,
+    paddingBottom: 48 */
   },
 })

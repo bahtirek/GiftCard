@@ -5,16 +5,20 @@ import CustomInput from '@/components/UI/forms/CustomInput'
 import { InputValueType } from '@/types'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
+import { useProfileStore } from '@/stores/profile.store'
 
 type VerifyPinProp = {
-  onPinVerify: (pin: string) => void
+  onPinVerify: (pin: string) => void,
+  onCancel: () => void
 }
 
-const VerifyPinScreen = ({onPinVerify}: VerifyPinProp) => {
+const VerifyPinScreen = ({onPinVerify, onCancel}: VerifyPinProp) => {
   const [pin, setPin] = useState<InputValueType>({ value: '', isValid: false })
   const [isPinInputTouched, setIsPinInputTouched] = useState<Boolean>(false)
+  const { setToken } = useProfileStore()
 
   const pinRules = [
+    (val: string) => validateLength(val, 6) || 'Pin must to be 6 charachters long',
     (val: string) => !!val || 'Pin number required',
   ]
 
@@ -24,9 +28,11 @@ const VerifyPinScreen = ({onPinVerify}: VerifyPinProp) => {
   
   const onUpdateButtonClicked = () => {
     setIsPinInputTouched(true)
-    if(pin.value && !pin.isValid) return
+    if(!pin.isValid) return;
+    setToken('dfkgjdkjfhg')
     onPinVerify(pin.value)
   }
+
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={[styles.container]}>
@@ -41,8 +47,9 @@ const VerifyPinScreen = ({onPinVerify}: VerifyPinProp) => {
             isTouched={isPinInputTouched}
           />
         </View>
-        <View style={{marginTop: 'auto', paddingTop: 38}}>
+        <View style={[commonStyles.buttonContainer]}>
           <CustomButton label='Verify' handlePress={onUpdateButtonClicked} />
+          <CustomButton label='Cancel' handlePress={onCancel} secondary containerStyles={[commonStyles.secondaryButton]} />
         </View>
       </View>
     </ScrollView>
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#FFFFFF',
-    padding: 16,
-    paddingBottom: 48
+/*     padding: 16,
+    paddingBottom: 48 */
   },
 })
