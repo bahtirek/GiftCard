@@ -71,6 +71,7 @@ const ContactsEdit = ({ presetValue, closeModal, showModal, updateContacts }: Co
               keyboardType='number-pad'
               mask='phone'
               maxLength={17}
+              rules={phoneRules}
             />
           </View>
           <View style={[commonStyles.inputContainer]}>

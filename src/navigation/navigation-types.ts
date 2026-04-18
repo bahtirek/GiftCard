@@ -27,6 +27,7 @@ export type AccountStackParamList = {
   OrdersScreen: undefined;
   OrderDetailsScreen: { orderId: string };
   RedeemScreen: undefined;
+  VerifyPhoneScreen: {path: string};
 
   DashboardScreen: undefined;
   DashboardListScreen: undefined;

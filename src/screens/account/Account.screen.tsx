@@ -7,7 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 const AccountScreen = () => {
   const navigation = useNavigation();
-  const { profile } = useProfileStore();  
+  const { profile } = useProfileStore();
+  const isPhoneVerified = true 
 
   const profileMenuItems = [
     {id: 1, label: "Profile", path: 'ProfileScreen'},
@@ -24,6 +25,11 @@ const AccountScreen = () => {
 
   const goToScreen = (path: string) => {
     navigation.navigate(path as never)
+    /* if(path === 'DashboardScreen' || path === 'RedeemScreen' && isPhoneVerified) {
+      navigation.navigate('VerifyPhoneScreen' as never)
+    } else {
+      navigation.navigate(path as never)
+    } */
   }
   
   return (
