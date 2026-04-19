@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { commonStyles, flex, pb, text } from '@/styles/styles'
 import CustomInput from '@/components/UI/forms/CustomInput'
@@ -12,10 +12,11 @@ type VerifyPinProp = {
   onCancel: () => void
 }
 
-const VerifyPinScreen = ({onPinVerify, onCancel}: VerifyPinProp) => {
+const VerifyPinScreen = ({ onPinVerify, onCancel }: VerifyPinProp) => {
   const [pin, setPin] = useState<InputValueType>({ value: '', isValid: false })
   const [isPinInputTouched, setIsPinInputTouched] = useState<Boolean>(false)
   const { setToken } = useProfileStore()
+  const [showSpinner, setShowSpinner] = useState(false)
 
   const pinRules = [
     (val: string) => validateLength(val, 6) || 'Pin must to be 6 charachters long',
@@ -25,17 +26,22 @@ const VerifyPinScreen = ({onPinVerify, onCancel}: VerifyPinProp) => {
   const handlePinInput = (Pin: InputValueType) => {
     setPin(Pin)
   }
-  
+
   const onUpdateButtonClicked = () => {
     setIsPinInputTouched(true)
-    if(!pin.isValid) return;
-    setToken('dfkgjdkjfhg')
-    onPinVerify(pin.value)
+    if (!pin.isValid) return;
+    setShowSpinner(true)
+    setTimeout(() => {
+      setToken('dfkgjdkjfhg')
+      setShowSpinner(false)
+      onPinVerify(pin.value)
+    }, 2000)
   }
 
   return (
-    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={[styles.container]}>
+        <Text style={styles.modalTitle}>Verify pin</Text>
         <View style={[commonStyles.inputContainer]}>
           <Text style={[text.md, text.grey, pb.sm]}>Pin:</Text>
           <CustomInput
@@ -52,6 +58,12 @@ const VerifyPinScreen = ({onPinVerify, onCancel}: VerifyPinProp) => {
           <CustomButton label='Cancel' handlePress={onCancel} secondary containerStyles={[commonStyles.secondaryButton]} />
         </View>
       </View>
+      {
+        showSpinner &&
+        <View style={[styles.modalBackground]}>
+          <ActivityIndicator size={'large'} color={"#FF4416"} />
+        </View>
+      }
     </ScrollView>
   )
 }
@@ -64,7 +76,21 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#FFFFFF',
-/*     padding: 16,
-    paddingBottom: 48 */
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: '#FF4416',
+    marginBottom: 24,
   },
 })

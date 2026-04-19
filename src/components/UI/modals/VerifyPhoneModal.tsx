@@ -1,4 +1,4 @@
-import { ActivityIndicator, Modal, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Modal, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import VerifyPhone from '@/components/account/verify-phone/VerifyPhone'
 import VerifyPin from '@/components/account/verify-phone/VerifyPin'
@@ -9,35 +9,18 @@ type VerifyPhoneModalProp = {
 }
 
 const VerifyPhoneModal = ({ toggleModal, onModalClose }: VerifyPhoneModalProp) => {
-  const [showSpinner, setShowSpinner] = useState(false)
-  const [showVerifyPin, setShowVerifyPin] = useState(false)
   const [showVerifyPhone, setShowVerifyPhone] = useState(true)
-  const [modalTitle, setModalTitle] = useState('Verify phone')
 
   useEffect(() => {
-    setShowVerifyPin(false)
     setShowVerifyPhone(toggleModal)
-    setModalTitle('Verify phone')
   }, [toggleModal])
 
   const onPhoneVerify = async (phone: string) => {
     setShowVerifyPhone(false);
-    setShowSpinner(true);
-    setTimeout(() => {
-      setShowSpinner(false);
-      setShowVerifyPin(true);
-      setModalTitle('Verify pin')
-    }, 2000)
   }
 
   const onPinVerify = async (pin: string) => {
-    setShowSpinner(true);
-    setShowVerifyPin(false);
-    setTimeout(() => {
-      
-      onModalClose();
-      setShowSpinner(false);
-    }, 2000)
+    onModalClose();
   }
 
   const onCancel = () => {
@@ -51,23 +34,21 @@ const VerifyPhoneModal = ({ toggleModal, onModalClose }: VerifyPhoneModalProp) =
       visible={toggleModal}
     >
       <View style={styles.modalBackground}>
-        {showSpinner ? (
-          <ActivityIndicator size={'large'} color={"#FF4416"} />
-        ) : (
-          <>
-            {toggleModal && 
-              <View style={[styles.modalContent]}>
-                <ScrollView style={{}}>
-                  <Text style={styles.modalTitle}>{modalTitle}</Text>
-                  <View>
-                    {showVerifyPhone && <VerifyPhone onPhoneVerify={onPhoneVerify} onCancel={onCancel}/>}
-                    {showVerifyPin && <VerifyPin onPinVerify={onPinVerify} onCancel={onModalClose}/>}
-                  </View>
-                </ScrollView>
+        <>
+          {toggleModal &&
+            <View style={[styles.modalContent]}>
+              <View>
+                {showVerifyPhone ?
+                  (
+                    <VerifyPhone onPhoneVerify={onPhoneVerify} onCancel={onCancel} />
+                  ) : (
+                    <VerifyPin onPinVerify={onPinVerify} onCancel={onModalClose} />
+                  )
+                }
               </View>
-            }
-          </>
-        )}
+            </View>
+          }
+        </>
       </View>
     </Modal>
   )
@@ -93,11 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     minHeight: 200,
     flexDirection: 'column',
-  },
-  modalTitle: {
-    fontSize: 20,
-    color: '#FF4416',
-    marginBottom: 24,
   },
   modalRow: {
     flexDirection: 'row',

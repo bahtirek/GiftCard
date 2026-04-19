@@ -14,23 +14,21 @@ const AccountScreen = () => {
   const [proceedAfterPhoneVerification, setProceedAfterPhoneVerification] = useState('')
 
   const profileMenuItems = [
-    {id: 1, label: "Profile", path: 'ProfileScreen'},
-    {id: 2, label: "Orders", path: 'OrdersScreen'},
+    { id: 1, label: "Profile", path: 'ProfileScreen' },
+    { id: 2, label: "Orders", path: 'OrdersScreen' },
   ]
 
   const supportMenuItems = [
-    {id: 3, label: "Redeem", path: 'RedeemScreen'},
+    { id: 3, label: "Redeem", path: 'RedeemScreen' },
   ]
 
   const adminMenuItems = [
-    {id: 4, label: "Dashboard", path: 'DashboardScreen'},
+    { id: 4, label: "Dashboard", path: 'DashboardScreen' },
   ]
 
   const goToScreen = (path: string) => {
-    if((path === 'DashboardScreen' || path === 'RedeemScreen') && !isPhoneVerified()) {
+    if ((path === 'DashboardScreen' || path === 'RedeemScreen') && !isPhoneVerified()) {
       setProceedAfterPhoneVerification(path)
-      console.log('32',proceedAfterPhoneVerification);
-      
       setToggleModal(true)
     } else {
       navigation.navigate(path as never)
@@ -39,26 +37,26 @@ const AccountScreen = () => {
 
   const onModalClose = () => {
     setToggleModal(false)
-    if(isPhoneVerified()) {
+    if (isPhoneVerified()) {
       navigation.navigate(proceedAfterPhoneVerification as never)
     }
   }
-  
+
   return (
     <SafeAreaView edges={["left", "right"]} style={[flex.flexGrow, pt.md]}>
       {
         profileMenuItems.map((item) => {
-          return <ListItem label={item.label} key={item.id} handlePress={() => {goToScreen(item.path)}}/>
+          return <ListItem label={item.label} key={item.id} handlePress={() => { goToScreen(item.path) }} />
         })
       }
-      { profile.role === 'support' || profile.role === 'admin' && (
+      {profile.role === 'support' || profile.role === 'admin' && (
         supportMenuItems.map((item) => {
-          return <ListItem label={item.label} key={item.id} handlePress={() => {goToScreen(item.path)}}/>
+          return <ListItem label={item.label} key={item.id} handlePress={() => { goToScreen(item.path) }} />
         })
       )}
-      { profile.role === 'admin' && (
+      {profile.role === 'admin' && (
         adminMenuItems.map((item) => {
-          return <ListItem label={item.label} key={item.id} handlePress={() => {goToScreen(item.path)}}/>
+          return <ListItem label={item.label} key={item.id} handlePress={() => { goToScreen(item.path) }} />
         })
       )}
       <VerifyPhoneModal toggleModal={toggleModal} onModalClose={onModalClose} />
