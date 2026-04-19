@@ -15,6 +15,7 @@ import DashboardAccountsListScreen from '@/screens/account/dashboard/DashboardAc
 import DashboardRedeemersScreen from '@/screens/account/dashboard/DashboardRedeemers.screen';
 import DashboardRedeemerFormScreen from '@/screens/account/dashboard/DashboardRedeemerForm.screen';
 import { useProfileStore } from '@/stores/profile.store';
+import VerifyPhoneScreen from '@/screens/account/verify-phone/VerifyPhoneScreen';
 
 const Stack = createNativeStackNavigator<AccountStackParamList>();
 
@@ -40,6 +41,11 @@ const AccountNavigation = () => {
       <Stack.Screen name='OrdersScreen' component={ OrdersScreen } options={{
         title: 'My Orders',
         headerBackTitle: 'Back',
+      }} />
+      <Stack.Screen name='VerifyPhoneScreen' component={ VerifyPhoneScreen } options={{
+        title: 'Verify Phone',
+        headerBackTitle: 'Back',
+        presentation: 'modal'
       }} />
       <Stack.Screen name='OrderDetailsScreen' component={ OrderDetailsScreen } options={{
         title: 'Order Details',

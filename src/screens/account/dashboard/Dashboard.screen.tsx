@@ -6,19 +6,22 @@ import { useNavigation } from '@react-navigation/native'
 import ListItem from '@/components/common/ListItem'
 import { useAccountStore } from '@/stores/account.store'
 import IconButton from '@/components/UI/buttons/IconButton'
+import GiftCardList from '@/components/GiftCard/GiftCardList'
+import { useProfileStore } from '@/stores/profile.store'
+import AccountList from '@/components/account/dashboard/AccountList'
+import { GiftCardType } from '@/types'
 
 const DashboardScreen = () => {
-  const { account } = useAccountStore();
+  const { profile } = useProfileStore()
+  const { account, setAccount } = useAccountStore();
   const navigation = useNavigation();
-      
-  useEffect(() => {
-    if(!account) {
-      openAccountslistScreen()
-    }
-  }, [])
 
   const openAccountslistScreen = () => {
     navigation.navigate('DashboardAccountsListScreen' as never)
+  }
+
+  const onSetAccount = (account: GiftCardType) => {
+    setAccount(account)
   }
 
   useLayoutEffect(() => {
@@ -44,10 +47,16 @@ const DashboardScreen = () => {
 
   return (
     <SafeAreaView edges={["left", "right"]} style={[flex.flexGrow, pt.md]}>
-      {
+      { account? (
         dashboardMenuItems.map((item) => {
           return <ListItem label={item.label} key={item.id} handlePress={() => {goToScreen(item.path)}}/>
         })
+      ) : (
+        <AccountList
+          profile={profile}
+          onSetAccount={onSetAccount}
+        />
+      )
       }
     </SafeAreaView>
   )

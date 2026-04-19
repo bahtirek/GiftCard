@@ -4,7 +4,7 @@ type CommonModalProp = {
   toggleModal: boolean,
   title: string,
   content: React.ReactNode,
-  action: React.ReactNode
+  action?: React.ReactNode
 }
 
 const CommonModal = ({toggleModal, title, content, action}: CommonModalProp) => {
@@ -21,9 +21,11 @@ const CommonModal = ({toggleModal, title, content, action}: CommonModalProp) => 
             <View>
               {content}
             </View>
-            <View style={styles.actionContainer}>
-              {action}
-            </View>
+            {action && (
+              <View style={styles.actionContainer}>
+                {action}
+              </View>
+            )}
           </ScrollView>
         </View>
       </View>
