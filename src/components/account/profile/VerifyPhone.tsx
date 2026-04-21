@@ -47,7 +47,7 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
 
   const phoneRules = [
     (val: string) => !!val || 'Field is required',
-    (val: string) => validateLength(val, 12) || 'Wrong phone number'
+    (val: string) => validateLength(val, 17) || 'Wrong phone number'
   ]
 
   const onSubmitButtonClick = async () => {
