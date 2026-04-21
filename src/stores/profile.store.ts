@@ -13,6 +13,7 @@ type ProfileStoreType = {
   getTempProfile: () => ProfileType
   isPhoneVerified: () => string | undefined
   setToken: (token: string) => void
+  logout: () => void
 }
 
 export const useProfileStore = create<ProfileStoreType>((set, get) => ({
@@ -55,5 +56,13 @@ export const useProfileStore = create<ProfileStoreType>((set, get) => ({
         token: token,
       } as ProfileType,
     }));
-  } 
+  },
+
+  logout: () => {
+    set((state) => ({
+      profile: {
+        id: state.profile?.id,
+      } as ProfileType,
+    }));
+  }
 }));
