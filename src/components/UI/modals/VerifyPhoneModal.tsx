@@ -5,15 +5,16 @@ import VerifyPin from '@/components/account/verify-phone/VerifyPin'
 
 type VerifyPhoneModalProp = {
   toggleModal: boolean,
+  showPinOnly?: boolean,
   onModalClose: () => void
 }
 
-const VerifyPhoneModal = ({ toggleModal, onModalClose }: VerifyPhoneModalProp) => {
-  const [showVerifyPhone, setShowVerifyPhone] = useState(true)
+const VerifyPhoneModal = ({ toggleModal, onModalClose, showPinOnly = false }: VerifyPhoneModalProp) => {
+  const [showVerifyPhone, setShowVerifyPhone] = useState(false)
 
   useEffect(() => {
-    setShowVerifyPhone(toggleModal)
-  }, [toggleModal])
+    setShowVerifyPhone(!showPinOnly);
+  }, [toggleModal, showPinOnly])
 
   const onPhoneVerify = async (phone: string) => {
     setShowVerifyPhone(false);
@@ -34,21 +35,17 @@ const VerifyPhoneModal = ({ toggleModal, onModalClose }: VerifyPhoneModalProp) =
       visible={toggleModal}
     >
       <View style={styles.modalBackground}>
-        <>
-          {toggleModal &&
-            <View style={[styles.modalContent]}>
-              <View>
-                {showVerifyPhone ?
-                  (
-                    <VerifyPhone onPhoneVerify={onPhoneVerify} onCancel={onCancel} />
-                  ) : (
-                    <VerifyPin onPinVerify={onPinVerify} onCancel={onModalClose} />
-                  )
-                }
-              </View>
-            </View>
-          }
-        </>
+        <View style={[styles.modalContent]}>
+          <View>
+            {showVerifyPhone ?
+              (
+                <VerifyPhone onPhoneVerify={onPhoneVerify} onCancel={onCancel} />
+              ) : (
+                <VerifyPin onPinVerify={onPinVerify} onCancel={onModalClose} showPinOnly={showPinOnly} />
+              )
+            }
+          </View>
+        </View>
       </View>
     </Modal>
   )
