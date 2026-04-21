@@ -10,7 +10,8 @@
       "@constants/*": ["src/constants/*"],
       "@screens/*": ["src/screens/*"],
       "@api/*": ["src/api/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }
