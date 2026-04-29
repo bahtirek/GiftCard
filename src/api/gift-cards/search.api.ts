@@ -39,7 +39,7 @@ const buildPaginationResult = (
 };
 
 export const fetchAllItems = async (page: number, city: string) => {
-try {
+  try {
     const { data, headers } = await apiClient.get('', {
       params: { _page: page, _limit: 20, city },
     });
@@ -48,8 +48,18 @@ try {
     throw normalizeError(error, 'Failed to fetch all items');
   }
 };
-
 export const fetchItems = async (query: string, page: number, city: string) => {
+try {
+    const { data, headers } = await apiClient.get('', {
+      params: { _page: page, _limit: 20, city, name_like: query },
+    });
+    return buildPaginationResult(data, headers, page);
+  } catch (error) {
+    throw normalizeError(error, 'Failed to fetch all items');
+  }
+};
+
+export const fetchItems2 = async (query: string, page: number, city: string) => {
   const res = await fetch(
     `${BASE_URL}?name_like=${query}&_page=${page}&_limit=20&address.city=${city}`
   );
