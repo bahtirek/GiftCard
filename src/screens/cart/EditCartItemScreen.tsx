@@ -36,9 +36,10 @@ const EditCartItemScreen = ({route}: Props) => {
 
   return (
      <KeyboardAvoidingView
-          behavior='padding'
-          keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
-          contentContainerStyle={{flexGrow: 1}}>
+        style={{ flex: 1 }}
+        behavior='padding'
+        keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
+        contentContainerStyle={{flexGrow: 1}}>
       <PurchaseDetails handleButtonPress={onEditingCompleted} cartItemToEdit={cartItem} buttonLabel='Update' giftCardProp={giftCard}/>
     </KeyboardAvoidingView>
   );

@@ -79,9 +79,10 @@ const PurchaseScreen = ({route}: Props) => {
 
   return (
     <KeyboardAvoidingView
-      style={[flex.flex]}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+      style={{ flex: 1 }}
+      behavior='padding'
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} 
+      contentContainerStyle={{flexGrow: 1}}
     >
       <ScrollView
         style={[flex.flex]}
