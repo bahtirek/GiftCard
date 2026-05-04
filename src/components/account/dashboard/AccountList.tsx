@@ -26,6 +26,12 @@ const AccountsList = ({profile, onSetAccount}: AccountListProp) => {
     onSetAccount(giftCardProp);
   }
 
+  useEffect(() => {
+    if (accounts.length === 1) {
+      return onSetAccount(accounts[0])
+    }
+  }, [accounts.length, refetch])
+
   return (
     <GiftCardList
       items={accounts}
