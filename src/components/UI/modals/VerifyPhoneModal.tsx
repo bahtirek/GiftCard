@@ -2,6 +2,7 @@ import { Modal, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import VerifyPhone from '@/components/account/verify-phone/VerifyPhone'
 import VerifyPin from '@/components/account/verify-phone/VerifyPin'
+import { profileStorage } from '@/storage-services/profile.storage';
 
 type VerifyPhoneModalProp = {
   toggleModal: boolean,
@@ -21,6 +22,7 @@ const VerifyPhoneModal = ({ toggleModal, onModalClose, showPinOnly = false }: Ve
   }
 
   const onPinVerify = async (pin: string) => {
+    await profileStorage.savePhoneConfirmationTime(Date.now());
     onModalClose();
   }
 
