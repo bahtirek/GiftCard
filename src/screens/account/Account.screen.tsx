@@ -1,6 +1,7 @@
 import ListItem from '@/components/common/ListItem'
 import SpinnerModal from '@/components/UI/modals/SpinnerModal';
 import VerifyPhoneModal from '@/components/UI/modals/VerifyPhoneModal';
+import { profileStorage } from '@/storage-services/profile.storage';
 import { useProfileStore } from '@/stores/profile.store';
 import { flex, pt } from '@/styles/styles';
 import { useNavigation } from '@react-navigation/native';
@@ -12,7 +13,7 @@ const AccountScreen = () => {
   const [toggleVerifyPhoneModal, setToggleVerifyPhoneModal] = useState(false)
   const [toggleSpinnerModal, setToggleSpinnerModal] = useState(false)
   const navigation = useNavigation();
-  const { profile, isPhoneVerified } = useProfileStore();
+  const { profile } = useProfileStore();
   const [pathAfterPhoneVerification, setPathAfterPhoneVerification] = useState('')
 
   const profileMenuItems = [
@@ -28,13 +29,23 @@ const AccountScreen = () => {
     { id: 4, label: "Dashboard", path: 'DashboardScreen' },
   ]
 
-  const goToScreen = (path: string) => {
-    if ((path === 'DashboardScreen' || path === 'RedeemScreen') && !isPhoneVerified()) {
+  const goToScreen = async(path: string) => {
+    const isPhoneVerified = await checkIsPhoneVerified();
+    if ((path === 'DashboardScreen' || path === 'RedeemScreen') && !isPhoneVerified) {
       setPathAfterPhoneVerification(path)
       sendSMS();
     } else {
       navigation.navigate(path as never)
     }
+  }
+
+  const checkIsPhoneVerified = async() => {
+    const phoneConfirmationTime = await profileStorage.getPhoneConfirmationTime();
+    if (!phoneConfirmationTime) return false;
+    const currentTime = Date.now();
+    const timeDifference = currentTime - phoneConfirmationTime;
+    const hoursDifference = timeDifference / (1000 * 60 * 60);
+    return hoursDifference < 1; 
   }
 
   const sendSMS = () => {
@@ -45,9 +56,10 @@ const AccountScreen = () => {
     }, 2000)
   }
 
-  const onModalClose = () => {
+  const onModalClose = async () => {
     setToggleVerifyPhoneModal(false)
-    if (isPhoneVerified()) {
+    const isPhoneVerified = await checkIsPhoneVerified();
+    if (isPhoneVerified) {
       navigation.navigate(pathAfterPhoneVerification as never)
     }
   }
