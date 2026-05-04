@@ -2,24 +2,27 @@ import { Modal, StyleSheet, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import VerifyPhone from '@/components/account/verify-phone/VerifyPhone'
 import VerifyPin from '@/components/account/verify-phone/VerifyPin'
+import { profileStorage } from '@/storage-services/profile.storage';
 
 type VerifyPhoneModalProp = {
   toggleModal: boolean,
+  showPinOnly?: boolean,
   onModalClose: () => void
 }
 
-const VerifyPhoneModal = ({ toggleModal, onModalClose }: VerifyPhoneModalProp) => {
-  const [showVerifyPhone, setShowVerifyPhone] = useState(true)
+const VerifyPhoneModal = ({ toggleModal, onModalClose, showPinOnly = false }: VerifyPhoneModalProp) => {
+  const [showVerifyPhone, setShowVerifyPhone] = useState(false)
 
   useEffect(() => {
-    setShowVerifyPhone(toggleModal)
-  }, [toggleModal])
+    setShowVerifyPhone(!showPinOnly);
+  }, [toggleModal, showPinOnly])
 
   const onPhoneVerify = async (phone: string) => {
     setShowVerifyPhone(false);
   }
 
   const onPinVerify = async (pin: string) => {
+    await profileStorage.savePhoneConfirmationTime(Date.now());
     onModalClose();
   }
 
@@ -34,21 +37,17 @@ const VerifyPhoneModal = ({ toggleModal, onModalClose }: VerifyPhoneModalProp) =
       visible={toggleModal}
     >
       <View style={styles.modalBackground}>
-        <>
-          {toggleModal &&
-            <View style={[styles.modalContent]}>
-              <View>
-                {showVerifyPhone ?
-                  (
-                    <VerifyPhone onPhoneVerify={onPhoneVerify} onCancel={onCancel} />
-                  ) : (
-                    <VerifyPin onPinVerify={onPinVerify} onCancel={onModalClose} />
-                  )
-                }
-              </View>
-            </View>
-          }
-        </>
+        <View style={[styles.modalContent]}>
+          <View>
+            {showVerifyPhone ?
+              (
+                <VerifyPhone onPhoneVerify={onPhoneVerify} onCancel={onCancel} />
+              ) : (
+                <VerifyPin onPinVerify={onPinVerify} onCancel={onModalClose} showPinOnly={showPinOnly} />
+              )
+            }
+          </View>
+        </View>
       </View>
     </Modal>
   )

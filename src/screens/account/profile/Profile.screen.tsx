@@ -1,9 +1,10 @@
-import { ScrollView, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { Alert, ScrollView, StyleSheet } from 'react-native'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useProfileStore } from '@/stores/profile.store'
 import ProfileRegisteration from '@/components/account/profile/ProfileRegisteration'
 import ProfileDetails from '@/components/account/profile/ProfileDetails'
-import { useIsFocused } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
+import IconButton from '@/components/UI/buttons/IconButton'
 
 const ProfileScreen = () => {
   const isFocused = useIsFocused();
@@ -11,10 +12,33 @@ const ProfileScreen = () => {
   const [isProfileOnEdit, setIsProfileOnEdit] = useState(false)
   const [editProfile, setEditProfile] = useState('');
   const getProfile = useProfileStore(state => state.getProfile)
+  const navigation = useNavigation();
+  const { profile, logout } = useProfileStore()
 
   useEffect(() => {
     toggleComponents();
   }, [isFocused]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        if(profile?.phone) {
+          return <IconButton icon='more-vertical' onPress={showLogoutModal} color="#FCAF58" />
+        }
+      }
+    });
+  }, [navigation, profile])
+
+  const showLogoutModal = () => {
+    Alert.alert('Confirm Logout', 'Are you sure?', [
+      { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+      { text: 'Delete', onPress: () => onLogout() },
+    ]);
+  }
+
+  const onLogout = () => {
+    logout()
+  }
 
   const toggleComponents = () => {
     const profile = getProfile();

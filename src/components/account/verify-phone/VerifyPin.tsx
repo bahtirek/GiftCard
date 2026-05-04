@@ -1,21 +1,20 @@
-import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { commonStyles, flex, pb, text } from '@/styles/styles'
+import { commonStyles, pb, text } from '@/styles/styles'
 import CustomInput from '@/components/UI/forms/CustomInput'
 import { InputValueType } from '@/types'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
-import { useProfileStore } from '@/stores/profile.store'
 
 type VerifyPinProp = {
   onPinVerify: (pin: string) => void,
-  onCancel: () => void
+  onCancel: () => void,
+  showPinOnly?: boolean
 }
 
-const VerifyPinScreen = ({ onPinVerify, onCancel }: VerifyPinProp) => {
+const VerifyPinScreen = ({ onPinVerify, onCancel, showPinOnly }: VerifyPinProp) => {
   const [pin, setPin] = useState<InputValueType>({ value: '', isValid: false })
   const [isPinInputTouched, setIsPinInputTouched] = useState<Boolean>(false)
-  const { setToken } = useProfileStore()
   const [showSpinner, setShowSpinner] = useState(false)
 
   const pinRules = [
@@ -32,7 +31,6 @@ const VerifyPinScreen = ({ onPinVerify, onCancel }: VerifyPinProp) => {
     if (!pin.isValid) return;
     setShowSpinner(true)
     setTimeout(() => {
-      setToken('dfkgjdkjfhg')
       setShowSpinner(false)
       onPinVerify(pin.value)
     }, 2000)
@@ -42,6 +40,8 @@ const VerifyPinScreen = ({ onPinVerify, onCancel }: VerifyPinProp) => {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={[styles.container]}>
         <Text style={styles.modalTitle}>Verify pin</Text>
+        {showPinOnly && <Text style={[text.sm, text.grey, pb.md]}>Enter the 6 digit pin sent to your phone number</Text>}
+        <View></View>
         <View style={[commonStyles.inputContainer]}>
           <Text style={[text.md, text.grey, pb.sm]}>Pin:</Text>
           <CustomInput

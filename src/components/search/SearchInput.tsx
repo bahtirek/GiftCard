@@ -29,7 +29,7 @@ const SearchInput = ({ handleSearchButton, searchQueryProp }: CategoryListProps)
   }, [isFocused]);
 
   const handleInput = (value: InputValueType) => {
-    if (value.value.length > 2) {
+    if (value.value.length > 1 || value.value.length === 0) {
       debouncedSearch(value.value)
     }
   }

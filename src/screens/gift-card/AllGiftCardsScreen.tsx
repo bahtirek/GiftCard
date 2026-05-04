@@ -12,6 +12,8 @@ import { useSearchStore } from '@/stores/search.store'
 import { GiftCardType } from '@/types'
 import { useSearchQuery } from '@/api/gift-cards/search.query'
 import { useLocationStore } from '@/stores/location.store'
+import { ApiError } from '@/utils/api-error'
+import ErrorView from '@/components/common/ErrorView'
 
 type Props = NativeStackScreenProps<GiftCardsStackParamList, 'AllGiftCards'>;
 type NavigationProp = NativeStackNavigationProp<MainTabParamList, 'GiftCardsNavigation'>;
@@ -34,6 +36,8 @@ const AllCardsScreen = ({ route }: Props) => {
     refetch,
     isFetchingNextPage,
     isRefetching,
+    isError,
+    error
   } = useSearchQuery({query, city});
 
   const items: GiftCardType[] = data?.pages.flatMap((page) => page.items) ?? [];
@@ -87,13 +91,19 @@ const AllCardsScreen = ({ route }: Props) => {
     });
   }
 
+  if (isError && error instanceof ApiError) {
+    if (error.status !== 401 && error.status !== 403) {
+      return <ErrorView message='Sorry something went wrong...' onRetry={refetch} />;
+    }
+  }
+
   return (
     <MainView>
-      {isLoading && <ActivityIndicator />}
+      {/* {isLoading && <ActivityIndicator />} */}
       <View>
         <GiftCardList
           items={items}
-          loading={isFetchingNextPage}
+          loading={isFetchingNextPage || isLoading}
           refreshing={isRefetching}
           hasNextPage={!!hasNextPage}
           onLoadMore={fetchNextPage}

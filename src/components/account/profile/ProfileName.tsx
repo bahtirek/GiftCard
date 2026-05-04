@@ -6,7 +6,7 @@ import { InputValueType } from '@/types'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { useProfileStore } from '@/stores/profile.store'
 import { updateProfile } from '@/api/profile/verify-profile.api'
-import { profileStorage } from '@/services/profile.storage'
+import { profileStorage } from '@/storage-services/profile.storage'
 import { useIsFocused } from '@react-navigation/native'
 
 type ProfileNameProp = {

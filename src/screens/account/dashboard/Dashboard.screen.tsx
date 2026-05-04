@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useLayoutEffect } from 'react'
-import { commonStyles, flex, mb, pt, text } from '@/styles/styles'
+import { StyleSheet } from 'react-native'
+import React, { useLayoutEffect } from 'react'
+import { flex, pt } from '@/styles/styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import ListItem from '@/components/common/ListItem'
 import { useAccountStore } from '@/stores/account.store'
 import IconButton from '@/components/UI/buttons/IconButton'
-import GiftCardList from '@/components/GiftCard/GiftCardList'
 import { useProfileStore } from '@/stores/profile.store'
 import AccountList from '@/components/account/dashboard/AccountList'
 import { GiftCardType } from '@/types'
@@ -28,7 +27,9 @@ const DashboardScreen = () => {
     navigation.setOptions({
       title: account?.name,
       headerRight: () => {
-        return <IconButton icon='more-vertical' onPress={openAccountslistScreen} color="#FCAF58" />
+        if (profile.accounts && profile.accounts?.length > 1) {
+          return <IconButton icon='more-vertical' onPress={openAccountslistScreen} color="#FCAF58" />
+        }
       }
     });
   }, [navigation, account])

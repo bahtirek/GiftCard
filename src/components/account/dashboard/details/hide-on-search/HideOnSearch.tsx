@@ -4,6 +4,7 @@ import { useAccountStore } from '@/stores/account.store';
 import CustomCheckbox from '@/components/UI/forms/CustomCheckbox';
 import { updateAccountAPI } from '@/api/account/account.api';
 import { GiftCardType } from '@/types';
+import { pb } from '@/styles/styles';
 
 const HideOnSearch = () => {
   const { account, updateAccount } = useAccountStore();
@@ -21,7 +22,7 @@ const HideOnSearch = () => {
   }
 
   return (
-    <View>
+    <View style={[pb.xxl]}>
       <CustomCheckbox 
         label={'Hide from search'} 
         checked={account?.hideOnSearch || false} 

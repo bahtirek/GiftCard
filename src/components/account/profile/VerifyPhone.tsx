@@ -5,7 +5,7 @@ import { InputValueType, ProfileType } from '@/types'
 import { mt, pb, text } from '@/styles/styles'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
-import { profileStorage } from '@/services/profile.storage'
+import { profileStorage } from '@/storage-services/profile.storage'
 import { updateProfile } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
 import { useIsFocused } from '@react-navigation/native'
@@ -47,7 +47,7 @@ const VerifyPhone = ({phoneIsSubmitted, onSkipOrUpdate, isEditing}: VerifyPhoneP
 
   const phoneRules = [
     (val: string) => !!val || 'Field is required',
-    (val: string) => validateLength(val, 12) || 'Wrong phone number'
+    (val: string) => validateLength(val, 17) || 'Wrong phone number'
   ]
 
   const onSubmitButtonClick = async () => {

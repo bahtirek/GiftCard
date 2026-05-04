@@ -6,7 +6,7 @@ import MainTabsView from './navigation/MainTabs.navigation';
 import PaymentNavigation from './navigation/Checkout.navigation';
 import { Colors } from './styles/constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { profileStorage } from '@/services/profile.storage';
+import { profileStorage } from '@/storage-services/profile.storage';
 import { useEffect, useRef, useState } from 'react';
 import { useProfileStore } from './stores/profile.store';
 import { fetchProfileById, postProfile } from './api/profile/verify-profile.api';
