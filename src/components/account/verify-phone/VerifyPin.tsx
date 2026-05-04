@@ -5,7 +5,6 @@ import CustomInput from '@/components/UI/forms/CustomInput'
 import { InputValueType } from '@/types'
 import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
-import { useProfileStore } from '@/stores/profile.store'
 
 type VerifyPinProp = {
   onPinVerify: (pin: string) => void,
@@ -16,7 +15,6 @@ type VerifyPinProp = {
 const VerifyPinScreen = ({ onPinVerify, onCancel, showPinOnly }: VerifyPinProp) => {
   const [pin, setPin] = useState<InputValueType>({ value: '', isValid: false })
   const [isPinInputTouched, setIsPinInputTouched] = useState<Boolean>(false)
-  const { setToken } = useProfileStore()
   const [showSpinner, setShowSpinner] = useState(false)
 
   const pinRules = [
@@ -33,7 +31,6 @@ const VerifyPinScreen = ({ onPinVerify, onCancel, showPinOnly }: VerifyPinProp) 
     if (!pin.isValid) return;
     setShowSpinner(true)
     setTimeout(() => {
-      setToken('dfkgjdkjfhg')
       setShowSpinner(false)
       onPinVerify(pin.value)
     }, 2000)
