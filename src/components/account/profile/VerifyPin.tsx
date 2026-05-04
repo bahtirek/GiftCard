@@ -7,7 +7,7 @@ import { validateLength } from '@/utils/input-validation'
 import CustomButton from '@/components/UI/buttons/CustomButton'
 import { updateProfile, verifyPinByPhone } from '@/api/profile/verify-profile.api'
 import { useProfileStore } from '@/stores/profile.store'
-import { profileStorage } from '@/services/profile.storage'
+import { profileStorage } from '@/storage-services/profile.storage'
 
 type VerifyPinProp = {
   onProfileCoifirmed: () => void
